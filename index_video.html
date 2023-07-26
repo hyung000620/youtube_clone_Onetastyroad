@@ -8,14 +8,31 @@
     <title>video</title>
 </head>
 <body>
-    <header>
-
+    <!-- upper navigation bar -->
+    <header class="navbar">    
+        <div class="toggle-btn">
+            <img src="img/css_1_header/hamburger.png" alt="">
+        </div>
+        <img src="img/css_1_header/Youtube-Logo.png" class="logo" alt="">
+        <div class="search-box">
+            <input type="search" class="search-bar" placeholder="search">
+            <button class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
+            <img src="img/css_1_header/mic.png" class="icon" alt="">
+        </div>
+        <div class="user-options">
+            <img src="img/css_1_header/create.png" class="icon" alt="">
+            <img src="img/css_1_header/apps.png" class="icon" alt="">
+            <img src="img/css_1_header/notifications.png" class="icon" alt="">
+            <div class="user-dp">
+                <img src="img/css_1_header/User-Avatar.png" alt="">
+            </div>
+        </div>
     </header>
-    <section>
+    <section style="display: flex;">
 
         <div id="videoInfo"></div>
         <aside>
-
+            <div id="videolist"></div>
         </aside>
     </section>
 </body>
@@ -24,7 +41,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     let url = window.location.search;
-    let id = url.match(/id=(\d+)/)[1];
+    let res = url.match(/id=(\d+)/);
+    let id = res? res[1]:1;
     displayVideo(id).catch(error => {
         console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
     });
