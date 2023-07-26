@@ -152,8 +152,8 @@ async function displayVideo(id) {
 // index_channel.html 에서 화면 표시
 async function displayChannel() {
     const videoList = await getVideoList();
-    const smalVideo = document.querySelector('.smal-video')
-    const infoContainer = document.querySelector('.playlist');
+    const smalVideo = document.getElementById('smal-video')
+    const infoContainer = document.querySelector('.xsmall-video');
     let smalHTML = "";
     let infoHTML = "";
     // 비디오 정보를 병렬로 가져오기
