@@ -21,25 +21,24 @@ async function getChannelVideo() {
     return data;
 }
 
-
-// 아래는 시험용으로 작성한 코드이므로 참고용으로 쓰시고 - Fixed
-// Html에 해당하는 id 추가, for문 수정 부탁드립니다 - - Fixed
-// 비디오 정보를 이미지와 함께 표시
-// index_home.html 에서 화면 표시
+// index_home.html에서 화면 표시
 async function displayHome() {
     const videoList = await getVideoList();
     const infoContainer = document.getElementById('videoList');
+    let infoHTML = "";
+    // 비디오 정보와 채널 정보를 병렬로 가져오기
+    const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoList = await Promise.all(videoInfoPromises);
 
     for (let i = 0; i < videoList.length; i++) {
         const videoId = videoList[i].video_id;
-        const videoInfo = await getVideoInfo(videoId);
-        const channelInfo = await getChannelVideo();
+        const videoInfo = videoInfoList[i];
 
         // 비디오 정보를 표시할 문자열 생성
         let channelURL = `location.href="./index_channel.html"`;
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
 
-        const infoHTML = `
+        infoHTML += `
             <div>
                 <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
                 <div style='display:flex;'>
@@ -53,41 +52,79 @@ async function displayHome() {
                         <p>${videoInfo.upload_date}</p>
                     </div>
                 </div>
-                
             </div>
         `;
-
-        // 비디오 정보 추가
-        infoContainer.innerHTML += infoHTML;
     }
-}
-// index_video.html 에서 화면 표시
-async function displayVideo(id){
-    const videoInfo = await getVideoInfo(id);
-    const infoContainer = document.getElementById('videoInfo');
 
-    const infoHTML = `
-        <video controls style='width:800px'>
-            <source src='${videoInfo.video_link}'>
-        </video>    
-    `;
-
+    // 비디오 정보 추가
     infoContainer.innerHTML = infoHTML;
 }
+// index_video.html 에서 화면 표시
+async function displayVideo(id) {
+    const videoList = await getVideoList();
+    let video = document.getElementById('videoInfo');
+    let listContainer = document.getElementById('videolist');
+    let listHTML = "";
+    let videoHTML = "";
+    // 비디오 정보와 채널 정보를 병렬로 가져오기
+    const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoList = await Promise.all(videoInfoPromises);
+
+    for (let i = 0; i < videoList.length; i++) {
+        const videoId = videoList[i].video_id;
+        const videoInfo = videoInfoList[i];
+
+        // 비디오 정보를 표시할 문자열 생성
+        let channelURL = `location.href="./index_channel.html"`;
+        let videoURL = `location.href="./index_video.html?id=${videoId}"`;
+
+        if (id == videoId){
+            videoHTML = `
+            <video controls style='width:800px'>
+                <source src='${videoInfo.video_link}'>
+            </video>    
+            `;
+        }else{
+            listHTML += `
+            <div>
+                <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
+                <div style='display:flex;'>
+                    <div>
+                        <p>${videoInfo.video_title}</p>
+                        <p>${videoInfo.video_channel}</p>
+                        <p>${videoInfo.views}</p>
+                        <p>${videoInfo.upload_date}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+        
+    } 
+    // 선택된 비디오
+    video.innerHTML = videoHTML;
+    // 비디오 리스트 추가
+    listContainer.innerHTML = listHTML;
+   
+}
 // index_channel.html 에서 화면 표시
-async function displayChannel(){
+async function displayChannel() {
     const videoList = await getVideoList();
     const infoContainer = document.querySelector('.playlist');
+    let infoHTML = "";
 
-    for (let i = 0; i < 10; i++) {
-        const videoId = videoList[i].video_id;
-        const videoInfo = await getVideoInfo(videoId);
-        const channelInfo = await getChannelVideo();
+    // 비디오 정보를 병렬로 가져오기
+    const videoInfoPromises = videoList.slice(0, 10).map((video) => getVideoInfo(video.video_id));
+    const videoInfoList = await Promise.all(videoInfoPromises);
+
+    for (let i = 0; i < videoInfoList.length; i++) {
+        const videoInfo = videoInfoList[i];
+        const videoId = videoInfo.video_id;
 
         // 비디오 정보를 표시할 문자열 생성
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
 
-        const infoHTML = `
+        infoHTML += `
             <div>
                 <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
@@ -98,17 +135,9 @@ async function displayChannel(){
                         <p>${videoInfo.upload_date}</p>
                     </div>
                 </div>
-                
             </div>
         `;
-
-        // 비디오 정보 추가
-        infoContainer.innerHTML += infoHTML;
     }
+
+    infoContainer.innerHTML = infoHTML;
 }
-// 페이지가 로드되면 비디오 정보를 가져와서 표시
-// document.addEventListener('DOMContentLoaded', () => {
-//     displayVideos().catch(error => {
-//         console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
-//     });
-// });
