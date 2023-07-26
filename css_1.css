@@ -4,10 +4,14 @@ css_2 : nav, section1, secion2 */
 
 /********** 공통 스타일 1 (상단 네비바) **********/
 *{
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
   background-color: #212121;
+}
+
+p{
+  color: #ffffff;
 }
 
 .navbar{
@@ -22,6 +26,7 @@ css_2 : nav, section1, secion2 */
   padding: 0 2.5vw;
 }
 
+/* 토클 버튼, HTML 내에서 이미지로 대체 예정 */
 .toggle-btn{
   width: 20px;
   height: 10px;
@@ -66,6 +71,7 @@ css_2 : nav, section1, secion2 */
   padding: 0 10px;
   font-size: 15px;
   text-transform: capitalize;
+  color: #ffffff;
   background: #121212;
 }
 
@@ -115,14 +121,13 @@ css_2 : nav, section1, secion2 */
   object-fit: cover;
 }
 
-/********** 공통 스타일 2 (좌측 사이드바) **********/
-
-.side-bar{
-  height: 40px;
-  width: 224px;
-  padding: 8px, 8px, 8px, 24px;
-  gap: 10px;
+/* 하나하나씩 불러와지는 이유는 무엇일까... */
+#videoList{
+  justify-content: center;
+  gap: 40px;
 }
+
+/********** 공통 스타일 2 () **********/
 
 
 
