@@ -2,8 +2,7 @@
 css_2 : nav, section1, secion2 */
 
    /* ---------------- nav --------------------*/
-
-   .side-bar{
+ .side-bar{
     position: fixed;
     overflow: auto;
     top: 60px;

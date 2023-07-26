@@ -15,7 +15,7 @@
         <div class="toggle-btn">
             <img src="img/css_1_header/hamburger.png" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.png" class="logo" alt="">
+        <img src="img/css_1_header/Youtube-Logo.png" class="logo" alt="" onClick="moveHome()">
         <div class="search-box">
             <input type="search" class="search-bar" placeholder="search">
             <button class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
@@ -75,14 +75,62 @@
         </div>
     </nav>
 
-        <!-- Section -->
-        <div class="channel">
-            <a href="#" class="links"><img src="커버사진"></a>
-            <a href="#" class="links"><img src="프로필사진"></a>
+    <!-- header와 nav를 제외한 안쪽 내용 section -->
+    <section>
+        <!-- channel information -->
+        <div id="channel">
+            <div class="channel-cover">
+                <a href="#" class="links"><img src="img/channel/Channel-Cover.png"></a>
+            </div>
 
+            <div class="channel-title">
+                <div class="channel-profile">
+                    <a href="#" class="links"><img src="img/channel/User-Avatar.png"></a>
+                    <div class="Chanel-Profile-name">
+                        <p>Onetastyroad</p>
+                        <p>안녕하세요! 구독과 좋아요 부탁드립니다!</p>
+                    </div>
+                </div>
+                <button class="subscribes-btn">
+                    <img src="img/channel/Subscribes-Btn.png" alt="">
+                </button>
+            </div>
+
+            <div class="channel-toolbar">
+                <button class="toolbar-menu">HOME</button>
+                <button class="toolbar-menu">VIDEOS</button>
+                <button class="toolbar-menu">PLAYLISTS</button>
+                <button class="toolbar-menu">COMMUNITY</button>
+                <button class="toolbar-menu">CHANNELS</button>
+                <button class="toolbar-menu">ABOUT</button>
+                <div class="toolbar-search">
+                    <img src="img/channel/search.png" alt="">
+                    <button class="toolbar-search-btn"><img src="img/css_1_header/leftBottom.png" alt=""></button>
+                </div>
+            </div>
         </div>
-        <div class="smal-video"></div>
-        <div class="playlist"></div>
+
+        <!-- smal-video -->
+        <div id="smal-video">
+            <div class="player"></div>
+            <div class="video-desc"></div>
+        </div>
+
+        <!-- playlist -->
+        <div id="playlist">
+            <div class="playlİst-header">
+                <div class="playlİst-title">Search On ‘21</div>
+                <div class="playlist-playbtn">
+                    <img src="img/channel/play.png" alt="">PLAY ALL
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="xsmall-video">
+                    <!-- 여기에 비디오 추가 -->
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
