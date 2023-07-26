@@ -44,7 +44,7 @@
             <a href="#" class="links"><img src="img/watch-later.PNG" alt="">Watch Later</a>
             <a href="#" class="links"><img src="img/liked video.PNG" alt="">like video</a>
             <a href="#" class="links"><img src="img/show more.PNG" alt="">show more</a>
-        </nav>
+        </nav> -->
 
         <!-- Section -->
         <div class="channel">
@@ -57,4 +57,11 @@
 </body>
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    displayChannel().catch(error => {
+        console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
+    });
+});    
+</script>
 </html>
