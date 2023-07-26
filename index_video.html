@@ -28,11 +28,11 @@
             </div>
         </div>
     </header>
-    <section>
+    <section style="display: flex;">
 
         <div id="videoInfo"></div>
         <aside>
-
+            <div id="videolist"></div>
         </aside>
     </section>
 </body>
@@ -41,7 +41,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     let url = window.location.search;
-    let id = url.match(/id=(\d+)/)[1];
+    let res = url.match(/id=(\d+)/);
+    let id = res? res[1]:1;
     displayVideo(id).catch(error => {
         console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
     });
