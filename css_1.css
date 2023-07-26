@@ -1,9 +1,17 @@
 /********** header 스타일 2023-07-25 **********/
+/*css_1 : header, aside , section 3
+css_2 : nav, section1, secion2 */
+
+/********** 공통 스타일 1 (상단 네비바) **********/
 *{
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
   background-color: #212121;
+}
+
+p{
+  color: #ffffff;
 }
 
 .navbar{
@@ -18,28 +26,12 @@
   padding: 0 2.5vw;
 }
 
+/* 토클 버튼, HTML 내에서 이미지로 대체 예정 */
 .toggle-btn{
   width: 20px;
   height: 10px;
   position: relative;
   cursor: pointer;
-}
-
-.toggle-btn span{
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  top: 50%;
-  transform: translateY(-50%);
-  background:#fff
-}
-
-.toggle-btn span:nth-child(1){
-  top: 0;
-}
-
-.toggle-btn span:nth-child(3){
-  top: 100%;
 }
 
 .logo{
@@ -62,6 +54,7 @@
   padding: 0 10px;
   font-size: 15px;
   text-transform: capitalize;
+  color: #ffffff;
   background: #121212;
 }
 
@@ -111,7 +104,14 @@
   object-fit: cover;
 }
 
-/********** 공통 스타일 2 **********/
+/* 하나하나씩 불러와지는 이유는 무엇일까... */
+#videoList{
+  justify-content: center;
+  gap: 40px;
+}
+
+/********** 공통 스타일 2 () **********/
+
 
 
 /********** 공통 스타일 3 **********/
