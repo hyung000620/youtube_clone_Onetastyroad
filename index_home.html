@@ -35,8 +35,16 @@
         <!-- 로고 및 수기 작성 필요 -->
     </nav>
     <section>
+        <div id="videoList" style="display: flex; flex-wrap: wrap; gap:1em;"></div>
     </section>
 </body>
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    displayHome().catch(error => {
+        console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
+    });
+});    
+</script>
 </html>
