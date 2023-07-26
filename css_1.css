@@ -1,4 +1,8 @@
 /********** header 스타일 2023-07-25 **********/
+/*css_1 : header, aside , section 3
+css_2 : nav, section1, secion2 */
+
+/********** 공통 스타일 1 (상단 네비바) **********/
 *{
   margin: 0;
   padding: 0;
@@ -111,7 +115,15 @@
   object-fit: cover;
 }
 
-/********** 공통 스타일 2 **********/
+/********** 공통 스타일 2 (좌측 사이드바) **********/
+
+.side-bar{
+  height: 40px;
+  width: 224px;
+  padding: 8px, 8px, 8px, 24px;
+  gap: 10px;
+}
+
 
 
 /********** 공통 스타일 3 **********/
