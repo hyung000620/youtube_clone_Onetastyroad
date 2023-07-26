@@ -13,20 +13,21 @@
     </header>
     <section>
 
+        <div id="videoInfo"></div>
         <aside>
 
         </aside>
-        <section>
-
-            <nav>
-
-            </nav>
-            <main>
-
-            </main>
-        </section>
     </section>
 </body>
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let url = window.location.search;
+    let id = url.match(/id=(\d+)/)[1];
+    displayVideo(id).catch(error => {
+        console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
+    });
+});    
+</script>
 </html>
