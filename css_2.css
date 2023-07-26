@@ -3,7 +3,8 @@ css_2 : nav, section1, secion2 */
 
    /* ---------------- nav --------------------*/
 .side-bar{
-    position: absolute;
+    position: fixed;
+    overflow: auto;
     top: 60px;
     left: 0;
     min-width: 250px;
