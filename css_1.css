@@ -6,16 +6,6 @@
   background-color: #212121;
 }
 
-*:focus{
-  outline: none;
-}
-
-body{
-  position: relative;
-  background: #f0f0f0;
-  font-family: 'roboto', sans-serif;
-}
-
 .navbar{
   position: fixed;
   top: 0;
@@ -41,7 +31,7 @@ body{
   height: 2px;
   top: 50%;
   transform: translateY(-50%);
-  background: #fff
+  background:#fff
 }
 
 .toggle-btn span:nth-child(1){
