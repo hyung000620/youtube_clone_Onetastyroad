@@ -50,7 +50,7 @@ let isSubscribed = false;
 
 function toggleSubscription() {
     let subscribeBtn = document.querySelector('.subscribeBtn');
-  
+
     if (isSubscribed) {
         subscribeBtn.innerText = '구독하기';
         subscribeBtn.style.backgroundColor = 'red';
@@ -59,4 +59,26 @@ function toggleSubscription() {
         subscribeBtn.style.backgroundColor = 'gray';
     }
     isSubscribed = !isSubscribed;
+}
+
+
+// 조회수 단위
+function thousandK(num){
+    const nFormatter = (num, digits) => {
+        const unit = [
+            { value: 1,  symbol: ''},
+            { value: 1e3,  symbol: 'k'},
+            { value: 1e6,  symbol: 'M'},
+            { value: 1e9,  symbol: 'G'}
+        ]
+        const rr = /\.0 + $|(\.[0-9] * [1-9])0 + $/
+        let i
+        for (i = unit.length - 1; i > 0; i--) {
+            if (num >= unit[i].value) {
+                break
+            }
+        }
+        return (num / unit[i].value).toFixed(digits).replace(rr, '$1') + unit[i].symbol
+    }
+    return nFormatter(num, 0);
 }
