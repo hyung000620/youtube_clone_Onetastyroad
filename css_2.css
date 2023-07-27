@@ -1,10 +1,11 @@
 /* css_1 : header, aside , section 3
 css_2 : nav, section1, secion2 */
 
-   /* ---------------- nav --------------------*/
+   /* ---------------- 사이드바 (nav) --------------------*/
  .side-bar{
+    z-index: 2;
     position: fixed;
-    overflow: auto;
+    overflow: scroll;
     top: 60px;
     left: 0;
     min-width: 250px;
@@ -34,7 +35,7 @@ css_2 : nav, section1, secion2 */
   }
   
 .links:hover,
-.links.active{
+.links.active:hover{
     background: rgba(0, 0, 0, 0.1);
   }
   
@@ -50,6 +51,16 @@ css_2 : nav, section1, secion2 */
   /*----------------- section 1 ---------------- */
 body {
   background: black;
+}
+
+.filters{
+  width: 100%;
+  padding-top: 50px;
+  margin-left: 250px;
+  padding-bottom: 20px;
+  background: #212121;
+  position: fixed;
+  z-index: 1;
 }
 
 .filters > button{
