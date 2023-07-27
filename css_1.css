@@ -42,6 +42,7 @@ p, span{
 /********* 상단 네비바 **********/
 
 .navbar{
+  z-index: 2;
   position: fixed;
   top: 0;
   width: 100%;
@@ -139,16 +140,17 @@ p, span{
 /* 비디오리스트 (id="vidioList) */
 
 #videoList{
-
+  overflow: unset;
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 250px;
+  margin-left: 275px;
+  margin-top: 90px;
 }
 
 #videoList > div{
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-right: 10px;
 }
 
