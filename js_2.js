@@ -47,7 +47,7 @@ async function displayHome() {
                 <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
                 <div style='display:flex;'>
                     <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
-                        <img src='/img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                        <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                     </div>
                     <div>
                         <p>${videoInfo.video_title}</p>
@@ -108,7 +108,7 @@ async function displayVideo(id) {
                 <div style='display:flex;justify-content: space-between; padding:15px;'>
                     <div style='display:flex;'>
                         <div style='width:50px; height: 50px; border-radius: 70%; overflow:hidden;'>
-                            <img src='/img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                            <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                         </div>
                         <div style='margin:10px'>
                             <p>oreumi</p>
