@@ -62,8 +62,8 @@ p, span{
 }
 
 .search-bar{
-  width: 85%;
-  height: 100%;
+  width: 470px;
+  height: 40px;
   border: 1px solid #303030;
   padding: 0 10px;
   font-size: 15px;
@@ -76,7 +76,7 @@ p, span{
 
 .search-btn{
   width: 10%;
-  height: 100%;
+  height: 40px;
   background: #212121;
   padding: 5px;
   border: 1px solid #303030;
@@ -85,13 +85,16 @@ p, span{
 }
 
 .search-btn img{
-  height: 100%;
+  width: 24px;
+  height: 24px;
 }
 
 .mic {
-  background: #121212;
+  width: 40px;
+  height: 40px;
+  background: #000;
   border-radius: 50%;
-  height: 100%
+  margin-left: 5px;
 }
 
 .user-options{
@@ -144,6 +147,116 @@ p, span{
 
 
 /********** Channel **********/
+#channel{
+  overflow: unset;
+  position: relative;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-left: 250px;
+  margin-top: 65px;
+}
+
+.channel-cover{
+  width: 100%;
+  background-color:#1b1b1b;
+}
+
+.channel-title{
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color:#1b1b1b;
+  padding-top: 16px;
+}
+.channel-profile{
+  display: flex;
+  margin-left: 65px;
+  margin-right: auto;
+}
+.channel-profile >a> img{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.Chanel-Profile-name{
+  padding: 18px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 80px;
+}
+.Chanel-Profile-name>p:nth-child(1){
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Chanel-Profile-name>p:nth-child(2){
+  color: #AAA;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.channel-title > img{
+  margin: auto;
+  margin-right: 65px;
+  width: 116px;
+  height: 36px;
+}
+.channel-toolbar{
+  display: flex;
+  height: 48px;
+  padding-left: 65px;
+  background-color:#1b1b1b;
+}
+.toolbar-menu{
+  display: inline-block; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 15px 32px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #1b1b1b;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  color: #AAAAAA;
+}
+.toolbar-menu:active{
+  border-bottom: 1px solid #AAAAAA;
+}
+.toolbar-search{
+  width: 298px;
+  height: 48px;
+  display: flex;
+}
+.toolbar-search > img{
+  margin: auto;
+  margin-left: 24px;
+  width: 24px;
+  height: 24px;
+}
+.toolbar-search > button{
+  display: block;
+  justify-content: flex-end;
+  margin: auto;
+  margin-right: 65px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+#smal-video, #playlist{
+  margin-left: 300px;
+  margin-top: 65px;
+}
+.xsmall-video{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 
 /***** Section *****/
 
