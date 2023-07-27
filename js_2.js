@@ -27,11 +27,25 @@ function formatNumberWithCommas(number) {
 
 // 게시일 표시 (금일 대비 ~일 전)
 function dateComparison(date) {
-    const start = new Date(date);
-    const end = new Date();
-
-    const diff = (end - start) / 1000;
+    const parsedDate = new Date(date.replace(/\//g, "-"));
+    const milliSeconds = new Date() - parsedDate; 
+    
+    const seconds = milliSeconds / 1000
+    if (seconds < 60) return `방금 전`
+    const minutes = seconds / 60
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`
+    const hours = minutes / 60
+    if (hours < 24) return `${Math.floor(hours)}시간 전`
+    const days = hours / 24
+    if (days < 7) return `${Math.floor(days)}일 전`
+    const weeks = days / 7
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`
+    const months = days / 30
+    if (months < 12) return `${Math.floor(months)}개월 전`
+    const years = days / 365
+    return `${Math.floor(years)}년 전`
 }
+
 
 // index_home.html에서 화면 표시
 async function displayHome() {
@@ -61,7 +75,7 @@ async function displayHome() {
                         <p>${videoInfo.video_title}</p>
                         <p>${videoInfo.video_channel}</p>
                         <p>${thousandK(videoInfo.views)}</p>
-                        <p>${videoInfo.upload_date}</p>
+                        <p>${dateComparison(videoInfo.upload_date)}</p>
                     </div>
                 </div>
             </div>
@@ -90,7 +104,7 @@ async function displayVideo(id) {
         // 비디오 정보를 표시할 문자열 생성
         let channelURL = `location.href="./index_channel.html"`;
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
-        let num = videoInfo.views; //숫자값 format
+        let num = thousandK(videoInfo.views); //숫자값 format
         if (id == videoId){
             num = formatNumberWithCommas(num);
             videoHTML = `
@@ -102,7 +116,7 @@ async function displayVideo(id) {
                 <p style='font-size:24px;padding:15px;'>${videoInfo.video_title}</p>
                 <div style='display:flex;justify-content: space-between; padding:15px;'>
                     <div>
-                        <p>${num} views ${videoInfo.upload_date}</p>
+                        <p>${num} views ${dateComparison(videoInfo.upload_date)}</p>
                     </div>
                     <div>
                         <img src='img/video/Liked.png'><span>1.7K</span>
@@ -130,6 +144,7 @@ async function displayVideo(id) {
                     </div>
                     <div>
                         <img src='/img/channel/Subscribes-Btn.png'>
+                        <img style="display: none;" src="img/channel/subscribed-Btn.png" alt="">
                     </div>
                 </div>
             </div>    
@@ -142,8 +157,8 @@ async function displayVideo(id) {
                     <div>
                         <p>${videoInfo.video_title}</p>
                         <p>${videoInfo.video_channel}</p>
-                        <p>${videoInfo.views}</p>
-                        <p>${videoInfo.upload_date}</p>
+                        <p>${thousandK(videoInfo.views)}</p>
+                        <p>${dateComparison(videoInfo.upload_date)}</p>
                     </div>
                 </div>
             </div>
@@ -174,7 +189,7 @@ async function displayChannel() {
 
         // 비디오 정보를 표시할 문자열 생성
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
-        let num = videoInfo.views;
+        let num = thousandK(videoInfo.views);
         if (i===1){
             num = formatNumberWithCommas(num);
             smalHTML = `
@@ -185,7 +200,7 @@ async function displayChannel() {
             </div>
             <div>
                 <p>${videoInfo.video_title}</p>
-                <p>${num}views ${videoInfo.upload_date}</p>
+                <p>${num}views ${dateComparison(videoInfo.upload_date)}</p>
                 <p>안녕하세요.
                 이스트소프트입니다.<br>
                 이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
@@ -201,8 +216,8 @@ async function displayChannel() {
                     <div>
                         <p>${videoInfo.video_title}</p>
                         <p>${videoInfo.video_channel}</p>
-                        <p>${videoInfo.views}</p>
-                        <p>${videoInfo.upload_date}</p>
+                        <p>${thousandK(videoInfo.views)}</p>
+                        <p>${dateComparison(videoInfo.upload_date)}</p>
                     </div>
                 </div>
             </div>
@@ -211,5 +226,10 @@ async function displayChannel() {
     }
     smalVideo.innerHTML = smalHTML;
     infoContainer.innerHTML = infoHTML;
+}
+
+//TODO: 검색 기능 구현
+function search(){
+
 }
 
