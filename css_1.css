@@ -174,7 +174,7 @@ p, span{
   margin-left: 65px;
   margin-right: auto;
 }
-.channel-profile >a> img{
+.channel-profile > img{
   width: 80px;
   height: 80px;
   border-radius: 50%;
