@@ -25,6 +25,14 @@ function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// 게시일 표시 (금일 대비 ~일 전)
+function dateComparison(date) {
+    const start = new Date(date);
+    const end = new Date();
+
+    const diff = (end - start) / 1000;
+}
+
 // index_home.html에서 화면 표시
 async function displayHome() {
     const videoList = await getVideoList();
@@ -52,7 +60,7 @@ async function displayHome() {
                     <div>
                         <p>${videoInfo.video_title}</p>
                         <p>${videoInfo.video_channel}</p>
-                        <p>${videoInfo.views}</p>
+                        <p>${thousandK(videoInfo.views)}</p>
                         <p>${videoInfo.upload_date}</p>
                     </div>
                 </div>
