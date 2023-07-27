@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="title" content="영상추천 유튜브">
+    <meta name="description" content="영상추천 유튜브">
+    <meta name="keywords" content="ai, 영상추천, 유튜브">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="Korean">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
-      rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Material+Icons"  rel="stylesheet"> -->
     <link rel="stylesheet" href="./css_1.css">
     <link rel="stylesheet" href="./css_2.css"> 
     <title>home</title>
@@ -19,7 +24,7 @@
         <div class="search-box">
             <input type="search" class="search-bar" placeholder="search">
             <button class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
-            <img src="img/css_1_header/mic.png" class="icon" alt="">
+            <img class="mic" src="img/css_1_header/mic.png" class="icon" alt="">
         </div>
         <div class="user-options">
             <img src="img/css_1_header/create.png" class="icon" alt="">
@@ -86,7 +91,6 @@
         </div>
     </nav>
 
-
     <!-- header와 nav를 제외한 안쪽 내용 section -->
     <section>
         <!-- filters -->
@@ -113,14 +117,10 @@
             <div id="videoList" style="display: flex; flex-wrap: wrap; gap:1em;"></div>
         </div>
     </section>
-</body>
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    displayHome().catch(error => {
-        console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
-    });
-});    
+document.addEventListener('DOMContentLoaded', () => {displayHome().catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});});    
 </script>
+</body>
 </html>
