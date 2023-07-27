@@ -40,7 +40,7 @@
 ---
 | <img src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" width="50px" height="50px" />  | <img src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" width="50px" height="50px" /> |
 |:-:|:-:|:-:|
-| HTML5  | CSS5 | Javascript  |
+| HTML5  | CSS3 | Javascript  |
 
 <br />
 

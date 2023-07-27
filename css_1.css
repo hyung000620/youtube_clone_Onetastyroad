@@ -24,24 +24,11 @@ p, span{
   font-weight: 700;
   line-height: normal;
 }
-/* 
-.filters > button{
-  color: #ffffff;
-  background-color: #303030;
-  border-style: solid;
-  border-color: #212121;
-  border-radius: 32px;
-  box-sizing: border-box;
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px; 
-} */
 
 /********* 상단 네비바 **********/
 
 .navbar{
+  z-index: 2;
   position: fixed;
   top: 0;
   width: 100%;
@@ -50,6 +37,7 @@ p, span{
   display: flex;
   align-items: center;
   padding: 0 2.5vw;
+  z-index: 2;
 }
 
 /* 토클 버튼, HTML 내에서 이미지로 대체 예정 */
@@ -76,21 +64,24 @@ p, span{
 .search-bar{
   width: 85%;
   height: 100%;
-  border: 2px;
+  border: 1px solid #303030;
   padding: 0 10px;
   font-size: 15px;
   text-transform: capitalize;
   color: #ffffff;
+  border-radius: 2px 0px 0px 2px;
   background: #121212;
+  border-right: 0;
 }
 
 .search-btn{
   width: 10%;
   height: 100%;
   background: #212121;
-  border: 1px;
   padding: 5px;
-  border-left: none;
+  border: 1px solid #303030;
+  border-radius: 0px 2px 2px 0px;
+  border-left: 0;
 }
 
 .search-btn img{
@@ -131,24 +122,23 @@ p, span{
 }
 
 
-/* 네비바, 사이드바, 비디오리스트 삼자간 자강세천 ;;*/
-
 /* 사이드바 (nav) */
 
 
 /* 비디오리스트 (id="vidioList) */
 
 #videoList{
-
+  overflow: unset;
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 250px;
+  margin-left: 275px;
+  margin-top: 90px;
 }
 
 #videoList > div{
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-right: 10px;
 }
 

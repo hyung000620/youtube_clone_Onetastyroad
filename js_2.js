@@ -25,6 +25,14 @@ function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// 게시일 표시 (금일 대비 ~일 전)
+function dateComparison(date) {
+    const start = new Date(date);
+    const end = new Date();
+
+    const diff = (end - start) / 1000;
+}
+
 // index_home.html에서 화면 표시
 async function displayHome() {
     const videoList = await getVideoList();
@@ -47,12 +55,12 @@ async function displayHome() {
                 <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
                 <div style='display:flex;'>
                     <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
-                        <img src='/img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                        <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                     </div>
                     <div>
                         <p>${videoInfo.video_title}</p>
                         <p>${videoInfo.video_channel}</p>
-                        <p>${videoInfo.views}</p>
+                        <p>${thousandK(videoInfo.views)}</p>
                         <p>${videoInfo.upload_date}</p>
                     </div>
                 </div>
@@ -108,7 +116,7 @@ async function displayVideo(id) {
                 <div style='display:flex;justify-content: space-between; padding:15px;'>
                     <div style='display:flex;'>
                         <div style='width:50px; height: 50px; border-radius: 70%; overflow:hidden;'>
-                            <img src='/img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                            <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                         </div>
                         <div style='margin:10px'>
                             <p>oreumi</p>
