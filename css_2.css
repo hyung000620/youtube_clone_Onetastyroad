@@ -1,7 +1,7 @@
 /* css_1 : header, aside , section 3
 css_2 : nav, section1, secion2 */
 
-   /* ---------------- 사이드바 (nav) --------------------*/
+   /* ---------------- 사이드바 (nav, 공통) --------------------*/
  .side-bar{
     z-index: 2;
     position: fixed;
@@ -46,11 +46,11 @@ css_2 : nav, section1, secion2 */
   }
 
 .side-bar::-webkit-scrollbar{
-  display: none;
+  display: flex;
 }
-  /*----------------- section 1 ---------------- */
+  /*----------------- section 1 (video.html) ---------------- */
 body {
-  background: black;
+  background: #181818;
 }
 
 .filters{
@@ -63,24 +63,30 @@ body {
   z-index: 1;
 }
 
+/* 버튼을 비디오리스트 좌상단에 맞추는 것 고민해봐야함 */
+
 .filters > button{
-    color: #ffffff;
-    background-color: #303030;
-    border-style: solid;
-    border-color: #212121;
-    border-radius: 32px;
-    box-sizing: border-box;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
+  color: #ffffff;
+  background-color: #303030;
+  border-style: solid;
+  border-color: #212121;
+  border-radius: 32px;
+  box-sizing: border-box;
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
 .filters{
-    padding-top: 65px;
-    margin-left: 250px;
-    background: #212121;
+  padding-top: 65px;
+  margin-left: 250px;
+  background: #212121;
+}
+
+.filters > button:hover{
+    background: rgba(0, 0, 0, 0.1);
   }
 
 .thumbnail-row{
@@ -88,8 +94,78 @@ body {
     padding: 20px;
 }
 
+/* 댓글 */
+.comment-header,
+.comment-text,
+.count,
+.comments-dropdown{
+  color: #ffffff;
+}
 
-  /*----------------- section 2 ---------------- */
 
 
+.comment-header > span{
+  color: #AAA;
+}
 
+
+/*----------------- video section ---------------- */
+
+section{
+  float: left;
+  justify-content: center;
+}
+
+#primary{
+  position: relative;
+  margin: 130px;
+}
+
+
+/* innerHTML에 이미지 하단 프로필을 포함한 데이터가 존재하는데, 끌어오는 방법을 찾지 못함 */
+/* -> 안녕하세요. 이스트소프트입니다.. ~~~~ 시작되었습니다 이부분 */
+
+/*------------- aside videolist section -------------*/
+
+#content{
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.content-top-menu{
+  position: fixed;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.content-top-menu > button{
+  float: left;
+  display: inline;
+  color: #ffffff;
+  background-color: #303030;
+  border-style: solid;
+  border-color: #212121;
+  border-radius: 32px;
+  box-sizing: border-box;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.content-top-menu > button:hover{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#videolist > div{
+  display: flex;
+  float : left;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 378px;
+  height: 156px;
+  object-fit: cover;
+}
