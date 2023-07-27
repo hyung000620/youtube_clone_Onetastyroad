@@ -161,6 +161,9 @@ p, span{
   width: 100%;
   background-color:#1b1b1b;
 }
+.channel-cover> img{
+  width: 100%;
+}
 
 .channel-title{
   display: flex;
