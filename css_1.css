@@ -49,6 +49,7 @@ p, span{
 }
 
 .logo{
+  cursor: pointer;
   height: 30px;
   margin: -10px 30px 0;
 }
