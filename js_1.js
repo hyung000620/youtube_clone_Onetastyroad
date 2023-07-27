@@ -61,6 +61,18 @@ function toggleSubscription() {
     isSubscribed = !isSubscribed;
 }
 
+// 구독버튼 토글
+const img = document.getElementById('images');
+let toggle = true;
+img.addEventListener('click', function(){
+    toggle = !toggle;
+    if(toggle){
+        img.src = 'img\\Subscribes-Btn.png';
+    }else{
+        img.src = 'img\\subscribed-Btn.png';
+    }
+})
+
 
 // 조회수 단위
 //TODO: 추후 html 완성 후에 재연결 필요
@@ -83,5 +95,3 @@ function thousandK(num){
     }
     return nFormatter(num, 0);
 }
-
-// 검색 기능
