@@ -2,48 +2,48 @@
 css_2 : nav, section1, secion2 */
 
    /* ---------------- 사이드바 (nav, 공통) --------------------*/
- .side-bar{
-    z-index: 2;
-    position: fixed;
-    overflow: scroll;
-    top: 60px;
-    left: 0;
-    min-width: 250px;
-    width: 0;
-    height: calc(100vh - 60px);
-    background: #212121;
-    padding-right: 10px;
-  }
+.side-bar{
+  z-index: 2;
+  position: fixed;
+  overflow: scroll;
+  top: 60px;
+  left: 0;
+  min-width: 250px;
+  width: 0;
+  height: calc(100vh - 60px);
+  background: #212121;
+  padding-right: 10px;
+}
   
 .links{
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    text-transform: capitalize;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-  }
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
   
 .links img{
-    border-radius: 50%;
-    height: 100%;
-    margin-right: 20px;
-  }
+  border-radius: 50%;
+  height: 100%;
+  margin-right: 20px;
+}
   
 .links:hover,
 .links.active:hover{
-    background: rgba(0, 0, 0, 0.1);
-  }
+  background: rgba(0, 0, 0, 0.1);
+}
   
 .seperator{
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-  }
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
 
 .side-bar::-webkit-scrollbar{
   display: flex;
@@ -55,12 +55,11 @@ body {
 
 .filters{
   width: 100%;
-  padding-top: 50px;
   margin-left: 250px;
-  padding-bottom: 20px;
   background: #212121;
   position: fixed;
   z-index: 1;
+  padding: 12px 0px 12px 24px;
 }
 
 /* 버튼을 비디오리스트 좌상단에 맞추는 것 고민해봐야함 */
@@ -73,25 +72,16 @@ body {
   border-radius: 32px;
   box-sizing: border-box;
   text-align: center;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.filters{
-  padding-top: 65px;
-  margin-left: 250px;
-  background: #212121;
+  padding: 8px 12px;
 }
 
 .filters > button:hover{
-    background: rgba(0, 0, 0, 0.1);
-  }
+  background: rgba(0, 0, 0, 0.1);
+}
 
 .thumbnail-row{
-    margin-left: 200px;
-    padding: 20px;
+  margin-left: 200px;
+  padding: 20px;
 }
 
 /* 댓글 */
@@ -101,8 +91,6 @@ body {
 .comments-dropdown{
   color: #ffffff;
 }
-
-
 
 .comment-header > span{
   color: #AAA;
