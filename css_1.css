@@ -83,6 +83,7 @@ p, span{
   border: 1px solid #303030;
   border-radius: 0px 2px 2px 0px;
   border-left: 0;
+  cursor: pointer;
 }
 
 .search-btn img{
@@ -259,9 +260,32 @@ p, span{
 .xsmall-video{
   display: flex;
   flex-wrap: wrap;
+  gap: 1em;
 }
 
+.playlİst-header {
+  display: flex;
+  color:#ffffff;
+  margin-bottom: 13px;
+}
+.playlİst-header>p {
+  color : #AAAAAA;
+  padding-top: 1px;
+}
 
+.playlİst-title {
+  font-size: 19px;
+}
+#smal-video{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3em;
+}
+#smal-video>div:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 /***** Section *****/
 
 
@@ -277,4 +301,14 @@ section > div > video{
   margin-top: 60px;
 }
 
-/********** 공통 스타일 4 **********/
+/********** mini-sidebar **********/
+.mini-side-bar {
+  z-index: 2;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  min-width: 80px;
+  width: 0;
+  height: calc(100vh - 60px);
+  background: #212121;
+}
