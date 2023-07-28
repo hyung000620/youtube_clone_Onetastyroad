@@ -29,7 +29,7 @@ function addComment() {
 }
 
 // 좋아요 기능
-//TODO: 추후 html 완성 후에 재연결 필요
+// TODO: 
 let isLiked = false;
 
 function like(){
@@ -46,17 +46,18 @@ function like(){
 
 // 구독 기능
 //TODO: 추후 html 완성 후에 재연결 필요
+// subscribe 버튼, 이미지로 활용할 것인지, 버튼 추가해서 디자인할 것인지?
 let isSubscribed = false;
 
 function toggleSubscription() {
-    let subscribeBtn = document.querySelector('.subscribeBtn');
+    let subscribesBtn = document.querySelector('.subscribesBtn');
 
     if (isSubscribed) {
-        subscribeBtn.innerText = '구독하기';
-        subscribeBtn.style.backgroundColor = 'red';
+        subscribesBtn.innerText = '구독하기';
+        subscribesBtn.style.backgroundColor = 'red';
     }else {
-        subscribeBtn.innerText = '구독중';
-        subscribeBtn.style.backgroundColor = 'gray';
+        subscribesBtn.innerText = '구독중';
+        subscribesBtn.style.backgroundColor = 'gray';
     }
     isSubscribed = !isSubscribed;
 }
