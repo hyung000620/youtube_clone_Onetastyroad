@@ -121,38 +121,34 @@ section{
   margin: 130px;
 }
 
-
-/* innerHTML에 이미지 하단 프로필을 포함한 데이터가 존재하는데, 끌어오는 방법을 찾지 못함 */
-/* -> 안녕하세요. 이스트소프트입니다.. ~~~~ 시작되었습니다 이부분 */
-
-/*------------- aside videolist section -------------*/
+/*------------- aside content -------------*/
 
 #content{
   display: flex;
-  justify-content: center;
-  margin-top: 100px;
+  margin-top: 84px;
+  max-width: 500px;
 }
 
 .content-top-menu{
-  position: fixed;
+  display: flex;
+  position: absolute;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
 .content-top-menu > button{
-  float: left;
-  display: inline;
-  color: #ffffff;
   background-color: #303030;
-  border-style: solid;
-  border-color: #212121;
+  border: 1px solid #aaaaaa;
   border-radius: 32px;
-  box-sizing: border-box;
   text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 8px 12px;
+  margin-right: 10px;
+  
+  color: #ffffff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .content-top-menu > button:hover{
