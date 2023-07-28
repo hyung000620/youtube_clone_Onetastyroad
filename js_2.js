@@ -229,7 +229,46 @@ async function displayChannel() {
 }
 
 //TODO: 검색 기능 구현
-function search(){
+async function search() {
+    const searchInput = document.getElementById('searchInput').value;
+    const videoList = await getVideoList();
+    const infoContainer = document.getElementById('videoList');
+    let infoHTML = "";
 
+    const filteredVideoList = videoList.filter((video) => {
+        const title = video.video_title.toLowerCase();
+        const channel = video.video_channel.toLowerCase();
+        return title.includes(searchInput.toLowerCase()) || channel.includes(searchInput.toLowerCase());
+    });
+
+    const videoInfoPromises = filteredVideoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoList = await Promise.all(videoInfoPromises);
+
+    for (let i = 0; i < filteredVideoList.length; i++) {
+        const videoId = filteredVideoList[i].video_id;
+        const videoInfo = videoInfoList[i];
+
+
+        let channelURL = `location.href="./index_channel.html"`;
+        let videoURL = `location.href="./index_video.html?id=${videoId}"`;
+
+        infoHTML += `
+            <div>
+                <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
+                <div style='display:flex;'>
+                    <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
+                        <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                    </div>
+                    <div>
+                        <p>${videoInfo.video_title}</p>
+                        <p>${videoInfo.video_channel}</p>
+                        <p>${thousandK(videoInfo.views)}</p>
+                        <p>${dateComparison(videoInfo.upload_date)}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    infoContainer.innerHTML = infoHTML;
 }
-
