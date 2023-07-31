@@ -19,7 +19,7 @@ function addComment() {
     const viewComment = document.querySelector('.view-comment');
     const newCommentDiv = document.createElement("div");
     newCommentDiv.innerHTML = `
-        <div class="profile-pic"><img src="img/video/User-Pic1.png" alt=""></div>
+        <div class="profile-pic"><img src="img/video/User-Pic3.png" alt=""></div>
         <div class="view-area">
             <div class="comment-header">James Gouse <span> 방금 전</span></div>
             <div class="comment-text">${commentInput}</div>
