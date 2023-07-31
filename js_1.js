@@ -94,3 +94,51 @@ function sideBarToggle(){
         filters.style.marginLeft = '80px';
     }
 }
+
+// 좋아요 버튼 토글
+/*
+추후 comment-toolbar클래스의 img에 연결
+likeButton/dislikeButton, likeCount/dislikeCount id생성
+*/
+let isLiked = false;
+let likeCount = 0;
+let isDisliked = false;
+let dislikeCount = 0;
+
+// HTML 로드 후 초기값 설정
+window.onload = function() {
+    const likeCountElement = document.getElementById('likeCount');
+    const dislikeCountElement = document.getElementById('dislikeCount');
+    likeCount = parseInt(likeCountElement.textContent);
+    dislikeCount = parseInt(dislikeCountElement.textContent);
+};
+
+function toggleLike() {
+    if (isLiked) {
+        likeCount--;
+    } else {
+        likeCount++;
+    }
+    isLiked = !isLiked;
+    updateLikeCount();
+}
+
+function toggleDislike() {
+    if (isDisliked) {
+        dislikeCount++;
+    } else {
+        dislikeCount--;
+    }
+    isDisliked = !isDisliked;
+    updateDislikeCount();
+}
+
+function updateLikeCount() {
+    const likeCountElement = document.getElementById('likeCount');
+    likeCountElement.textContent = likeCount;
+}
+
+function updateDislikeCount() {
+    const dislikeCountElement = document.getElementById('dislikeCount');
+    dislikeCountElement.textContent = dislikeCount;
+}
