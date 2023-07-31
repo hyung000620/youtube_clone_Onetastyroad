@@ -135,6 +135,8 @@ async function displayVideo(id) {
                         <div style='margin:10px'>
                             <p>oreumi</p>
                             <br>
+                            <p id='subsciribtors'>구독자 80명</p>
+                            <br>
                             <p>안녕하세요.
                             이스트소프트입니다.<br>
                             이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
@@ -143,8 +145,7 @@ async function displayVideo(id) {
                         </div>
                     </div>
                     <div>
-                        <img src='/img/channel/Subscribes-Btn.png'>
-                        <img style="display: none;" src="img/channel/subscribed-Btn.png" alt="">
+                        <img id='images' onclick='subcribe()' src='/img/channel/Subscribes-Btn.png' style='width:116px; height:36px;'>
                     </div>
                 </div>
             </div>    
