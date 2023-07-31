@@ -17,13 +17,13 @@
 <body>
     <!-- upper navigation bar -->
     <header class="navbar">    
-        <div class="toggle-btn">
+        <div class="toggle-btn" onclick="sideBarToggle()">
             <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onClick="moveHome()">
+        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box">
             <input id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button id="searchBtn" class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
+            <button onclick="search()" class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
             <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
         </div>
         <div class="user-options">

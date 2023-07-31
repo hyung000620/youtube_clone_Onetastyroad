@@ -55,7 +55,6 @@ body {
 .filters{
   width: 100%;
   margin-top: 60px;
-  margin-left: 250px;
   background: #212121;
   position: fixed;
   z-index: 1;

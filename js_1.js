@@ -85,13 +85,11 @@ function sideBarToggle(){
     if(hambuger){ 
         sideBar.style.display = 'block';
         miniSideBar.style.display = 'none';
-        videoList.style.marginLeft = '275px';
-        filters.style.marginLeft = '250px';
+        sectionHome.style.marginLeft = '250px';
     }else{
         sideBar.style.display = 'none';
         miniSideBar.style.display = 'block';
-        videoList.style.marginLeft = '125px';
-        filters.style.marginLeft = '80px';
+        sectionHome.style.marginLeft = '80px';
     }
 }
 
