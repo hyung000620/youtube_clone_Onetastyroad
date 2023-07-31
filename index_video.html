@@ -17,13 +17,13 @@
     <!-- upper navigation bar -->
     <header class="navbar">    
         <div class="toggle-btn">
-            <img src="img/css_1_header/hamburger.png" alt="">
+            <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.png" class="logo" alt="" onClick="moveHome()">
+        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onClick="moveHome()">
         <div class="search-box">
-            <input type="search" class="search-bar" placeholder="search">
-            <button class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
-            <img class="mic" src="img/css_1_header/mic.png" class="icon" alt="">
+            <input id="searchInput" type="search" class="search-bar" placeholder="search">
+            <button id="searchBtn" class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
+            <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
         </div>
         <div class="user-options">
             <img src="img/css_1_header/create.png" class="icon" alt="">
@@ -57,7 +57,7 @@
                     <div class="write-area">
                         <img src="img/video/User-Pic1.png" alt="">
                         <input id="comment" type="text" placeholder="Add a public comment...">
-                        <button id="commentSubmit">댓글</button>
+                        <button id="commentSubmit" onclick="addComment()">댓글</button>
                     </div>
                 </div>
                 
@@ -100,8 +100,8 @@
         <div id="videolist"></div>
     </aside>
     </section>
-<script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
+<script src="./js_1.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     let url = window.location.search;
@@ -111,6 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
     displayVideo(id).catch(error => {
         console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
     });
+});
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('searchInput');
+searchBtn.addEventListener('click',function(){
+    location.href=`./index_home.html?search=${searchInput.value}`
 });    
 </script>
 </body>

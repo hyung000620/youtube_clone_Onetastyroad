@@ -15,64 +15,40 @@ function commentClear(){
 //댓글 작성
 //TODO: 추후 html 완성 후에 재연결 필요
 function addComment() {
-    let commentInput = document.getElementById("comment").value;
-    let commentBody = document.getElementById("commentBody");
-
-    if (commentInput.trim() === "") {
-        alert("댓글을 입력해주세요.");
-        return;
-    }
-    let timeText = "방금 전";
-    commentBody.innerHTML += `<p><span>${commentInput}</span> <span>${timeText}</span></p>`;
+    const commentInput = document.getElementById("comment").value;
+    const viewComment = document.querySelector('.view-comment');
+    const newCommentDiv = document.createElement("div");
+    newCommentDiv.innerHTML = `
+        <div class="profile-pic"><img src="img/video/User-Pic1.png" alt=""></div>
+        <div class="view-area">
+            <div class="comment-header">James Gouse <span> 방금 전</span></div>
+            <div class="comment-text">${commentInput}</div>
+            <div class="comment-toolbar">
+                <img src="img/video/Liked.png" alt=""> 0
+                <img src="img/video/DisLiked.png" alt=""> 0
+                <p>REPLY</p>
+            </div>
+        </div>
+    `;
+    viewComment.appendChild(newCommentDiv);
 
     commentClear();
 }
 
-// 좋아요 기능
-// TODO: 
-let isLiked = false;
-
-function like(){
-    let likeBtn = document.querySelector('.likeBtn');
-    if (isLiked) {
-        likeBtn.innerText = '좋아요';
-        likeBtn.style.backgroundColor = 'red';
-    }else {
-        likeBtn.innerText = '좋아요 취소';
-        likeBtn.style.backgroundColor = 'gray';
-    }
-    isLiked = !isLiked;
-}
-
-// 구독 기능
-//TODO: 추후 html 완성 후에 재연결 필요
-// subscribe 버튼, 이미지로 활용할 것인지, 버튼 추가해서 디자인할 것인지?
-let isSubscribed = false;
-
-function toggleSubscription() {
-    let subscribesBtn = document.querySelector('.subscribesBtn');
-
-    if (isSubscribed) {
-        subscribesBtn.innerText = '구독하기';
-        subscribesBtn.style.backgroundColor = 'red';
-    }else {
-        subscribesBtn.innerText = '구독중';
-        subscribesBtn.style.backgroundColor = 'gray';
-    }
-    isSubscribed = !isSubscribed;
-}
-
 // 구독버튼 토글
-const img = document.getElementById('images');
 let toggle = true;
-img.addEventListener('click', function(){
+function subcribe(){
+    const img = document.getElementById('images');
+    const subs = document.getElementById('subsciribtors');
     toggle = !toggle;
     if(toggle){
-        img.src = 'img\\Subscribes-Btn.png';
+        subs.textContent = "구독자 80명";
+        img.src = 'img/channel/Subscribes-Btn.png';
     }else{
-        img.src = 'img\\subscribed-Btn.png';
+        subs.textContent = "구독자 81명";
+        img.src = 'img/channel/subscribed-Btn.png';
     }
-})
+}
 
 
 // 조회수 단위
@@ -95,4 +71,26 @@ function thousandK(num){
         return (num / unit[i].value).toFixed(digits).replace(rr, '$1') + unit[i].symbol
     }
     return nFormatter(num, 0);
+}
+
+let hambuger = true;
+// 사이드 바 토글
+function sideBarToggle(){
+    let sideBar = document.querySelector('.side-bar');
+    let miniSideBar = document.querySelector('.mini-side-bar');
+    let filters = document.querySelector('.filters')
+    let videoList = document.getElementById('videoList');
+
+    hambuger = !hambuger;
+    if(hambuger){ 
+        sideBar.style.display = 'block';
+        miniSideBar.style.display = 'none';
+        videoList.style.marginLeft = '275px';
+        filters.style.marginLeft = '250px';
+    }else{
+        sideBar.style.display = 'none';
+        miniSideBar.style.display = 'block';
+        videoList.style.marginLeft = '125px';
+        filters.style.marginLeft = '80px';
+    }
 }
