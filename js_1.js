@@ -92,10 +92,7 @@ function sideBarToggle(){
 }
 
 // 좋아요 버튼 토글
-/*
-추후 comment-toolbar클래스의 img에 연결
-likeButton/dislikeButton, likeCount/dislikeCount id생성
-*/
+
 let isLiked = false;
 let likeCount = 0;
 let isDisliked = false;
@@ -121,9 +118,9 @@ function toggleLike() {
 
 function toggleDislike() {
     if (isDisliked) {
-        dislikeCount++;
-    } else {
         dislikeCount--;
+    } else {
+        dislikeCount++;
     }
     isDisliked = !isDisliked;
     updateDislikeCount();
