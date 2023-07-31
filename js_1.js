@@ -78,18 +78,16 @@ let hambuger = true;
 function sideBarToggle(){
     let sideBar = document.querySelector('.side-bar');
     let miniSideBar = document.querySelector('.mini-side-bar');
-    let filters = document.querySelector('.filters')
-    let videoList = document.getElementById('videoList');
 
     hambuger = !hambuger;
     if(hambuger){ 
         sideBar.style.display = 'block';
         miniSideBar.style.display = 'none';
-        sectionHome.style.marginLeft = '250px';
+        sectionInner.style.marginLeft = '250px';
     }else{
         sideBar.style.display = 'none';
         miniSideBar.style.display = 'block';
-        sectionHome.style.marginLeft = '80px';
+        sectionInner.style.marginLeft = '80px';
     }
 }
 

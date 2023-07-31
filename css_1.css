@@ -132,7 +132,7 @@ p, span{
 
 /* section */
 
-#sectionHome{
+#sectionInner{
   margin-left: 250px;
 }
 
@@ -160,7 +160,6 @@ p, span{
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 250px;
   margin-top: 65px;
 }
 
@@ -260,7 +259,7 @@ p, span{
 }
 
 #smal-video, #playlist{
-  margin-left: 300px;
+  margin-left: 50px;
   margin-top: 65px;
 }
 .xsmall-video{
