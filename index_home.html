@@ -17,14 +17,14 @@
 <body>
     <!-- upper navigation bar -->
     <header class="navbar">    
-        <div class="toggle-btn">
-            <img src="img/css_1_header/hamburger.png" alt="">
+        <div class="toggle-btn" onclick="sideBarToggle()">
+            <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.png" class="logo" alt="" onClick="moveHome()">
+        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onClick="moveHome()">
         <div class="search-box">
-            <input type="search" class="search-bar" placeholder="search">
-            <button class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
-            <img class="mic" src="img/css_1_header/mic.png" class="icon" alt="">
+            <input id="searchInput" type="search" class="search-bar" placeholder="search">
+            <button onclick="search()" class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
+            <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
         </div>
         <div class="user-options">
             <img src="img/css_1_header/create.png" class="icon" alt="">
@@ -120,7 +120,21 @@
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {displayHome().catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});});    
+document.addEventListener('DOMContentLoaded', () => {
+    let url = window.location.search;
+    const searchParamValue = new URLSearchParams(url).get('search');
+    let searchInput = document.getElementById('searchInput');
+    console.log(searchParamValue);
+    if (searchParamValue){
+        searchInput.value = searchParamValue;
+        search();
+    }else{
+        displayHome().catch(error => {
+        console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);
+    });
+    }
+    
+});    
 </script>
 </body>
 </html>

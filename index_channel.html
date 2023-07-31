@@ -18,13 +18,13 @@
     <!-- upper navigation bar -->
     <header class="navbar">    
         <div class="toggle-btn">
-            <img src="img/css_1_header/hamburger.png" alt="">
+            <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.png" class="logo" alt="" onClick="moveHome()">
+        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onClick="moveHome()">
         <div class="search-box">
-            <input type="search" class="search-bar" placeholder="search">
-            <button class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
-            <img class="mic" src="img/css_1_header/mic.png" class="icon" alt="">
+            <input id="searchInput" type="search" class="search-bar" placeholder="search">
+            <button id="searchBtn" class="search-btn"><img src="img/css_1_header/search.png" alt=""></button>
+            <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
         </div>
         <div class="user-options">
             <img src="img/css_1_header/create.png" class="icon" alt="">
@@ -105,13 +105,11 @@
                     <img src="img/channel/oreumi.jpg">
                     <div class="Chanel-Profile-name">
                         <p>Onetastyroad</p>
-                        <p>안녕하세요! 구독과 좋아요 부탁드립니다!</p>
+                        <p id="subsciribtors">구독자 80명</p>
                     </div>
                 </div>
                 <!-- 구독 버튼 -->
-                <img src="img/channel/Subscribes-Btn.png" alt=""> 
-                <!-- 구독 취소 버튼 -->
-                <img style="display: none;" src="img/channel/subscribed-Btn.png" alt="">
+                <img id="images" onclick="subcribe()" src="img/channel/Subscribes-Btn.png" alt="" style="cursor: pointer;"> 
             </div>
 
             <div class="channel-toolbar">
@@ -153,6 +151,11 @@
 <script src="./js_2.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {displayChannel().catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});});    
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('searchInput');
+searchBtn.addEventListener('click',function(){
+    location.href=`./index_home.html?search=${searchInput.value}`
+});    
 </script>
 </body>
 
