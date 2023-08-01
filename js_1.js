@@ -42,6 +42,16 @@ async function commentEnterkey() {
     }
 }
 
+// 댓글 버튼 보이기, 취소 버튼으로 숨기기
+function showCommentBtn() {
+    const commentBtn = document.getElementById('commentBtn');
+    commentBtn.style.display = 'inline-block';
+}
+function hideCommentBtn() {
+    const commentBtn = document.getElementById('commentBtn');
+    commentBtn.style.display = 'none';
+}
+
 // 구독버튼 토글
 let toggle = true;
 function subcribe(){

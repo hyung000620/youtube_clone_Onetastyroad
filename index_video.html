@@ -56,8 +56,11 @@
                     </div>
                     <div class="write-area">
                         <img src="img/video/User-Pic3.png" alt="">
-                        <input id="comment" type="text" onkeyup="commentEnterkey()" placeholder="Add a public comment...">
-                        <button id="commentSubmit" onclick="addComment()">댓글</button>
+                        <input id="comment" type="text" onclick="showCommentBtn()" onkeyup="commentEnterkey()" placeholder="Add a public comment...">
+                        <div id="commentBtn" style="display: none;">
+                            <button id="commentCancel" onclick="hideCommentBtn()">취소</button>
+                            <button id="commentSubmit" onclick="addComment()">댓글</button>
+                        </div>
                     </div>
                 </div>
                 
