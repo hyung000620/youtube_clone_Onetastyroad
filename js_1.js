@@ -14,6 +14,7 @@ let commentInput = document.getElementById("comment");
 // 댓글창 비우기
 function commentClear(){
     commentInput.value = '';
+    document.getElementById("commentSubmit").disabled = true;
 }
 
 // 댓글 작성
