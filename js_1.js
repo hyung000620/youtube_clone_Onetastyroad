@@ -13,6 +13,7 @@ function commentClear(){
 }
 
 // 댓글 작성
+let commentCount = 2;
 //TODO: 추후 html 완성 후에 재연결 필요
 function addComment() {
     const commentInput = document.getElementById("comment").value;
@@ -35,6 +36,12 @@ function addComment() {
     viewComment.appendChild(newCommentDiv);
 
     commentClear();
+    
+    // 댓글 수 카운팅
+    commentCount++;
+    const countElement = document.querySelector('.count');
+    countElement.textContent = commentCount + (commentCount === 1 ? ' Comment' : ' Comments');
+
 }
 
 // 'enter키'로 댓글 작성
