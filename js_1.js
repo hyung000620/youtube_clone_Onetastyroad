@@ -24,8 +24,10 @@ function addComment() {
             <div class="comment-header">James Gouse <span> 방금 전</span></div>
             <div class="comment-text">${commentInput}</div>
             <div class="comment-toolbar">
-                <img src="img/video/Liked.png" alt=""> 0
-                <img src="img/video/DisLiked.png" alt=""> 0
+                <img src="img_svg/video_svg/Liked.svg" alt="" onclick="toggleLike(this)">
+                <p class="likeCount">0</p>
+                <img src="img_svg/video_svg/DisLiked.svg" alt="" onclick="toggleLike(this)">
+                <p class="likeCount">0</p>
                 <p>REPLY</p>
             </div>
         </div>
@@ -109,46 +111,17 @@ function sideBarToggle(){
 }
 
 // 좋아요 버튼 토글
-
 let isLiked = false;
-let likeCount = 0;
-let isDisliked = false;
-let dislikeCount = 0;
 
-// HTML 로드 후 초기값 설정
-window.onload = function() {
-    const likeCountElement = document.getElementById('likeCount');
-    const dislikeCountElement = document.getElementById('dislikeCount');
-    likeCount = parseInt(likeCountElement.textContent);
-    dislikeCount = parseInt(dislikeCountElement.textContent);
-};
+function toggleLike(likeImage) {
+    const likeCountElement = likeImage.nextElementSibling;
 
-function toggleLike() {
-    if (isLiked) {
-        likeCount--;
-    } else {
-        likeCount++;
+    let currentCount = parseInt(likeCountElement.textContent);
+    if (isLiked){
+        currentCount--;
+    } else{
+        currentCount++;
     }
     isLiked = !isLiked;
-    updateLikeCount();
-}
-
-function toggleDislike() {
-    if (isDisliked) {
-        dislikeCount--;
-    } else {
-        dislikeCount++;
-    }
-    isDisliked = !isDisliked;
-    updateDislikeCount();
-}
-
-function updateLikeCount() {
-    const likeCountElement = document.getElementById('likeCount');
-    likeCountElement.textContent = likeCount;
-}
-
-function updateDislikeCount() {
-    const dislikeCountElement = document.getElementById('dislikeCount');
-    dislikeCountElement.textContent = dislikeCount;
+    likeCountElement.textContent = currentCount;
 }
