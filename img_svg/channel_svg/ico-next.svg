@@ -1,0 +1,10 @@
+<svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ico-next">
+<mask id="path-1-outside-1_1384_2945" maskUnits="userSpaceOnUse" x="0" y="0" width="14" height="16" fill="black">
+<rect fill="white" width="14" height="16"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1 2L9 8L1 14V2ZM13 2H11V14H13V2Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1 2L9 8L1 14V2ZM13 2H11V14H13V2Z" fill="#EAEAEA"/>
+<path d="M9 8L9.6 8.8L10.6667 8L9.6 7.2L9 8ZM1 2L1.6 1.2L0 -2.38419e-07V2H1ZM1 14H0V16L1.6 14.8L1 14ZM11 2V1H10V2H11ZM13 2H14V1H13V2ZM11 14H10V15H11V14ZM13 14V15H14V14H13ZM9.6 7.2L1.6 1.2L0.4 2.8L8.4 8.8L9.6 7.2ZM1.6 14.8L9.6 8.8L8.4 7.2L0.4 13.2L1.6 14.8ZM0 2V14H2V2H0ZM11 3H13V1H11V3ZM12 14V2H10V14H12ZM13 13H11V15H13V13ZM12 2V14H14V2H12Z" fill="black" fill-opacity="0.1" mask="url(#path-1-outside-1_1384_2945)"/>
+</g>
+</svg>
