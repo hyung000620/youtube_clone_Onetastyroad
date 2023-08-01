@@ -26,7 +26,24 @@ css_2 : nav, section1, secion2 */
   font-weight: 500;
   text-decoration: none;
 }
-  
+.Avatar {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.Avatar img {
+  height: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}  
 .links img{
   border-radius: 50%;
   height: 100%;
@@ -103,7 +120,26 @@ section{
 .comment-toolbar > p{
   color: #AAA;
 }
-
+#comment{
+  color: #ffffff;
+}
+#commentSubmit{
+  background-color: #303030;
+  border: 1px solid #aaaaaa;
+  border-radius: 32px;
+  text-align: center;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 14px;
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
+#commentSubmit:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
 /* write-comment */
 .write-comment{
   width: 640;
