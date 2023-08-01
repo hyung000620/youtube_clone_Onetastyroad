@@ -47,6 +47,10 @@ function addComment() {
 // 'enter키'로 댓글 작성
 async function commentEnterkey() {
     if (window.event.keyCode == 13) {
+        let commentInput = document.getElementById("comment");
+        if(commentInput.value.length === 0){
+            return;
+        }
         await addComment();
     }
 }
@@ -59,6 +63,18 @@ function showCommentBtn() {
 function hideCommentBtn() {
     const commentBtn = document.getElementById('commentBtn');
     commentBtn.style.display = 'none';
+}
+
+// 댓글 input값 비었을때 버튼 비활성화
+function commentAction(){
+    let commentInput = document.getElementById("comment");
+    let commentSubmit = document.getElementById("commentSubmit");
+    
+    if(commentInput.value.length == 0){
+        commentSubmit.disabled = true;
+    }else{
+        commentSubmit.disabled = false;
+    }
 }
 
 // 구독버튼 토글

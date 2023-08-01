@@ -56,10 +56,10 @@
                     </div>
                     <div class="write-area">
                         <img src="img/video/User-Pic3.png" alt="">
-                        <input id="comment" type="text" onclick="showCommentBtn()" onkeyup="commentEnterkey()" placeholder="Add a public comment...">
+                        <input id="comment" type="text" onclick="showCommentBtn()" onkeyup="commentEnterkey()" placeholder="Add a public comment..." oninput="commentAction()">
                         <div id="commentBtn" style="display: none;">
                             <button id="commentCancel" onclick="hideCommentBtn()">취소</button>
-                            <button id="commentSubmit" onclick="addComment()">댓글</button>
+                            <button id="commentSubmit" onclick="addComment()" disabled>댓글</button>
                         </div>
                     </div>
                 </div>
