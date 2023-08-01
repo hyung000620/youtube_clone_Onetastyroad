@@ -5,14 +5,14 @@ function moveHome(){location.href= './index_home.html';}
 function moveVideo(){location.href= './index_video.html';}
 function moveChannel(){location.href= './index_channel.html';}
 
-//댓글창 비우기
+// 댓글창 비우기
 //TODO: 추후 html 완성 후에 재연결 필요
 function commentClear(){
     let commentInput = document.getElementById("comment");
     commentInput.value = '';
 }
 
-//댓글 작성
+// 댓글 작성
 //TODO: 추후 html 완성 후에 재연결 필요
 function addComment() {
     const commentInput = document.getElementById("comment").value;
@@ -33,6 +33,13 @@ function addComment() {
     viewComment.appendChild(newCommentDiv);
 
     commentClear();
+}
+
+// 'enter키'로 댓글 작성
+async function commentEnterkey() {
+    if (window.event.keyCode == 13) {
+        await addComment();
+    }
 }
 
 // 구독버튼 토글
