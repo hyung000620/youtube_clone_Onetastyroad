@@ -97,6 +97,7 @@ let hambuger = true;
 function sideBarToggle(){
     let sideBar = document.querySelector('.side-bar');
     let miniSideBar = document.querySelector('.mini-side-bar');
+    let sectionInner = document.getElemetById('sectionInner');
 
     hambuger = !hambuger;
     if(hambuger){ 
