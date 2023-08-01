@@ -145,7 +145,7 @@ async function displayVideo(id) {
                         </div>
                     </div>
                     <div>
-                        <img id='images' onclick='subcribe()' src='./img/channel/Subscribes-Btn.png' style='width:116px; height:36px;'>
+                        <img id='images' onclick='subcribe()' src='./img/channel/Subscribes-Btn.png' style='width:116px; height:36px; cursor:pointer;'>
                     </div>
                 </div>
             </div>    
