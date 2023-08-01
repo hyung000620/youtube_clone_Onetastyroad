@@ -134,6 +134,13 @@ p, span{
 /* 사이드바 (nav) */
 
 
+/* section */
+
+#sectionInner{
+  margin-left: 250px;
+}
+
+
 /* 비디오리스트 (id="vidioList) */
 
 #videoList{
@@ -141,7 +148,7 @@ p, span{
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 275px;
+  padding-left: 24px;
   margin-top: 90px;
 }
 
@@ -151,14 +158,12 @@ p, span{
   margin-right: 10px;
 }
 
-
 /********** Channel **********/
 #channel{
   overflow: unset;
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 250px;
   margin-top: 65px;
 }
 
@@ -258,7 +263,7 @@ p, span{
 }
 
 #smal-video, #playlist{
-  margin-left: 300px;
+  margin-left: 50px;
   margin-top: 65px;
 }
 .xsmall-video{
