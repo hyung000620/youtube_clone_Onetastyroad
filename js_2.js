@@ -66,7 +66,7 @@ async function displayHome() {
 
         infoHTML += `
             <div>
-                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
                 <div style='display:flex;'>
                     <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
                         <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
@@ -109,18 +109,18 @@ async function displayVideo(id) {
             num = formatNumberWithCommas(num);
             videoHTML = `
             <div>
-                <video controls style='width:800px'>
+                <video controls style='width:83%;'>
                     <source src='${videoInfo.video_link}'>
                 </video>
                 <br>
                 <p style='font-size:24px;padding:15px;'>${videoInfo.video_title}</p>
-                <div style='display:flex;justify-content: space-between; padding:15px;'>
+                <div style='display:flex; justify-content: space-between; padding:15px;'>
                     <div>
                         <p>${num} views ${dateComparison(videoInfo.upload_date)}</p>
                     </div>
                     <div>
-                        <img src='img/video/Liked.png'><span>1.7K</span>
-                        <img src='img/video/DisLiked.png'><span>632</span>
+                        <img src='img/video/Liked.png' onclick="toggleLike(this)"><span class="likeCount">170</span>
+                        <img src='img/video/DisLiked.png'  onclick="toggleLike(this)"><span class="likeCount">63</span>
                         <img src='img/video/Share.png'><span>SHARE</span>
                         <img src='img/video/Save.png'><span>SAVE</span>
                         <img src='img/video/More.png'>
@@ -145,7 +145,7 @@ async function displayVideo(id) {
                         </div>
                     </div>
                     <div>
-                        <img id='images' onclick='subcribe()' src='./img/channel/Subscribes-Btn.png' style='width:116px; height:36px;'>
+                        <img id='images' onclick='subcribe()' src='./img/channel/Subscribes-Btn.png' style='width:116px; height:36px; cursor:pointer;'>
                     </div>
                 </div>
             </div>    
@@ -241,6 +241,12 @@ async function search() {
         const channel = video.video_channel.toLowerCase();
         return title.includes(searchInput.toLowerCase()) || channel.includes(searchInput.toLowerCase());
     });
+
+    // 검색결과 없을 시 "검색 결과가 없습니다." 로 나오는 기능 구현 추가
+    if (filteredVideoList.length === 0) {
+        infoContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
+        return;
+    }
 
     const videoInfoPromises = filteredVideoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
