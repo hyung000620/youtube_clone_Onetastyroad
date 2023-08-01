@@ -12,6 +12,7 @@ css_2 : nav, section1, secion2 */
   height: calc(100vh - 60px);
   background: #212121;
   padding-right: 10px;
+  display: var(--side-bar);
 }
   
 .links{
@@ -45,7 +46,6 @@ css_2 : nav, section1, secion2 */
   border-radius: 50%;
 }  
 .links img{
-  border-radius: 50%;
   height: 100%;
   margin-right: 20px;
 }
@@ -247,3 +247,47 @@ section{
   height: 156px;
   object-fit: cover;
 }
+/*----------------- 반응형 작업 진행 ---------------- */
+
+@media ( max-width: 1023px ) {
+  .mini-side-bar{
+    display: var(--mini-side-bar,none);
+  }
+  .side-bar {
+    display: var(--side-bar, block);
+  }
+  #sectionInner{
+    margin-left: var(--sectionInner,250px);
+  }
+
+}
+@media ( max-width: 800px ) {
+  .mini-side-bar{
+    display: var(--mini-side-bar,block);
+  }
+  .side-bar {
+    display: var(--side-bar, none);
+  }
+  #sectionInner{
+    margin-left: var(--sectionInner,80px);
+  }
+  .user-options, .mic{
+    display: none;
+  }
+}
+
+@media ( max-width: 600px ) {
+  .mini-side-bar{
+    display: var(--mini-side-bar,none);
+  }
+  .side-bar {
+    display: var(--side-bar, none);
+  }
+  #sectionInner{
+    margin-left: var(--sectionInner,0px);
+  }
+  .user-options, .mic{
+    display: none;
+  }
+}
+

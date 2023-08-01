@@ -118,6 +118,7 @@ function thousandK(num){
 }
 
 let hambuger = true;
+let innerWidth = window.innerWidth; // 화면 크기
 // 사이드 바 토글
 function sideBarToggle(){
     let sideBar = document.querySelector('.side-bar');
@@ -126,13 +127,17 @@ function sideBarToggle(){
 
     hambuger = !hambuger;
     if(hambuger){ 
-        sideBar.style.display = 'block';
-        miniSideBar.style.display = 'none';
-        sectionInner.style.marginLeft = '250px';
+        // sideBar.style.display = 'block';
+        // miniSideBar.style.display = 'none';
+        sideBar.style.setProperty('--side-bar','block');
+        miniSideBar.style.setProperty('--mini-side-bar','none');
+        sectionInner.style.setProperty('--sectionInner','250px');
     }else{
-        sideBar.style.display = 'none';
-        miniSideBar.style.display = 'block';
-        sectionInner.style.marginLeft = '80px';
+        // sideBar.style.display = 'none';
+        // miniSideBar.style.display = 'block';
+        sideBar.style.setProperty('--side-bar','none');
+        miniSideBar.style.setProperty('--mini-side-bar','block');
+        sectionInner.style.setProperty('--sectionInner','80px');
     }
 }
 
