@@ -135,6 +135,8 @@ async function displayVideo(id) {
                         <div style='margin:10px'>
                             <p>oreumi</p>
                             <br>
+                            <p id='subsciribtors'>구독자 80명</p>
+                            <br>
                             <p>안녕하세요.
                             이스트소프트입니다.<br>
                             이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
@@ -143,8 +145,7 @@ async function displayVideo(id) {
                         </div>
                     </div>
                     <div>
-                        <img src='/img/channel/Subscribes-Btn.png'>
-                        <img style="display: none;" src="img/channel/subscribed-Btn.png" alt="">
+                        <img id='images' onclick='subcribe()' src='./img/channel/Subscribes-Btn.png' style='width:116px; height:36px;'>
                     </div>
                 </div>
             </div>    
@@ -229,7 +230,63 @@ async function displayChannel() {
 }
 
 //TODO: 검색 기능 구현
-function search(){
+async function search() {
+    const searchInput = document.getElementById('searchInput').value;
+    const videoList = await getVideoList();
+    const infoContainer = document.getElementById('videoList');
+    let infoHTML = "";
 
+    const filteredVideoList = videoList.filter((video) => {
+        const title = video.video_title.toLowerCase();
+        const channel = video.video_channel.toLowerCase();
+        return title.includes(searchInput.toLowerCase()) || channel.includes(searchInput.toLowerCase());
+    });
+
+    const videoInfoPromises = filteredVideoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoList = await Promise.all(videoInfoPromises);
+
+    for (let i = 0; i < filteredVideoList.length; i++) {
+        const videoId = filteredVideoList[i].video_id;
+        const videoInfo = videoInfoList[i];
+
+
+        let channelURL = `location.href="./index_channel.html"`;
+        let videoURL = `location.href="./index_video.html?id=${videoId}"`;
+
+        infoHTML += `
+            <div>
+                <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
+                <div style='display:flex;'>
+                    <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
+                        <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                    </div>
+                    <div>
+                        <p>${videoInfo.video_title}</p>
+                        <p>${videoInfo.video_channel}</p>
+                        <p>${thousandK(videoInfo.views)}</p>
+                        <p>${dateComparison(videoInfo.upload_date)}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    infoContainer.innerHTML = infoHTML;
 }
 
+// home.html 검색 시 'enter키' 누르면 검색되는 기능 구현
+// search-box -> input에 onkeyup
+async function homeEnterkey() {
+    if (window.event.keyCode == 13) {
+        await search();
+    }
+}
+
+// channel.html, video.html 검색 시 'enter키' 누르면 검색되는 기능 구현
+// search-box -> input에 onkeyup
+async function enterkey() {
+    if (window.event.keyCode == 13) {
+        location.href=`./index_home.html?search=${searchInput.value}`
+        await search();
+    }
+}

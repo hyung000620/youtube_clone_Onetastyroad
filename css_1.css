@@ -83,6 +83,11 @@ p, span{
   border: 1px solid #303030;
   border-radius: 0px 2px 2px 0px;
   border-left: 0;
+  cursor: pointer;
+}
+
+.search-btn:hover{
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .search-btn img{
@@ -129,6 +134,13 @@ p, span{
 /* 사이드바 (nav) */
 
 
+/* section */
+
+#sectionInner{
+  margin-left: 250px;
+}
+
+
 /* 비디오리스트 (id="vidioList) */
 
 #videoList{
@@ -136,7 +148,7 @@ p, span{
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 275px;
+  padding-left: 24px;
   margin-top: 90px;
 }
 
@@ -146,14 +158,12 @@ p, span{
   margin-right: 10px;
 }
 
-
 /********** Channel **********/
 #channel{
   overflow: unset;
   position: relative;
   justify-content: flex-start;
   gap: 40px;
-  margin-left: 250px;
   margin-top: 65px;
 }
 
@@ -253,15 +263,38 @@ p, span{
 }
 
 #smal-video, #playlist{
-  margin-left: 300px;
+  margin-left: 50px;
   margin-top: 65px;
 }
 .xsmall-video{
   display: flex;
   flex-wrap: wrap;
+  gap: 1em;
 }
 
+.playlİst-header {
+  display: flex;
+  color:#ffffff;
+  margin-bottom: 13px;
+}
+.playlİst-header>p {
+  color : #AAAAAA;
+  padding-top: 1px;
+}
 
+.playlİst-title {
+  font-size: 19px;
+}
+#smal-video{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3em;
+}
+#smal-video>div:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 /***** Section *****/
 
 
@@ -277,4 +310,14 @@ section > div > video{
   margin-top: 60px;
 }
 
-/********** 공통 스타일 4 **********/
+/********** mini-sidebar **********/
+.mini-side-bar {
+  z-index: 2;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  min-width: 80px;
+  width: 0;
+  height: calc(100vh - 60px);
+  background: #212121;
+}

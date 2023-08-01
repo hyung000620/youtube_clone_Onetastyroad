@@ -15,63 +15,40 @@ function commentClear(){
 //댓글 작성
 //TODO: 추후 html 완성 후에 재연결 필요
 function addComment() {
-    let commentInput = document.getElementById("comment").value;
-    let commentBody = document.getElementById("commentBody");
-
-    if (commentInput.trim() === "") {
-        alert("댓글을 입력해주세요.");
-        return;
-    }
-    let timeText = "방금 전";
-    commentBody.innerHTML += `<p><span>${commentInput}</span> <span>${timeText}</span></p>`;
+    const commentInput = document.getElementById("comment").value;
+    const viewComment = document.querySelector('.view-comment');
+    const newCommentDiv = document.createElement("div");
+    newCommentDiv.innerHTML = `
+        <div class="profile-pic"><img src="img/video/User-Pic3.png" alt=""></div>
+        <div class="view-area">
+            <div class="comment-header">James Gouse <span> 방금 전</span></div>
+            <div class="comment-text">${commentInput}</div>
+            <div class="comment-toolbar">
+                <img src="img/video/Liked.png" alt=""> 0
+                <img src="img/video/DisLiked.png" alt=""> 0
+                <p>REPLY</p>
+            </div>
+        </div>
+    `;
+    viewComment.appendChild(newCommentDiv);
 
     commentClear();
 }
 
-// 좋아요 기능
-//TODO: 추후 html 완성 후에 재연결 필요
-let isLiked = false;
-
-function like(){
-    let likeBtn = document.querySelector('.likeBtn');
-    if (isLiked) {
-        likeBtn.innerText = '좋아요';
-        likeBtn.style.backgroundColor = 'red';
-    }else {
-        likeBtn.innerText = '좋아요 취소';
-        likeBtn.style.backgroundColor = 'gray';
-    }
-    isLiked = !isLiked;
-}
-
-// 구독 기능
-//TODO: 추후 html 완성 후에 재연결 필요
-let isSubscribed = false;
-
-function toggleSubscription() {
-    let subscribeBtn = document.querySelector('.subscribeBtn');
-
-    if (isSubscribed) {
-        subscribeBtn.innerText = '구독하기';
-        subscribeBtn.style.backgroundColor = 'red';
-    }else {
-        subscribeBtn.innerText = '구독중';
-        subscribeBtn.style.backgroundColor = 'gray';
-    }
-    isSubscribed = !isSubscribed;
-}
-
 // 구독버튼 토글
-const img = document.getElementById('images');
 let toggle = true;
-img.addEventListener('click', function(){
+function subcribe(){
+    const img = document.getElementById('images');
+    const subs = document.getElementById('subsciribtors');
     toggle = !toggle;
     if(toggle){
-        img.src = 'img\\Subscribes-Btn.png';
+        subs.textContent = "구독자 80명";
+        img.src = 'img/channel/Subscribes-Btn.png';
     }else{
-        img.src = 'img\\subscribed-Btn.png';
+        subs.textContent = "구독자 81명";
+        img.src = 'img/channel/subscribed-Btn.png';
     }
-})
+}
 
 
 // 조회수 단위
@@ -94,4 +71,67 @@ function thousandK(num){
         return (num / unit[i].value).toFixed(digits).replace(rr, '$1') + unit[i].symbol
     }
     return nFormatter(num, 0);
+}
+
+let hambuger = true;
+// 사이드 바 토글
+function sideBarToggle(){
+    let sideBar = document.querySelector('.side-bar');
+    let miniSideBar = document.querySelector('.mini-side-bar');
+
+    hambuger = !hambuger;
+    if(hambuger){ 
+        sideBar.style.display = 'block';
+        miniSideBar.style.display = 'none';
+        sectionInner.style.marginLeft = '250px';
+    }else{
+        sideBar.style.display = 'none';
+        miniSideBar.style.display = 'block';
+        sectionInner.style.marginLeft = '80px';
+    }
+}
+
+// 좋아요 버튼 토글
+
+let isLiked = false;
+let likeCount = 0;
+let isDisliked = false;
+let dislikeCount = 0;
+
+// HTML 로드 후 초기값 설정
+window.onload = function() {
+    const likeCountElement = document.getElementById('likeCount');
+    const dislikeCountElement = document.getElementById('dislikeCount');
+    likeCount = parseInt(likeCountElement.textContent);
+    dislikeCount = parseInt(dislikeCountElement.textContent);
+};
+
+function toggleLike() {
+    if (isLiked) {
+        likeCount--;
+    } else {
+        likeCount++;
+    }
+    isLiked = !isLiked;
+    updateLikeCount();
+}
+
+function toggleDislike() {
+    if (isDisliked) {
+        dislikeCount--;
+    } else {
+        dislikeCount++;
+    }
+    isDisliked = !isDisliked;
+    updateDislikeCount();
+}
+
+function updateLikeCount() {
+    const likeCountElement = document.getElementById('likeCount');
+    likeCountElement.textContent = likeCount;
+}
+
+function updateDislikeCount() {
+    const dislikeCountElement = document.getElementById('dislikeCount');
+    dislikeCountElement.textContent = dislikeCount;
 }
