@@ -119,8 +119,8 @@ async function displayVideo(id) {
                         <p>${num} views ${dateComparison(videoInfo.upload_date)}</p>
                     </div>
                     <div>
-                        <img src='img/video/Liked.png'><span>1.7K</span>
-                        <img src='img/video/DisLiked.png'><span>632</span>
+                        <img src='img/video/Liked.png' onclick="toggleLike(this)"><span class="likeCount">170</span>
+                        <img src='img/video/DisLiked.png'  onclick="toggleLike(this)"><span class="likeCount">63</span>
                         <img src='img/video/Share.png'><span>SHARE</span>
                         <img src='img/video/Save.png'><span>SAVE</span>
                         <img src='img/video/More.png'>
