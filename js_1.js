@@ -36,7 +36,7 @@ function addComment() {
     viewComment.appendChild(newCommentDiv);
 
     commentClear();
-    
+
     // 댓글 수 카운팅
     commentCount++;
     const countElement = document.querySelector('.count');
@@ -119,17 +119,15 @@ function sideBarToggle(){
 }
 
 // 좋아요 버튼 토글
-let isLiked = false;
-
 function toggleLike(likeImage) {
     const likeCountElement = likeImage.nextElementSibling;
+    const likeCount = parseInt(likeCountElement.textContent);
 
-    let currentCount = parseInt(likeCountElement.textContent);
-    if (isLiked){
-        currentCount--;
-    } else{
-        currentCount++;
+    if (likeImage.classList.contains('liked')) {
+        likeImage.classList.remove('liked');
+        likeCountElement.textContent = likeCount - 1;
+    } else {
+        likeImage.classList.add('liked');
+        likeCountElement.textContent = likeCount + 1;
     }
-    isLiked = !isLiked;
-    likeCountElement.textContent = currentCount;
 }
