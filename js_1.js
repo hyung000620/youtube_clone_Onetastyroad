@@ -5,25 +5,28 @@ function moveHome(){location.href= './index_home.html';}
 function moveVideo(){location.href= './index_video.html';}
 function moveChannel(){location.href= './index_channel.html';}
 
+
+/************* comments *************/
+
+// 공통적으로 쓰이는 변수
+let commentInput = document.getElementById("comment");
+
 // 댓글창 비우기
-//TODO: 추후 html 완성 후에 재연결 필요
 function commentClear(){
-    let commentInput = document.getElementById("comment");
     commentInput.value = '';
 }
 
 // 댓글 작성
 let commentCount = 2;
-//TODO: 추후 html 완성 후에 재연결 필요
 function addComment() {
-    const commentInput = document.getElementById("comment").value;
+    const commentInputValue = commentInput.value;
     const viewComment = document.querySelector('.view-comment');
     const newCommentDiv = document.createElement("div");
     newCommentDiv.innerHTML = `
         <div class="profile-pic"><img src="img/video/User-Pic3.png" alt=""></div>
         <div class="view-area">
             <div class="comment-header">James Gouse <span> 방금 전</span></div>
-            <div class="comment-text">${commentInput}</div>
+            <div class="comment-text">${commentInputValue}</div>
             <div class="comment-toolbar">
                 <img src="img_svg/video_svg/Liked.svg" alt="" onclick="toggleLike(this)">
                 <p class="likeCount">0</p>
@@ -47,7 +50,6 @@ function addComment() {
 // 'enter키'로 댓글 작성
 async function commentEnterkey() {
     if (window.event.keyCode == 13) {
-        let commentInput = document.getElementById("comment");
         if(commentInput.value.length === 0){
             return;
         }
@@ -67,7 +69,6 @@ function hideCommentBtn() {
 
 // 댓글 input값 비었을때 버튼 비활성화
 function commentAction(){
-    let commentInput = document.getElementById("comment");
     let commentSubmit = document.getElementById("commentSubmit");
     
     if(commentInput.value.length == 0){
@@ -76,6 +77,7 @@ function commentAction(){
         commentSubmit.disabled = false;
     }
 }
+
 
 // 구독버튼 토글
 let toggle = true;
