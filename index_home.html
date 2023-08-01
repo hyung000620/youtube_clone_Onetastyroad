@@ -20,9 +20,9 @@
         <div class="toggle-btn" onclick="sideBarToggle()">
             <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onClick="moveHome()">
+        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box">
-            <input id="searchInput" type="search" class="search-bar" placeholder="search">
+            <input onkeyup ="homeEnterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
             <button onclick="search()" class="search-btn"><img src="img_svg/css_1_header_svg/search.svg" alt=""></button>
             <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
         </div>
@@ -92,7 +92,7 @@
     </nav>
 
     <!-- header와 nav를 제외한 안쪽 내용 section -->
-    <section>
+    <section id="sectionInner">
         <!-- filters -->
         <div class="filters">
             <button class="filter-options active">전체</button>
