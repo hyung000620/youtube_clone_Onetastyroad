@@ -45,7 +45,6 @@ css_2 : nav, section1, secion2 */
   border-radius: 50%;
 }  
 .links img{
-  border-radius: 50%;
   height: 100%;
   margin-right: 20px;
 }
