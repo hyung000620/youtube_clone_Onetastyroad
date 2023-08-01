@@ -86,6 +86,10 @@ p, span{
   cursor: pointer;
 }
 
+.search-btn:hover{
+  background: rgba(0, 0, 0, 0.1);
+}
+
 .search-btn img{
   width: 24px;
   height: 24px;
