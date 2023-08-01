@@ -36,7 +36,7 @@
         </div>
     </header>
     <!-- mini-sidebar -->
-    <nav class="mini-side-bar" style="display: none;">
+    <nav class="mini-side-bar">
         <div>
             <a href="#" class="links active"><img src="img_svg/css_2_nav_svg/Home.svg"></a>
             <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Library.svg"></a>
@@ -120,7 +120,7 @@
                     <!-- 이 부분에 video를 추가 -->
                 </div>
             </div>
-            <div id="videoList" style="display: flex; flex-wrap: wrap; gap:1em;"></div>
+            <div id="videoList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); grid-gap:1em;"></div>
         </div>
     </section>
 <script src="./js_1.js"></script>
