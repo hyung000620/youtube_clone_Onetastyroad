@@ -137,7 +137,7 @@ p, span{
 /* section */
 
 #sectionInner{
-  margin-left: 250px;
+  margin-left: var(--sectionInner, 250px);
 }
 
 
@@ -320,4 +320,5 @@ section > div > video{
   width: 0;
   height: calc(100vh - 60px);
   background: #212121;
+  display: var(--mini-side-bar);
 }
