@@ -56,8 +56,11 @@
                     </div>
                     <div class="write-area">
                         <img src="img/video/User-Pic3.png" alt="">
-                        <input id="comment" type="text" placeholder="Add a public comment...">
-                        <button id="commentSubmit" onclick="addComment()">댓글</button>
+                        <input id="comment" type="text" onclick="showCommentBtn()" onkeyup="commentEnterkey()" placeholder="Add a public comment..." oninput="commentAction()">
+                        <div id="commentBtn" style="display: none;">
+                            <button id="commentCancel" onclick="hideCommentBtn()">취소</button>
+                            <button id="commentSubmit" onclick="addComment()" disabled>댓글</button>
+                        </div>
                     </div>
                 </div>
                 
@@ -69,12 +72,11 @@
                             <div class="comment-header">James Gouse <span> 8 hours ago</span></div>
                             <div class="comment-text">Wow, world is full of different skills </div>
                             <div class="comment-toolbar">
-                                <img src="img_svg/video_svg/Liked.svg" alt="" onclick="toggleLike()">
+                                <img src="img_svg/video_svg/Liked.svg" alt="" onclick="toggleLike(this)">
                                 <p id="likeCount">20</p>
-                                <img src="img_svg/video_svg/DisLiked.svg" alt="" onclick="toggleDislike()">
+                                <img src="img_svg/video_svg/DisLiked.svg" alt="" onclick="toggleDislike(this)">
                                 <p id="dislikeCount">0</p>
-                                <p>REPLY</p>butt
-
+                                <p>REPLY</p>
                             </div>
                         </div>
                     </div>
@@ -84,8 +86,10 @@
                             <div class="comment-header">Alan Cooper <span>  4 days ago</span></div>
                             <div class="comment-text">Can you provide?</div>
                             <div class="comment-toolbar">
-                                <img src="img_svg/video_svg/Liked.svg" alt=""> 3
-                                <img src="img_svg/video_svg/DisLiked.svg" alt=""> 5
+                                <img src="img_svg/video_svg/Liked.svg" alt="" onclick="toggleLike(this)">
+                                <p class="likeCount">3</p>
+                                <img src="img_svg/video_svg/DisLiked.svg" alt="" onclick="toggleLike(this)">
+                                <p class="likeCount">5</p>
                                 <p>REPLY</p>
                             </div>
                         </div>
