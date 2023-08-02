@@ -126,9 +126,8 @@ async function displayVideo(id) {
                 <video controls style='width:100%;'>
                     <source src='${videoInfo.video_link}'>
                 </video>
-                <br>
                 <p style='font-size:1.125em; padding-top:1.25em; font-weight: 400;'>${videoInfo.video_title}</p>
-                <div style='display:flex; align-items: center; justify-content: space-between; height:2.5em;'>
+                <div style='display:flex; align-items: center; justify-content: space-between; height:2.5em; padding-bottom:1.25em;'>
                     <div>
                         <p style='font-size:0.875em; color:#AAA; font-weight: 700;'>${num} views ${dateComparison(videoInfo.upload_date)}</p>
                     </div>
@@ -140,7 +139,6 @@ async function displayVideo(id) {
                         <img src='img/video/More.png'>
                     </div>
                 </div>
-                <br>
                 <div style='display:flex;justify-content: space-between; padding:15px; border-top: 1px solid #303030;'>
                     <div style='display:flex;'>
                         <div style='width:3.125em; height: 3.125em; border-radius: 70%; overflow:hidden;'>
