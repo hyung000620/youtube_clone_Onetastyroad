@@ -12,7 +12,10 @@
     <!-- <link href="https://fonts.googleapis.com/css2?family=Material+Icons"  rel="stylesheet"> -->
     <link rel="stylesheet" href="./css_1.css">
     <link rel="stylesheet" href="./css_2.css"> 
-    <title>home</title>
+    <style>
+        
+    </style>
+    <title>TastyTube - Home</title>
 </head>
 <body>
     <!-- upper navigation bar -->
@@ -23,13 +26,22 @@
         <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box">
             <input onkeyup ="homeEnterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button onclick="search()" class="search-btn"><img src="img_svg/css_1_header_svg/search.svg" alt=""></button>
-            <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
+            <button onclick="search()" class="search-btn"><img class="text-icon" src="img_svg/css_1_header_svg/search.svg" alt="검색"></button>
+            <img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색">
         </div>
         <div class="user-options">
-            <img src="img_svg/css_1_header_svg/create.svg" class="icon" alt="">
-            <img src="img_svg/css_1_header_svg/apps.svg" class="icon" alt="">
-            <img src="img_svg/css_1_header_svg/notifications.svg" class="icon" alt="">
+            <img class="icon text-icon" src="img_svg/css_1_header_svg/create.svg" alt="만들기">
+            <img class="icon text-icon" src="img_svg/css_1_header_svg/apps.svg" alt="앱">
+            <img class="icon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
+            
+            <!-- 상단바의 notification 아이콘 클릭 시 모달창 팝업 구현 중 (미완), 최하단부 임시 스크립트로 Test 진행 중 (미완), 최상단부 내부스타일로 Test 진행 중 (미완) -->
+            <!-- <div class="notificationModal"><img class="noticeIcon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
+                <div onclick="noticeIcon()" class="notificationsModalBackground" style="display:none; z-index:2; background-color: #121212;">
+                    <div onclick="noticeIcon()"class="notificationsModalWindow" style="position:relative; width: 40%; height: 50%;">
+                        <div onclick="noticeIcon()" class="notificationsPopup" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background-color: #303030;"></div>
+                    </div>
+                </div>
+            </div> -->
             <div class="user-dp">
                 <img src="img/css_1_header/User-Avatar.png" alt="">
             </div>
@@ -95,6 +107,9 @@
     <section id="sectionInner">
         <!-- filters -->
         <div class="filters">
+            <!-- 필터 내 rightArrow 작업, img 파일 내 leftArrow/rightArrow svg 이미지 수정하였음 -->
+            <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_leftArrow.svg"
+                width="30px" height="30px" alt=""></a>
             <button class="filter-options active">전체</button>
             <button class="filter-options">음악</button>
             <button class="filter-options">실시간</button>
@@ -111,7 +126,8 @@
             <button class="filter-options">최근에 업로드된 동영상</button>
             <button class="filter-options">감상한 동영상</button>
             <button class="filter-options">새로운 맞춤 동영상</button> -->
-            <a href="#" class="left-more"><img src="img_svg/channel_svg/leftArrow.svg" alt=""></a>
+            <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_rightArrow.svg"
+                width="30px" height="30px" alt=""></a>
         </div>
         <!-- videos -->
         <div id="thumbnail">
@@ -141,6 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
 });    
+</script>
+
+<!-- Notification POP-up 모달창 구현을 위한 임시 스크립트 작성 -->
+<script>
+
 </script>
 </body>
 </html>
