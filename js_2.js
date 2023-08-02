@@ -13,13 +13,27 @@ async function getVideoInfo(videoId) {
     return data;
 }
 
-// 채널 정보 가져오기
+// 채널 비디오 가져오기
 async function getChannelVideo() {
     const apiUrl = `http://oreumi.appspot.com/channel/getChannelVideo?video_channel=oreumi`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     return data;
 }
+
+// 채널 정보 가져오기
+async function getChannelInfo() {
+    const apiUrl = 'http://oreumi.appspot.com/channel/getChannelInfo?video_channel=oreumi';
+    const response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+        'accept': 'application/json'
+    }
+    });
+    const data = await response.json();
+    return data;
+}
+
 // 천 단위마다 (,) 써주는 함수
 function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -109,35 +123,32 @@ async function displayVideo(id) {
             num = formatNumberWithCommas(num);
             videoHTML = `
             <div>
-                <video controls style='width:83%;'>
+                <video controls style='width:100%;'>
                     <source src='${videoInfo.video_link}'>
                 </video>
-                <br>
-                <p style='font-size:24px;padding:15px;'>${videoInfo.video_title}</p>
-                <div style='display:flex; justify-content: space-between; padding:15px;'>
+                <p style='font-size:1.125em; padding-top:1.25em; font-weight: 400;'>${videoInfo.video_title}</p>
+                <div style='display:flex; align-items: center; justify-content: space-between; height:2.5em; padding-bottom:1.25em;'>
                     <div>
-                        <p>${num} views ${dateComparison(videoInfo.upload_date)}</p>
+                        <p style='font-size:0.875em; color:#AAA; font-weight: 700;'>${num} views ${dateComparison(videoInfo.upload_date)}</p>
                     </div>
-                    <div>
-                        <img src='img/video/Liked.png' onclick="toggleLike(this)"><span class="likeCount">170</span>
-                        <img src='img/video/DisLiked.png'  onclick="toggleLike(this)"><span class="likeCount">63</span>
-                        <img src='img/video/Share.png'><span>SHARE</span>
-                        <img src='img/video/Save.png'><span>SAVE</span>
+                    <div style='display:flex; align-items: center;'>
+                        <img src='img/video/Liked.png' onclick="toggleLike(this)"><span class="likeCount" style="margin: 0em 1.25em 0em 0.563em; font-weight: 700;">170</span>
+                        <img src='img/video/DisLiked.png'  onclick="toggleLike(this)"><span class="likeCount" style="margin: 0em 1.25em 0em 0.563em; font-weight: 700;">63</span>
+                        <img src='img/video/Share.png'><span style="margin: 0em 1.25em 0em 0.563em; font-weight: 700;">SHARE</span>
+                        <img src='img/video/Save.png'><span style="margin: 0em 1.25em 0em 0.563em; font-weight: 700;">SAVE</span>
                         <img src='img/video/More.png'>
                     </div>
                 </div>
-                <br>
-                <div style='display:flex;justify-content: space-between; padding:15px;'>
+                <div style='display:flex;justify-content: space-between; padding:15px; border-top: 1px solid #303030;'>
                     <div style='display:flex;'>
-                        <div style='width:50px; height: 50px; border-radius: 70%; overflow:hidden;'>
+                        <div style='width:3.125em; height: 3.125em; border-radius: 70%; overflow:hidden;'>
                             <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                         </div>
                         <div style='margin:10px'>
-                            <p>oreumi</p>
+                            <p style="font-size:0.875em; font-weight: 400;">oreumi</p>
+                            <p id='subsciribtors' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>구독자 80명</p>
                             <br>
-                            <p id='subsciribtors'>구독자 80명</p>
-                            <br>
-                            <p>안녕하세요.
+                            <p style="font-size:0.875em; font-weight: 400;">안녕하세요.
                             이스트소프트입니다.<br>
                             이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
                             K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
@@ -173,6 +184,7 @@ async function displayVideo(id) {
     listContainer.innerHTML = listHTML;
    
 }
+
 // index_channel.html 에서 화면 표시
 async function displayChannel() {
     const videoList = await getVideoList();
@@ -228,6 +240,30 @@ async function displayChannel() {
     smalVideo.innerHTML = smalHTML;
     infoContainer.innerHTML = infoHTML;
 }
+
+// index_channel.html 에서 채널 배너 표시
+async function channelTitleInfo(){
+    try {
+        const data = await getChannelInfo();
+        const channelBannerImg = document.getElementById('channelBannerImg');
+        const channelProfileImg = document.getElementById('channelProfileImg');
+        const channelName = document.getElementById('channelName');
+        const subscribersCount = document.getElementById('subscribersCount');
+    
+        // HTML 요소가 존재하는지 확인
+        if (channelBannerImg && channelProfileImg && channelName && subscribersCount) {
+          channelBannerImg.src = data.channel_banner;
+          channelProfileImg.src = data.channel_profile;
+          channelName.textContent = data.channel_name;
+          subscribersCount.textContent = `구독자 ${data.subscribers}명`;
+        } else {
+          console.error('HTML 요소가 존재하지 않습니다.');
+        }
+    } catch (error) {
+        console.error('처리 중 오류 발생:', error);
+    }
+}
+channelTitleInfo();
 
 //TODO: 검색 기능 구현
 async function search() {
