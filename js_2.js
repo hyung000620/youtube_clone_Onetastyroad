@@ -13,13 +13,27 @@ async function getVideoInfo(videoId) {
     return data;
 }
 
-// 채널 정보 가져오기
+// 채널 비디오 가져오기
 async function getChannelVideo() {
     const apiUrl = `http://oreumi.appspot.com/channel/getChannelVideo?video_channel=oreumi`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     return data;
 }
+
+// 채널 정보 가져오기
+async function getChannelInfo() {
+    const apiUrl = 'http://oreumi.appspot.com/channel/getChannelInfo?video_channel=oreumi';
+    const response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+        'accept': 'application/json'
+    }
+    });
+    const data = await response.json();
+    return data;
+}
+
 // 천 단위마다 (,) 써주는 함수
 function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -173,6 +187,7 @@ async function displayVideo(id) {
     listContainer.innerHTML = listHTML;
    
 }
+
 // index_channel.html 에서 화면 표시
 async function displayChannel() {
     const videoList = await getVideoList();
@@ -228,6 +243,30 @@ async function displayChannel() {
     smalVideo.innerHTML = smalHTML;
     infoContainer.innerHTML = infoHTML;
 }
+
+// index_channel.html 에서 채널 배너 표시
+async function channelTitleInfo(){
+    try {
+        const data = await getChannelInfo();
+        const channelBannerImg = document.getElementById('channelBannerImg');
+        const channelProfileImg = document.getElementById('channelProfileImg');
+        const channelName = document.getElementById('channelName');
+        const subscribersCount = document.getElementById('subscribersCount');
+    
+        // HTML 요소가 존재하는지 확인
+        if (channelBannerImg && channelProfileImg && channelName && subscribersCount) {
+          channelBannerImg.src = data.channel_banner;
+          channelProfileImg.src = data.channel_profile;
+          channelName.textContent = data.channel_name;
+          subscribersCount.textContent = `구독자 ${data.subscribers}명`;
+        } else {
+          console.error('HTML 요소가 존재하지 않습니다.');
+        }
+    } catch (error) {
+        console.error('처리 중 오류 발생:', error);
+    }
+}
+channelTitleInfo();
 
 //TODO: 검색 기능 구현
 async function search() {

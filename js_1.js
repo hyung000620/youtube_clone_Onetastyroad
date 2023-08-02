@@ -83,13 +83,13 @@ function commentAction(){
 let toggle = true;
 function subcribe(){
     const img = document.getElementById('images');
-    const subs = document.getElementById('subsciribtors');
+    // const subs = document.getElementById('subscribersCount');
     toggle = !toggle;
     if(toggle){
-        subs.textContent = "구독자 80명";
+        // subs.textContent = "구독자 80명";
         img.src = 'img/channel/Subscribes-Btn.png';
     }else{
-        subs.textContent = "구독자 81명";
+        // subs.textContent = "구독자 81명";
         img.src = 'img/channel/subscribed-Btn.png';
     }
 }
