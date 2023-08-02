@@ -54,8 +54,6 @@ const commentAction = () => document.getElementById("commentSubmit").disabled = 
 let toggle = true;
 function subcribe(){
     const img = document.getElementById('images');
-    // const subs = document.getElementById('subscribersCount');
-    const [img, subs] = [document.getElementById('images'),document.getElementById('subsciribtors')];
     toggle = !toggle;
     if(toggle){
         // subs.textContent = "구독자 80명";
