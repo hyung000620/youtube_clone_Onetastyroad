@@ -306,8 +306,12 @@ section{
   #sectionInner{
     margin-left: var(--sectionInner,0px);
   }
-  .user-options, .mic{
+  .user-options, .mic, .logo{
     display: none;
+  }
+  .search-box {
+    margin: 10px;
+    width: 90%;
   }
 }
 

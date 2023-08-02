@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css_1.css">
     <link rel="stylesheet" href="./css_2.css"> 
-    <title>video</title>
+    <title>TastyTube - Video</title>
 </head>
 <body>
     <!-- upper navigation bar -->
@@ -34,6 +34,53 @@
             </div>
         </div>
     </header>
+
+    <!-- sidebar -->
+    <nav class="side-bar" style="display:none;">
+        <div>
+            <a href="#" class="links active"><img src="img_svg/css_2_nav_svg/Home.svg" alt="">Home</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Explore.svg" alt="">Explore</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Subscriptions.svg" alt="">Subscription</a>
+        </div>
+        <hr class="seperator">
+        <div>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Library.svg" alt="">Library</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/History.svg" alt="">History</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/YourVideos.svg" alt="">Your Video</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/WatchLater.svg" alt="">Watch Later</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/LikedVideos.svg" alt="">like video</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/ShowMore.svg" alt="">show more</a>
+        </div>
+        <hr class="seperator">
+        <div>
+            <p>SUBSCRIPTIONS</p>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar1.png" alt="">LeeJunHyeong</a>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar2.png" alt="">KimMinHo</a>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar3.png" alt="">KimJuHyeong</a>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar4.png" alt="">ByunDuHyeon</a>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar5.png" alt="">JeongHyoJoo</a>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar6.png" alt="">OhReumi</a>
+            <a href="#" class="Avatar"><img src="img/css_2_nav/User-Avatar7.png" alt="">KimDoUn</a>
+            <a href="#" class="links"><img src="img/css_2_nav/arrowBottom.png" alt="">Show 13 more</a>
+        </div>
+        <hr class="seperator">
+        <div>
+            <p>MORE FROM YOUTUBE</p>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/YoutubePremium.svg" alt="">Youtube Premium</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Gaming.svg" alt="">Gaming</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Live.svg" alt="">Live</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Sports.svg" alt="">Sports</a>
+        </div>
+        <hr class="seperator">
+        <div>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Settings.svg" alt="">Settings</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Reporthistory.svg" alt="">Report history</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Help.svg" alt="">Help</a>
+            <a href="#" class="links"><img src="img_svg/css_2_nav_svg/Feedback.svg" alt="">Send feedback</a>
+        </div>
+    </nav>
+
+    
     <!-- header를 제외한 안쪽 내용 section -->
     <section style="display: flex;">
         <!-- primary video player를 포함한 화면 오른쪽 -->
@@ -74,7 +121,7 @@
                             <div class="comment-toolbar">
                                 <img src="img_svg/video_svg/Liked.svg" alt="" onclick="toggleLike(this)">
                                 <p id="likeCount">20</p>
-                                <img src="img_svg/video_svg/DisLiked.svg" alt="" onclick="toggleDislike(this)">
+                                <img src="img_svg/video_svg/DisLiked.svg" alt="" onclick="toggleLike(this)">
                                 <p id="dislikeCount">0</p>
                                 <p>REPLY</p>
                             </div>
