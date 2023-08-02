@@ -51,15 +51,16 @@ p, span{
 .logo{
   cursor: pointer;
   height: 30px;
-  margin: -10px 30px 0;
+  margin: 10px 30px 0;
 }
 
 .search-box{
   position: relative;
   max-width: 500px;
-  width: 50%;
-  height: 35px;
+  width: 60%;
+  height: 25px;
   display: flex;
+  margin: auto;
 }
 
 .search-bar{
@@ -101,6 +102,7 @@ p, span{
   background: #000;
   border-radius: 50%;
   margin-left: 5px;
+  cursor: pointer;
 }
 
 .user-options{
@@ -144,7 +146,7 @@ p, span{
 /* 비디오리스트 (id="vidioList) */
 
 #videoList{
-  overflow: unset;
+  overflow:unset;
   position: relative;
   justify-content: flex-start;
   gap: 40px;
@@ -321,4 +323,86 @@ section > div > video{
   height: calc(100vh - 60px);
   background: #212121;
   display: var(--mini-side-bar);
+}
+
+@media screen and (max-width: 1500px) {
+    /* 토글 버튼 아이콘 크기 조정 */
+  .toggle-btn img {
+      width: 30px;
+      height: 30px;
+  }
+  .search-bar {
+      width: 150px;
+  }
+
+  /* 사이드바와 내비게이션 스타일 조정 */
+  .mini-side-bar, .side-bar {
+      padding: 10px;
+  }
+  .links {
+      font-size: 18px;
+      margin-bottom: 8px;
+  }
+  .Avatar {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .toolbar-menu {
+      font-size: 18px;
+      padding: 8px;
+      margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  /* 검색 상자 숨기기 */
+  .search-box {
+      display: none;
+  }
+  /* 토글 버튼 아이콘 크기 조정 */
+  .toggle-btn img {
+      width: 35px;
+      height: 35px;
+  }
+
+  /* 네비게이션 아이콘 크기 조정 */
+  .links img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+  }
+
+  .toolbar-menu {
+    font-size: 24px;
+    padding: 8px;
+    margin-right: 8px;
+  }
+
+/* 동영상 반응형 스타일 */
+  .small-video video {
+    width: 100%;
+    height: auto;
+  }
+
+/* 동영상 리스트 반응형 스타일 */
+  #videoList .small-video video,
+  #channel .small-video video,
+  #smal-video .small-video video,
+  #playlist .small-video video {
+    width: 100%; /* 동영상 너비를 100%로 설정 */
+    height: auto; /* 동영상 높이를 자동 조절 */
+  }
+}
+
+@media screen and (max-width: 700px) {
+  /* 토글 버튼 아이콘 크기 조정 */
+  .toggle-btn img {
+      width: 40px;
+      height: 40px;
+  }
+
+  .toolbar-menu {
+      padding: 6px;
+      margin-right: 6px;
+  }
 }
