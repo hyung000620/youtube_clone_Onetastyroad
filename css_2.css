@@ -1,7 +1,7 @@
 /* css_1 : header, aside , section 3
 css_2 : nav, section1, secion2 */
 
-   /* ---------------- 사이드바 (nav, 공통) --------------------*/
+  /* ---------------- 사이드바 (nav, 공통) --------------------*/
 .side-bar{
   z-index: 500;
   position: fixed;
@@ -139,6 +139,25 @@ section{
 #commentSubmit:hover {
   background: rgba(0, 0, 0, 0.1);
 }
+
+#commentCancel{
+  background-color: #303030;
+  border: 1px solid #aaaaaa;
+  border-radius: 32px;
+  text-align: center;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 14px;
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
+#commentCancel:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 /* write-comment */
 .write-comment{
   width: 640;
@@ -247,6 +266,7 @@ section{
   height: 156px;
   object-fit: cover;
 }
+
 /*----------------- 반응형 작업 진행 ---------------- */
 
 @media ( max-width: 1023px ) {
@@ -286,8 +306,21 @@ section{
   #sectionInner{
     margin-left: var(--sectionInner,0px);
   }
-  .user-options, .mic{
+  .user-options, .mic, .logo{
     display: none;
+  }
+  .search-box {
+    margin: 10px;
+    width: 90%;
   }
 }
 
+/*준형님 위치 확인해주세요!*/
+.text-box {
+  position: absolute;
+  left: 0;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  z-index: 3;
+}
