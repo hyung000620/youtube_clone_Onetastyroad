@@ -227,7 +227,7 @@ async function displayChannel() {
                 <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
                 <div>
-                    <p>${videoInfo.video_title}</p>
+                    <p class="marginBelowVideo">${videoInfo.video_title}</p>
                     <p class="viewAndDate">${videoInfo.video_channel}</p>
                     <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
                 </div>
