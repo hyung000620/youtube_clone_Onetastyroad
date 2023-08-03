@@ -26,22 +26,72 @@
         <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box" >
             <input onkeyup ="homeEnterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button onclick="search()" class="search-btn"> <div class="iconbox" style="margin:0"><img class="text-icon" style="width:1.125em;" src="img_svg/css_1_header_svg/search.svg" alt="검색"></div></button>
+            <button onclick="search()" class="search-btn"> <div class="iconbox" style="margin:-0.25em 0em 0em 0em"><img class="text-icon" style="width:1.125em;" src="img_svg/css_1_header_svg/search.svg" alt="검색"></div></button>
             <div class="iconbox micbox"><img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색"></div>
         </div>
         <div class="user-options">
             <div class="iconbox"><img class="icon text-icon" style="height:0.875em;" src="img_svg/css_1_header_svg/create.svg" alt="만들기"></div>
             <div class="iconbox"><img class="icon text-icon" style="height:1em;" src="img_svg/css_1_header_svg/apps.svg" alt="앱"></div>
-            <div class="iconbox"><img class="icon text-icon" style="height:1.313em;" src="img_svg/css_1_header_svg/notifications.svg" alt="알림"></div>
-            
-            <!-- 상단바의 notification 아이콘 클릭 시 모달창 팝업 구현 중 (미완), 최하단부 임시 스크립트로 Test 진행 중 (미완), 최상단부 내부스타일로 Test 진행 중 (미완) -->
-            <!-- <div class="notificationModal"><img class="noticeIcon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
-                <div onclick="noticeIcon()" class="notificationsModalBackground" style="display:none; z-index:2; background-color: #121212;">
-                    <div onclick="noticeIcon()"class="notificationsModalWindow" style="position:relative; width: 40%; height: 50%;">
-                        <div onclick="noticeIcon()" class="notificationsPopup" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background-color: #303030;"></div>
+            <!-- notifications icon -->
+            <div class="iconbox" id="notificationsModal" onclick="modalVisible()"><img class="icon text-icon noticeIcon" style="height:1.313em; position: relative;" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
+                <!-- notifications 창 -->
+                <div class="notifications-modal-background">
+                    <div class="notifications-modal-header">
+                        <p>알림</p>
+                        <div class="iconbox" style="margin:0"><img class="icon text-icon" src="img_svg/css_2_nav_svg/Settings.svg" alt="설정"></div>
+                    </div>
+                    <div class="notifications-modal-body">
+                        <div class="notifications-reply">
+                            <p>최신 댓글</p>
+                            <div>
+                                <img src="img/css_1_header/notificationspro.png" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>LeeJunHyeong님의 답글: "피카츄랑 단데기랑 바꾸실래요?"</p>
+                                    <span>12분 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo.png" class="notifications-video"> 
+                            </div>
+                        </div>
+                        <div  class="notifications-more" style="padding-bottom: 1.5em;">
+                            <p>알림 더보기</p>
+                            <div>
+                                <img src="img/css_1_header/notificationspro2.png" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>KimMinHo님의 답글: "오늘도 화이팅입니다!!"</p>
+                                    <span>20분 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo.png" class="notifications-video"> 
+                            </div>
+                            <div>
+                                <img src="img/css_1_header/oreumi.jpg" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>KimDoUn님의 답글: "자 마이크테스트 먼저 시작하겠습니다! 잘 들리시나요?"</p>
+                                    <span>42분 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo2.png" class="notifications-video"> 
+                            </div>
+                            <div>
+                                <img src="img/css_1_header/notificationspro3.png" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>Oreumi에서 업로드한 동영상: 오르미 2기 여러분, 안녕하세요!</p>
+                                    <span>3시간 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo2.png" class="notifications-video"> 
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div> -->
+                
+                <!--                 
+                <div onclick="noticeIcon()" class="notificationsModalBackground" style="display:none; z-index:2; background-color: #121212;">
+                    <div onclick="noticeIcon()"class="notificationsModalWindow" style="position:relative; width: 40%; height: 50%;">
+                         상단바의 notification 아이콘 클릭 시 모달창 팝업 구현 중 (미완), 최하단부 임시 스크립트로 Test 진행 중 (미완), 최상단부 내부스타일로 Test 진행 중 (미완) 
+                        <div onclick="noticeIcon()" class="notificationsPopup" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background-color: #303030;">
+                        ddddddddddddddddddddd
+                        </div>
+                    </div>
+                </div> -->
+            </div>
             <div style="margin: 0em 0.875em" class="user-dp">
                 <img src="img/css_1_header/User-Avatar.png" alt="">
             </div>
