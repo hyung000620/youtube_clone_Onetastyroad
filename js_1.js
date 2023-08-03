@@ -54,12 +54,16 @@ const commentAction = () => document.getElementById("commentSubmit").disabled = 
 let toggle = true;
 function subcribe(){
     const img = document.getElementById('images');
+    const subs = document.getElementById('subscribersCount');
+    const sentence = subs.textContent;
+    const numberPattern = /\d+/;
+    const number = parseInt(sentence.match(numberPattern)[0]);
     toggle = !toggle;
     if(toggle){
-        // subs.textContent = "구독자 80명";
+        subs.textContent = `구독자 ${number-1}명`;
         img.src = 'img/channel/Subscribes-Btn.png';
     }else{
-        // subs.textContent = "구독자 81명";
+        subs.textContent = `구독자 ${number+1}명`;
         img.src = 'img/channel/subscribed-Btn.png';
     }
 }
@@ -159,8 +163,8 @@ imageContainers.forEach((imageContainer) => {
 //텍스트 박스 위치 지정 함수
 function showHoverText(text, x, y) {
     const textBox = createTextBox(text);
-    textBox.style.left = x + 'px';
-    textBox.style.top = y + 'px';
+    textBox.style.left = `${x}px`;
+    textBox.style.top = `${y+30}px`;
     document.body.appendChild(textBox);
 }
 
@@ -180,22 +184,36 @@ function hideHoverText() {
 }
 
 // 필터 작동 함수
-//const buttons = document.querySelector('.filters-options');
-//const leftArrow = document.querySelector('.prev');
-//const rightArrow = document.querySelector('.next');
-//
-//let currentIndex = 0;
-//const itemsToShow = 3;
-//
-//function showButtons() {
-//    buttons.forEach((button, index) => {
-//        if (index >= currentIndex && index < currentIndex + itemsToShow) {
-//        button.style.display = 'inline-block';
-//        } else {
-//        button.style.display = 'none';
-//        }
-//    });
-//}
+let currentFilterIndex = 0;
+const filtersPerPage = 5;
+
+function showFilters() {
+    const filterButtons = document.querySelectorAll('.filter-options');
+    filterButtons.forEach((button, index) => {
+        if (index >= currentFilterIndex && index < currentFilterIndex + filtersPerPage) {
+            button.classList.remove('hidden');
+        } else {
+            button.classList.add('hidden');
+        }
+    });
+}
+
+function showNextFilters() {
+    const totalFilters = document.querySelectorAll('.filter-options').length;
+    if (currentFilterIndex + filtersPerPage < totalFilters) {
+        currentFilterIndex += filtersPerPage;
+        showFilters();
+    }
+}
+
+function showPreviousFilters() {
+    if (currentFilterIndex - filtersPerPage >= 0) {
+        currentFilterIndex -= filtersPerPage;
+        showFilters();
+    }
+}
+
+showFilters();
 
 // JavaScript
 // const filters = document.querySelector('.filters');
