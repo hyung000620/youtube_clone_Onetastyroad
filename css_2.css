@@ -272,7 +272,15 @@ section{
   height: 156px;
   object-fit: cover;
 }
-
+/*준형님 위치 확인해주세요!*/
+.text-box {
+  position: absolute;
+  left: 0;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  z-index: 3;
+}
 /*----------------- 반응형 작업 진행 ---------------- */
 
 @media ( max-width: 1023px ) {
@@ -320,12 +328,4 @@ section{
     width: 90%;
   }
 }
-/*준형님 위치 확인해주세요!*/
-.text-box {
-  position: absolute;
-  left: 0;
-  padding: 5px;
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  z-index: 3;
-}
+

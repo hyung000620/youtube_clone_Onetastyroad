@@ -36,7 +36,7 @@ p, span{
   background: #212121;
   display: flex;
   align-items: center;
-  padding: 0 2.5vw;
+  padding: 0 1.5vw;
   z-index: 2;
 }
 
@@ -44,14 +44,16 @@ p, span{
 .toggle-btn{
   width: 20px;
   height: 10px;
+  margin-right: 27px;
   position: relative;
   cursor: pointer;
+  display:flex;
+  align-items: center;
 }
 
 .logo{
-  cursor: pointer;
   height: 30px;
-  margin: 10px 30px 0;
+  cursor: pointer;
 }
 
 .search-box{
@@ -60,7 +62,8 @@ p, span{
   width: 60%;
   height: 25px;
   display: flex;
-  margin: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-bar{
@@ -95,12 +98,23 @@ p, span{
   height: 24px;
 }
 
-.mic {
-  width: 40px;
-  height: 40px;
+.iconbox{
+  width: 2.5em;
+  height: 2.5em;
+  margin-right: 1em;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.micbox{
+  margin-left: 5px;
   background: #000;
   border-radius: 50%;
-  margin-left: 5px;
+}
+.icon{
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 
@@ -113,8 +127,6 @@ p, span{
 
 .user-options .icon{
   height: 80%;
-  margin-right: 20px;
-  cursor: pointer;
 }
 
 .user-dp{
@@ -309,6 +321,13 @@ section > div > video{
 
 #videolist{
   margin-top: 60px;
+}
+
+.viewAndDate > p{
+  color: #AAAAAA;
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: normal;
 }
 
 /********** mini-sidebar **********/
