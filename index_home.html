@@ -107,9 +107,8 @@
     <section id="sectionInner">
         <!-- filters -->
         <div class="filters">
-            <!-- 필터 내 rightArrow 작업, img 파일 내 leftArrow/rightArrow svg 이미지 수정하였음 -->
-            <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_leftArrow.svg"
-                width="30px" height="30px" alt=""></a>
+            <button class="left-more" onclick="showPreviousFilters()"><img src="img_svg/channel_svg/filter_leftArrow.svg"
+                width="14px" height="14px" alt=""></button>
             <button class="filter-options active">전체</button>
             <button class="filter-options">음악</button>
             <button class="filter-options">실시간</button>
@@ -117,7 +116,7 @@
             <button class="filter-options">뉴스</button>
             <button class="filter-options">믹스</button>
             <button class="filter-options">시트콤</button>
-            <!-- <button class="filter-options">액션 어드벤처 게임</button>
+            <button class="filter-options">액션 어드벤처 게임</button>
             <button class="filter-options">스포츠 비디오 게임</button>
             <button class="filter-options">만화 영화</button>
             <button class="filter-options">랩</button>
@@ -125,9 +124,9 @@
             <button class="filter-options">요리</button>
             <button class="filter-options">최근에 업로드된 동영상</button>
             <button class="filter-options">감상한 동영상</button>
-            <button class="filter-options">새로운 맞춤 동영상</button> -->
-            <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_rightArrow.svg"
-                width="30px" height="30px" alt=""></a>
+            <button class="filter-options">새로운 맞춤 동영상</button>
+            <button class="right-more" onclick="showNextFilters()"><img src="img_svg/channel_svg/filter_rightArrow.svg"
+                width="14px" height="14px" alt=""></button>
         </div>
         <!-- videos -->
         <div id="thumbnail">

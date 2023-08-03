@@ -177,22 +177,36 @@ function hideHoverText() {
 }
 
 // 필터 작동 함수
-//const buttons = document.querySelector('.filters-options');
-//const leftArrow = document.querySelector('.prev');
-//const rightArrow = document.querySelector('.next');
-//
-//let currentIndex = 0;
-//const itemsToShow = 3;
-//
-//function showButtons() {
-//    buttons.forEach((button, index) => {
-//        if (index >= currentIndex && index < currentIndex + itemsToShow) {
-//        button.style.display = 'inline-block';
-//        } else {
-//        button.style.display = 'none';
-//        }
-//    });
-//}
+let currentFilterIndex = 0;
+const filtersPerPage = 5;
+
+function showFilters() {
+    const filterButtons = document.querySelectorAll('.filter-options');
+    filterButtons.forEach((button, index) => {
+        if (index >= currentFilterIndex && index < currentFilterIndex + filtersPerPage) {
+            button.classList.remove('hidden');
+        } else {
+            button.classList.add('hidden');
+        }
+    });
+}
+
+function showNextFilters() {
+    const totalFilters = document.querySelectorAll('.filter-options').length;
+    if (currentFilterIndex + filtersPerPage < totalFilters) {
+        currentFilterIndex += filtersPerPage;
+        showFilters();
+    }
+}
+
+function showPreviousFilters() {
+    if (currentFilterIndex - filtersPerPage >= 0) {
+        currentFilterIndex -= filtersPerPage;
+        showFilters();
+    }
+}
+
+showFilters();
 
 // JavaScript
 // const filters = document.querySelector('.filters');
