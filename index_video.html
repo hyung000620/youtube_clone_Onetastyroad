@@ -16,19 +16,19 @@
 <body>
     <!-- upper navigation bar -->
     <header class="navbar">    
-        <div class="toggle-btn">
+        <div class="toggle-btn" onclick="sideBarToggle()">
             <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
-        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onClick="moveHome()">
+        <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box">
-            <input onkeyup ="enterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button id="searchBtn" class="search-btn"><img src="img_svg/css_1_header_svg/search.svg" alt=""></button>
-            <img class="mic" src="img/css_1_header/mic.svg" class="icon" alt="">
+            <input onkeyup ="homeEnterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
+            <button onclick="search()" class="search-btn"><img class="text-icon" src="img_svg/css_1_header_svg/search.svg" alt="검색"></button>
+            <img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색">
         </div>
         <div class="user-options">
-            <img src="img_svg/css_1_header_svg/create.svg" class="icon" alt="">
-            <img src="img_svg/css_1_header_svg/apps.svg" class="icon" alt="">
-            <img src="img_svg/css_1_header_svg/notifications.svg" class="icon" alt="">
+            <img class="icon text-icon" src="img_svg/css_1_header_svg/create.svg" alt="만들기">
+            <img class="icon text-icon" src="img_svg/css_1_header_svg/apps.svg" alt="앱">
+            <img class="icon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
             <div class="user-dp">
                 <img src="img/css_1_header/User-Avatar.png" alt="">
             </div>
