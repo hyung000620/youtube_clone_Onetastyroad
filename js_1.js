@@ -88,6 +88,7 @@ function thousandK(num){
 
 let hambuger = true;
 let innerWidth = window.innerWidth; // 화면 크기
+
 // 사이드 바 토글
 function sideBarToggle(){
     const [sideBar, miniSideBar, sectionInner] = [document.querySelector('.side-bar'),document.querySelector('.mini-side-bar'),document.getElementById('sectionInner')];
@@ -110,12 +111,13 @@ function removeInlineStyle(){
     const elementsToRemoveStyle = [sideBar, miniSideBar, sectionInner];
 
     elementsToRemoveStyle.forEach(element => {
-      element.removeAttribute('style');
+    element.removeAttribute('style');
     });
 }
 window.addEventListener('resize', () => {
     removeInlineStyle();
 });
+
 // 좋아요 버튼 토글
 function toggleLike(likeImage) {
     const likeCountElement = likeImage.nextElementSibling;
@@ -153,28 +155,47 @@ imageContainers.forEach((imageContainer) => {
     });
   });
 
+
 //텍스트 박스 위치 지정 함수
 function showHoverText(text, x, y) {
-  const textBox = createTextBox(text);
-  textBox.style.left = x + 'px';
-  textBox.style.top = y + 'px';
-  document.body.appendChild(textBox);
+    const textBox = createTextBox(text);
+    textBox.style.left = x + 'px';
+    textBox.style.top = y + 'px';
+    document.body.appendChild(textBox);
 }
 
 //텍스트 박스 생성함수
 function createTextBox(text) {
-  const textBox = document.createElement('div');
-  textBox.className = 'text-box';
-  textBox.textContent = text;
-  return textBox;
+    const textBox = document.createElement('div');
+    textBox.className = 'text-box';
+    textBox.textContent = text;
+    return textBox;
 }
 // 텍스트 박스 삭제함수
 function hideHoverText() {
-  const textBox = document.querySelector('.text-box');
-  if (textBox) {
+    const textBox = document.querySelector('.text-box');
+    if (textBox) {
     textBox.remove();
-  }
+    }
 }
+
+// 필터 작동 함수
+//const buttons = document.querySelector('.filters-options');
+//const leftArrow = document.querySelector('.prev');
+//const rightArrow = document.querySelector('.next');
+//
+//let currentIndex = 0;
+//const itemsToShow = 3;
+//
+//function showButtons() {
+//    buttons.forEach((button, index) => {
+//        if (index >= currentIndex && index < currentIndex + itemsToShow) {
+//        button.style.display = 'inline-block';
+//        } else {
+//        button.style.display = 'none';
+//        }
+//    });
+//}
 
 // JavaScript
 // const filters = document.querySelector('.filters');
