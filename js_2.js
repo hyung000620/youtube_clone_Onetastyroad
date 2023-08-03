@@ -142,7 +142,7 @@ async function displayVideo(id) {
                         </div>
                         <div style='margin:1em'>
                             <p style="font-size:0.875em; font-weight: 400;">oreumi</p>
-                            <p id='subsciribtors' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>${channelInfo.subscribers} 명</p>
+                            <p id='subscribersCount' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>구독자 ${channelInfo.subscribers}명</p>
                             <br>
                             <p style="font-size:0.875em; font-weight: 400;">안녕하세요.
                             이스트소프트입니다.<br>
@@ -212,8 +212,8 @@ async function displayChannel() {
                 </video>
             </div>
             <div>
-                <p>${videoInfo.video_title}</p>
-                <p>${num}views ${dateComparison(videoInfo.upload_date)}</p>
+                <p class="channel-title-below-video">${videoInfo.video_title}</p>
+                <p>${num} views ㆍ ${dateComparison(videoInfo.upload_date)}</p>
                 <p>안녕하세요.
                 이스트소프트입니다.<br>
                 이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
