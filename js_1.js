@@ -138,18 +138,20 @@ function toggleLike(likeImage) {
  * 마우스 out 시에 text 박스 삭제.
  * 
  */
-const imageContainer = document.querySelector('.text-icon');
+const imageContainers = document.querySelectorAll('.text-icon');
 
-imageContainer.addEventListener('mouseover', function(event) {
-  if (event.target.tagName === 'IMG') {
-    const altText = event.target.getAttribute('alt');
-    showHoverText(altText, event.clientX, event.clientY);
-  }
-});
-
-imageContainer.addEventListener('mouseout', function() {
-  hideHoverText();
-});
+imageContainers.forEach((imageContainer) => {
+    imageContainer.addEventListener('mouseover', function(event) {
+      if (event.target.tagName === 'IMG') {
+        const altText = event.target.getAttribute('alt');
+        showHoverText(altText, event.clientX, event.clientY);
+      }
+    });
+  
+    imageContainer.addEventListener('mouseout', function() {
+      hideHoverText();
+    });
+  });
 
 //텍스트 박스 위치 지정 함수
 function showHoverText(text, x, y) {
