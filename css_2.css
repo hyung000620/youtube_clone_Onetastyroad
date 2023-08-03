@@ -70,6 +70,8 @@ body {
 }
 
 .filters{
+  display: flex;
+  align-items: center;
   width: 100%;
   margin-top: 60px;
   background: #212121;
@@ -89,6 +91,11 @@ body {
   padding: 8px 12px;
 }
 
+.filter-options,
+.left-more {
+  margin: 0 5px; /* 필요한 간격 설정 */
+}
+
 .filters > button:hover{
   background: rgba(0, 0, 0, 0.1);
 }
@@ -97,7 +104,6 @@ body {
   margin-left: 200px;
   padding: 20px;
 }
-
 
 /*----------------- video section ---------------- */
 
@@ -287,8 +293,8 @@ section{
   #sectionInner{
     margin-left: var(--sectionInner,250px);
   }
-
 }
+
 @media ( max-width: 800px ) {
   .mini-side-bar{
     display: var(--mini-side-bar,block);
