@@ -82,7 +82,7 @@ async function displayHome() {
             <div>
                 <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
                 <div style='display:flex;'>
-                    <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
+                    <div style='width:2.5rem; height: 2.5rem; border-radius: 70%; overflow:hidden;'>
                         <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                     </div>
                     <div>
@@ -164,7 +164,7 @@ async function displayVideo(id) {
         }else{
             listHTML += `
             <div style="display:flex;">
-                <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
                     <div>
                         <p>${videoInfo.video_title}</p>
@@ -224,7 +224,7 @@ async function displayChannel() {
         }else{
             infoHTML += `
             <div>
-                <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
                     <div>
                         <p>${videoInfo.video_title}</p>
@@ -297,7 +297,7 @@ async function search() {
 
         infoHTML += `
             <div>
-                <img src='${videoInfo.image_link}' style='width:320px;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div style='display:flex;'>
                     <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
                         <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
