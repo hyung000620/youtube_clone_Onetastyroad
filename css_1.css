@@ -152,7 +152,7 @@ p, span{
 
 /* 알림 모달창 구현 */
 
-.notificationsModalBackground{
+.notifications-modal-background{
   position: absolute;
   right: 8.5em;
   width: 30em;
@@ -161,25 +161,25 @@ p, span{
   padding: 0em 0.25em;
   display: none;
 }
-.notificationsModalHeader{
+.notifications-modal-header{
   display: flex; 
   align-items: center;
   padding: 0.3em 0em;
   /* height: 3.125em; */
 }
-.notificationsModalHeader>p,
-.notificationsModalBody>div>p{
+.notifications-modal-header>p,
+.notifications-modal-body>div>p{
   margin-right: auto;
   font-size: 1rem;
   font-weight: 600;
 }
-.notificationsReply,
-.notificationsMore{
+.notifications-reply,
+.notifications-more{
   padding: 1em 0em;
   border-top: 1px solid #505050;
 }
-.notificationsReply>div,
-.notificationsMore>div{
+.notifications-reply>div,
+.notifications-more>div{
   display: flex;
   align-items: center;
   padding: 1em 1em 0.3em 0.8em;
@@ -207,7 +207,6 @@ p, span{
   margin: 0em 0.5em;
   height: 3.75em;
 }
-
 
 
 /* 사이드바 (nav) */
