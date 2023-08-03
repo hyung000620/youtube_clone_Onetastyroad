@@ -26,22 +26,72 @@
         <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box" >
             <input onkeyup ="enterkey(this)" id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button onclick="search()" class="search-btn" style='display:flex; align-items: center;'> <div class="iconbox"><img class="text-icon" style="width:1.125em;" src="img_svg/css_1_header_svg/search.svg"></div></button>
+            <button onclick="search()" class="search-btn"> <div class="iconbox" style="margin:-0.25em 0em 0em 0em"><img class="text-icon" style="width:1.125em;" src="img_svg/css_1_header_svg/search.svg" alt="검색"></div></button>
             <div class="iconbox micbox"><img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색"></div>
         </div>
         <div class="user-options">
-            <div class="iconbox"><img class="icon text-icon" style="width:1.25em;" src="img_svg/css_1_header_svg/create.svg" alt="만들기"></div>
-            <div class="iconbox"><img class="icon text-icon" style="width:1em;" src="img_svg/css_1_header_svg/apps.svg" alt="앱"></div>
-            <div class="iconbox"><img class="icon text-icon" style="width:1em;" src="img_svg/css_1_header_svg/notifications.svg" alt="알림"></div>
-            
-            <!-- 상단바의 notification 아이콘 클릭 시 모달창 팝업 구현 중 (미완), 최하단부 임시 스크립트로 Test 진행 중 (미완), 최상단부 내부스타일로 Test 진행 중 (미완) -->
-            <!-- <div class="notificationModal"><img class="noticeIcon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
-                <div onclick="noticeIcon()" class="notificationsModalBackground" style="display:none; z-index:2; background-color: #121212;">
-                    <div onclick="noticeIcon()"class="notificationsModalWindow" style="position:relative; width: 40%; height: 50%;">
-                        <div onclick="noticeIcon()" class="notificationsPopup" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background-color: #303030;"></div>
+            <div class="iconbox"><img class="icon text-icon" style="height:0.875em;" src="img_svg/css_1_header_svg/create.svg" alt="만들기"></div>
+            <div class="iconbox"><img class="icon text-icon" style="height:1em;" src="img_svg/css_1_header_svg/apps.svg" alt="앱"></div>
+            <!-- notifications icon -->
+            <div class="iconbox" id="notificationsModal" onclick="modalVisible()"><img class="icon text-icon noticeIcon" style="height:1.313em; position: relative;" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
+                <!-- notifications 창 -->
+                <div class="notifications-modal-background">
+                    <div class="notifications-modal-header">
+                        <p>알림</p>
+                        <div class="iconbox" style="margin:0"><img class="icon text-icon" src="img_svg/css_2_nav_svg/Settings.svg" alt="설정"></div>
+                    </div>
+                    <div class="notifications-modal-body">
+                        <div class="notifications-reply">
+                            <p>최신 댓글</p>
+                            <div>
+                                <img src="img/css_1_header/notificationspro.png" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>LeeJunHyeong님의 답글: "피카츄랑 단데기랑 바꾸실래요?"</p>
+                                    <span>12분 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo.png" class="notifications-video"> 
+                            </div>
+                        </div>
+                        <div  class="notifications-more" style="padding-bottom: 1.5em;">
+                            <p>알림 더보기</p>
+                            <div>
+                                <img src="img/css_1_header/notificationspro2.png" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>KimMinHo님의 답글: "오늘도 화이팅입니다!!"</p>
+                                    <span>20분 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo.png" class="notifications-video"> 
+                            </div>
+                            <div>
+                                <img src="img/css_1_header/oreumi.jpg" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>KimDoUn님의 답글: "자 마이크테스트 먼저 시작하겠습니다! 잘 들리시나요?"</p>
+                                    <span>42분 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo2.png" class="notifications-video"> 
+                            </div>
+                            <div>
+                                <img src="img/css_1_header/notificationspro3.png" class="notifications-pro">
+                                <div class="notifications-text">
+                                    <p>Oreumi에서 업로드한 동영상: 오르미 2기 여러분, 안녕하세요!</p>
+                                    <span>3시간 전</span>
+                                </div>
+                                <img src="img/css_1_header/notificationsvideo2.png" class="notifications-video"> 
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div> -->
+                
+                <!--                 
+                <div onclick="noticeIcon()" class="notificationsModalBackground" style="display:none; z-index:2; background-color: #121212;">
+                    <div onclick="noticeIcon()"class="notificationsModalWindow" style="position:relative; width: 40%; height: 50%;">
+                         상단바의 notification 아이콘 클릭 시 모달창 팝업 구현 중 (미완), 최하단부 임시 스크립트로 Test 진행 중 (미완), 최상단부 내부스타일로 Test 진행 중 (미완) 
+                        <div onclick="noticeIcon()" class="notificationsPopup" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background-color: #303030;">
+                        ddddddddddddddddddddd
+                        </div>
+                    </div>
+                </div> -->
+            </div>
             <div style="margin: 0em 0.875em" class="user-dp">
                 <img src="img/css_1_header/User-Avatar.png" alt="">
             </div>
@@ -106,10 +156,9 @@
     <!-- header와 nav를 제외한 안쪽 내용 section -->
     <section id="sectionInner">
         <!-- filters -->
-        <div class="filters" style="border-top: 1px solid #303030;">
-            <!-- 필터 내 rightArrow 작업, img 파일 내 leftArrow/rightArrow svg 이미지 수정하였음 -->
-            <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_leftArrow.svg"
-                width="30px" height="30px" alt=""></a>
+        <div class="filters">
+            <button class="left-more" onclick="showPreviousFilters()"><img src="img_svg/channel_svg/filter_leftArrow.svg"
+                width="14px" height="14px" alt=""></button>
             <button class="filter-options active">전체</button>
             <button class="filter-options">음악</button>
             <button class="filter-options">실시간</button>
@@ -117,7 +166,7 @@
             <button class="filter-options">뉴스</button>
             <button class="filter-options">믹스</button>
             <button class="filter-options">시트콤</button>
-            <!-- <button class="filter-options">액션 어드벤처 게임</button>
+            <button class="filter-options">액션 어드벤처 게임</button>
             <button class="filter-options">스포츠 비디오 게임</button>
             <button class="filter-options">만화 영화</button>
             <button class="filter-options">랩</button>
@@ -125,9 +174,9 @@
             <button class="filter-options">요리</button>
             <button class="filter-options">최근에 업로드된 동영상</button>
             <button class="filter-options">감상한 동영상</button>
-            <button class="filter-options">새로운 맞춤 동영상</button> -->
-            <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_rightArrow.svg"
-                width="30px" height="30px" alt=""></a>
+            <button class="filter-options">새로운 맞춤 동영상</button>
+            <button class="right-more" onclick="showNextFilters()"><img src="img_svg/channel_svg/filter_rightArrow.svg"
+                width="14px" height="14px" alt=""></button>
         </div>
         <!-- videos -->
         <div id="thumbnail">
@@ -161,7 +210,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Notification POP-up 모달창 구현을 위한 임시 스크립트 작성 -->
 <script>
-
+let isModalVisible = true;
+function modalVisible(){
+    let imageElement = document.querySelector(".iconbox.notificationsModal img");
+    let modalElement = document.querySelector(".notifications-modal-background");
+    const img = document.getElementById('notificationsModal');
+    isModalVisible = !isModalVisible;
+    if(isModalVisible){
+        modalElement.style.display = "none";
+    }else{
+        modalElement.style.display = "block";
+    }
+}
 </script>
 </body>
 </html>
