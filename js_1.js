@@ -159,8 +159,8 @@ imageContainers.forEach((imageContainer) => {
 //텍스트 박스 위치 지정 함수
 function showHoverText(text, x, y) {
     const textBox = createTextBox(text);
-    textBox.style.left = x + 'px';
-    textBox.style.top = y + 'px';
+    textBox.style.left = `${x}px`;
+    textBox.style.top = `${y+30}px`;
     document.body.appendChild(textBox);
 }
 

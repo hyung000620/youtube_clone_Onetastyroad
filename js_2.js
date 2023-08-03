@@ -1,13 +1,15 @@
+const APIURL = "http://oreumi.appspot.com";
+
 // 비디오 리스트 가져오기
 async function getVideoList() {
-    const response = await fetch('http://oreumi.appspot.com/video/getVideoList');
+    const response = await fetch(`${APIURL}/video/getVideoList`);
     const data = await response.json();
     return data;
 }
 
 // 비디오 정보 가져오기
 async function getVideoInfo(videoId) {
-    const apiUrl = `http://oreumi.appspot.com/video/getVideoInfo?video_id=${videoId}`;
+    const apiUrl = `${APIURL}/video/getVideoInfo?video_id=${videoId}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     return data;
@@ -15,7 +17,7 @@ async function getVideoInfo(videoId) {
 
 // 채널 비디오 가져오기
 async function getChannelVideo() {
-    const apiUrl = `http://oreumi.appspot.com/channel/getChannelVideo?video_channel=oreumi`;
+    const apiUrl = `${APIURL}/channel/getChannelVideo?video_channel=oreumi`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     return data;
@@ -23,13 +25,8 @@ async function getChannelVideo() {
 
 // 채널 정보 가져오기
 async function getChannelInfo() {
-    const apiUrl = 'http://oreumi.appspot.com/channel/getChannelInfo?video_channel=oreumi';
-    const response = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-        'accept': 'application/json'
-    }
-    });
+    const apiUrl = `${APIURL}/channel/getChannelInfo?video_channel=oreumi`;
+    const response = await fetch(apiUrl, {method: 'POST',headers: {'accept': 'application/json'}});
     const data = await response.json();
     return data;
 }
@@ -60,7 +57,6 @@ function dateComparison(date) {
     return `${Math.floor(years)}년 전`
 }
 
-
 // index_home.html에서 화면 표시
 async function displayHome() {
     const videoList = await getVideoList();
@@ -79,20 +75,19 @@ async function displayHome() {
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
 
         infoHTML += `
-            <div>
-                <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
-                <div style='display:flex;'>
-                    <div style='width:2.5rem; height: 2.5rem; border-radius: 70%; overflow:hidden;'>
-                        <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
-                    </div>
-                    <div>
-                        <p>${videoInfo.video_title}</p>
-                        <p>${videoInfo.video_channel}</p>
-                        <p>${thousandK(videoInfo.views)}</p>
-                        <p>${dateComparison(videoInfo.upload_date)}</p>
-                    </div>
+        <div>
+        <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
+            <div style='display:flex;'>
+                <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
+                    <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                </div>
+                <div>
+                    <p style='margin-top:0.5em;'>${videoInfo.video_title}</p>
+                    <p class="viewAndDate">${videoInfo.video_channel}</p>
+                    <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
                 </div>
             </div>
+        </div>
         `;
     }
 
@@ -102,6 +97,7 @@ async function displayHome() {
 
 // index_video.html 에서 화면 표시
 async function displayVideo(id) {
+    const channelInfo = await getChannelInfo();
     const videoList = await getVideoList();
     let video = document.getElementById('videoInfo');
     let listContainer = document.getElementById('videolist');
@@ -140,19 +136,19 @@ async function displayVideo(id) {
                     </div>
                 </div>
                 <div style='display:flex;justify-content: space-between; padding:15px; border-top: 1px solid #303030;'>
-                    <div style='display:flex;'>
-                        <div style='width:3.125em; height: 3.125em; border-radius: 70%; overflow:hidden;'>
-                            <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                    <div>
+                        <div style='width:50px; height: 50px; border-radius: 70%; overflow:hidden;'>
+                            <img src='img/css_1_header/oreumi.jpg' style='width:50px; height:50px; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                         </div>
-                        <div style='margin:10px'>
+                        <div style='margin:1em'>
                             <p style="font-size:0.875em; font-weight: 400;">oreumi</p>
-                            <p id='subsciribtors' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>구독자 80명</p>
+                            <p id='subsciribtors' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>${channelInfo.subscribers} 명</p>
                             <br>
                             <p style="font-size:0.875em; font-weight: 400;">안녕하세요.
                             이스트소프트입니다.<br>
                             이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
                             K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
-                            올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+                            올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다.🎉</p>
                         </div>
                     </div>
                     <div>
@@ -166,27 +162,31 @@ async function displayVideo(id) {
             <div style="display:flex;">
                 <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
-                    <div>
-                        <p>${videoInfo.video_title}</p>
-                        <p>${videoInfo.video_channel}</p>
-                        <p>${thousandK(videoInfo.views)}</p>
-                        <p>${dateComparison(videoInfo.upload_date)}</p>
-                    </div>
+                <div>
+                    <p>${videoInfo.video_title}</p>
+                    <p class="viewAndDate">${videoInfo.video_channel}</p>
+                    <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
+                </div>
                 </div>
             </div>
         `;
         }
         
-    } 
+    }
+
     // 선택된 비디오
     video.innerHTML = videoHTML;
     // 비디오 리스트 추가
     listContainer.innerHTML = listHTML;
-   
 }
 
 // index_channel.html 에서 화면 표시
 async function displayChannel() {
+    const channelInfo = await getChannelInfo();
+    const channelBannerImg = document.getElementById('channelBannerImg');
+    const channelProfileImg = document.getElementById('channelProfileImg');
+    const channelName = document.getElementById('channelName');
+    const subscribersCount = document.getElementById('subscribersCount');
     const videoList = await getVideoList();
     const smalVideo = document.getElementById('smal-video')
     const infoContainer = document.querySelector('.xsmall-video');
@@ -226,46 +226,27 @@ async function displayChannel() {
             <div>
                 <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
-                    <div>
-                        <p>${videoInfo.video_title}</p>
-                        <p>${videoInfo.video_channel}</p>
-                        <p>${thousandK(videoInfo.views)}</p>
-                        <p>${dateComparison(videoInfo.upload_date)}</p>
-                    </div>
+                <div>
+                    <p>${videoInfo.video_title}</p>
+                    <p class="viewAndDate">${videoInfo.video_channel}</p>
+                    <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
+                </div>
                 </div>
             </div>
         `;
         }
     }
+
+    channelBannerImg.src = channelInfo.channel_banner;
+    channelProfileImg.src = channelInfo.channel_profile;
+    channelName.textContent = channelInfo.channel_name;
+    subscribersCount.textContent = `구독자 ${channelInfo.subscribers}명`;
     smalVideo.innerHTML = smalHTML;
     infoContainer.innerHTML = infoHTML;
-}
-
-// index_channel.html 에서 채널 배너 표시
-async function channelTitleInfo(){
-    try {
-        const data = await getChannelInfo();
-        const channelBannerImg = document.getElementById('channelBannerImg');
-        const channelProfileImg = document.getElementById('channelProfileImg');
-        const channelName = document.getElementById('channelName');
-        const subscribersCount = document.getElementById('subscribersCount');
     
-        // HTML 요소가 존재하는지 확인
-        if (channelBannerImg && channelProfileImg && channelName && subscribersCount) {
-          channelBannerImg.src = data.channel_banner;
-          channelProfileImg.src = data.channel_profile;
-          channelName.textContent = data.channel_name;
-          subscribersCount.textContent = `구독자 ${data.subscribers}명`;
-        } else {
-          console.error('HTML 요소가 존재하지 않습니다.');
-        }
-    } catch (error) {
-        console.error('처리 중 오류 발생:', error);
-    }
 }
-channelTitleInfo();
 
-//TODO: 검색 기능 구현
+//검색 기능 구현
 async function search() {
     const searchInput = document.getElementById('searchInput').value;
     const videoList = await getVideoList();
@@ -296,39 +277,30 @@ async function search() {
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
 
         infoHTML += `
-            <div>
-                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
-                <div style='display:flex;'>
-                    <div style='width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
-                        <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
-                    </div>
-                    <div>
-                        <p>${videoInfo.video_title}</p>
-                        <p>${videoInfo.video_channel}</p>
-                        <p>${thousandK(videoInfo.views)}</p>
-                        <p>${dateComparison(videoInfo.upload_date)}</p>
-                    </div>
+        <div>
+            <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
+            <div style='display:flex;'>
+                <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
+                    <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                </div>
+                <div>
+                    <p style='margin-top:0.5em;'>${videoInfo.video_title}</p>
+                    <p class="viewAndDate">${videoInfo.video_channel}</p>
+                    <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
                 </div>
             </div>
+        </div>
         `;
     }
 
     infoContainer.innerHTML = infoHTML;
 }
-
-// home.html 검색 시 'enter키' 누르면 검색되는 기능 구현
-// search-box -> input에 onkeyup
-async function homeEnterkey() {
+//enterkey
+async function enterkey(searchInput) {
     if (window.event.keyCode == 13) {
-        await search();
-    }
-}
-
-// channel.html, video.html 검색 시 'enter키' 누르면 검색되는 기능 구현
-// search-box -> input에 onkeyup
-async function enterkey() {
-    if (window.event.keyCode == 13) {
-        location.href=`./index_home.html?search=${searchInput.value}`
+        if (searchInput) {
+            location.href = `./index_home.html?search=${searchInput.value}`;
+        }
         await search();
     }
 }
