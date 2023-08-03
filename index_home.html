@@ -24,15 +24,15 @@
             <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
         <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
-        <div class="search-box">
+        <div class="search-box" >
             <input onkeyup ="homeEnterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button onclick="search()" class="search-btn"><img class="text-icon" src="img_svg/css_1_header_svg/search.svg" alt="검색"></button>
-            <img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색">
+            <button onclick="search()" class="search-btn" style='display:flex; align-items: center;'> <div class="iconbox"><img class="text-icon" style="width:1.125em;" src="img_svg/css_1_header_svg/search.svg"></div></button>
+            <div class="iconbox micbox"><img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색"></div>
         </div>
         <div class="user-options">
-            <img class="icon text-icon" src="img_svg/css_1_header_svg/create.svg" alt="만들기">
-            <img class="icon text-icon" src="img_svg/css_1_header_svg/apps.svg" alt="앱">
-            <img class="icon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
+            <div class="iconbox"><img class="icon text-icon" style="width:1.25em;" src="img_svg/css_1_header_svg/create.svg" alt="만들기"></div>
+            <div class="iconbox"><img class="icon text-icon" style="width:1em;" src="img_svg/css_1_header_svg/apps.svg" alt="앱"></div>
+            <div class="iconbox"><img class="icon text-icon" style="width:1em;" src="img_svg/css_1_header_svg/notifications.svg" alt="알림"></div>
             
             <!-- 상단바의 notification 아이콘 클릭 시 모달창 팝업 구현 중 (미완), 최하단부 임시 스크립트로 Test 진행 중 (미완), 최상단부 내부스타일로 Test 진행 중 (미완) -->
             <!-- <div class="notificationModal"><img class="noticeIcon text-icon" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="user-dp">
+            <div style="margin: 0em 0.875em" class="user-dp">
                 <img src="img/css_1_header/User-Avatar.png" alt="">
             </div>
         </div>
@@ -106,7 +106,7 @@
     <!-- header와 nav를 제외한 안쪽 내용 section -->
     <section id="sectionInner">
         <!-- filters -->
-        <div class="filters">
+        <div class="filters" style="border-top: 1px solid #303030;">
             <!-- 필터 내 rightArrow 작업, img 파일 내 leftArrow/rightArrow svg 이미지 수정하였음 -->
             <a href="#" class="left-more"><img src="img_svg/channel_svg/filter_leftArrow.svg"
                 width="30px" height="30px" alt=""></a>
