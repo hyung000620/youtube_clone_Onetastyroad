@@ -54,12 +54,16 @@ const commentAction = () => document.getElementById("commentSubmit").disabled = 
 let toggle = true;
 function subcribe(){
     const img = document.getElementById('images');
+    const subs = document.getElementById('subscribersCount');
+    const sentence = subs.textContent;
+    const numberPattern = /\d+/;
+    const number = parseInt(sentence.match(numberPattern)[0]);
     toggle = !toggle;
     if(toggle){
-        // subs.textContent = "구독자 80명";
+        subs.textContent = `구독자 ${number-1}명`;
         img.src = 'img/channel/Subscribes-Btn.png';
     }else{
-        // subs.textContent = "구독자 81명";
+        subs.textContent = `구독자 ${number+1}명`;
         img.src = 'img/channel/subscribed-Btn.png';
     }
 }
@@ -159,8 +163,8 @@ imageContainers.forEach((imageContainer) => {
 //텍스트 박스 위치 지정 함수
 function showHoverText(text, x, y) {
     const textBox = createTextBox(text);
-    textBox.style.left = x + 'px';
-    textBox.style.top = y + 'px';
+    textBox.style.left = `${x}px`;
+    textBox.style.top = `${y+30}px`;
     document.body.appendChild(textBox);
 }
 

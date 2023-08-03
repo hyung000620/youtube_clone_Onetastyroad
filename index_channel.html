@@ -22,8 +22,8 @@
         </div>
         <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
         <div class="search-box">
-            <input onkeyup ="homeEnterkey()" id="searchInput" type="search" class="search-bar" placeholder="search">
-            <button onclick="search()" class="search-btn"><img class="text-icon" src="img_svg/css_1_header_svg/search.svg" alt="검색"></button>
+            <input onkeyup ="enterkey(this)" id="searchInput" type="search" class="search-bar" placeholder="search">
+            <button class="search-btn"><img class="text-icon" src="img_svg/css_1_header_svg/search.svg" alt="검색"></button>
             <img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색">
         </div>
         <div class="user-options">
@@ -150,7 +150,7 @@
 <script src="./js_2.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {displayChannel().catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});});    
-const searchBtn = document.getElementById('searchBtn');
+const searchBtn = document.querySelector('.search-btn');
 const searchInput = document.getElementById('searchInput');
 searchBtn.addEventListener('click',function(){
     location.href=`./index_home.html?search=${searchInput.value}`

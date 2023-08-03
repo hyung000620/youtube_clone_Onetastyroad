@@ -298,6 +298,9 @@ section{
   #sectionInner{
     margin-left: var(--sectionInner,250px);
   }
+  section {
+    flex-direction: column;
+  }
 }
 
 @media ( max-width: 800px ) {
@@ -312,6 +315,9 @@ section{
   }
   .user-options, .mic{
     display: none;
+  }
+  section {
+    flex-direction: column;
   }
 }
 
@@ -332,5 +338,9 @@ section{
     margin: 10px;
     width: 90%;
   }
+  section {
+    flex-direction: column;
+  }
 }
+
 
