@@ -70,6 +70,8 @@ body {
 }
 
 .filters{
+  display: flex;
+  align-items: center;
   width: 100%;
   margin-top: 60px;
   background: #212121;
@@ -89,6 +91,11 @@ body {
   padding: 8px 12px;
 }
 
+.filter-options,
+.left-more {
+  margin: 0 5px; /* 필요한 간격 설정 */
+}
+
 .filters > button:hover{
   background: rgba(0, 0, 0, 0.1);
   transition: all 1s;
@@ -102,7 +109,6 @@ body {
   margin-left: 200px;
   padding: 20px;
 }
-
 
 /*----------------- video section ---------------- */
 
@@ -271,7 +277,15 @@ section{
   height: 156px;
   object-fit: cover;
 }
-
+/*준형님 위치 확인해주세요!*/
+.text-box {
+  position: absolute;
+  left: 0;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  z-index: 3;
+}
 /*----------------- 반응형 작업 진행 ---------------- */
 
 @media ( max-width: 1023px ) {
@@ -284,8 +298,8 @@ section{
   #sectionInner{
     margin-left: var(--sectionInner,250px);
   }
-
 }
+
 @media ( max-width: 800px ) {
   .mini-side-bar{
     display: var(--mini-side-bar,block);
@@ -320,12 +334,3 @@ section{
   }
 }
 
-/*준형님 위치 확인해주세요!*/
-.text-box {
-  position: absolute;
-  left: 0;
-  padding: 5px;
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  z-index: 3;
-}
