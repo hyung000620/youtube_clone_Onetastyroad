@@ -57,9 +57,7 @@ p, span{
 }
 
 .search-box{
-  position: relative;
-  max-width: 500px;
-  width: 60%;
+  width: 100%;
   height: 25px;
   display: flex;
   align-items: center;
@@ -87,6 +85,8 @@ p, span{
   border-radius: 0px 2px 2px 0px;
   border-left: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .search-btn:hover{
@@ -101,7 +101,8 @@ p, span{
 .iconbox{
   width: 2.5em;
   height: 2.5em;
-  margin-right: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
   display: grid;
   place-content: center;
   cursor: pointer;
@@ -112,9 +113,15 @@ p, span{
   background: #000;
   border-radius: 50%;
 }
+
+.micbox:hover{
+  background: #303030;
+}
+
 .icon{
   width: 24px;
   height: 24px;
+  margin: 8px;
   cursor: pointer;
 }
 
@@ -142,6 +149,65 @@ p, span{
   height: 100%;
   object-fit: cover;
 }
+
+/* 알림 모달창 구현 */
+
+.notificationsModalBackground{
+  position: absolute;
+  right: 8.5em;
+  width: 30em;
+  background-color: #303030;
+  border-radius: 1em;
+  padding: 0em 0.25em;
+  display: none;
+}
+.notificationsModalHeader{
+  display: flex; 
+  align-items: center;
+  padding: 0.3em 0em;
+  /* height: 3.125em; */
+}
+.notificationsModalHeader>p,
+.notificationsModalBody>div>p{
+  margin-right: auto;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.notificationsReply,
+.notificationsMore{
+  padding: 1em 0em;
+  border-top: 1px solid #505050;
+}
+.notificationsReply>div,
+.notificationsMore>div{
+  display: flex;
+  align-items: center;
+  padding: 1em 1em 0.3em 0.8em;
+}
+
+.notifications-pro{
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 50%;
+}
+.notifications-text{
+  height: 100%;
+}
+.notifications-text>p{
+  font-size: 0.875em;
+  font-weight: 600;
+  color : #f1f1f1
+}
+.notifications-text>span{
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #AAAAAA;
+}
+.notifications-video{
+  margin: 0em 0.5em;
+  height: 3.75em;
+}
+
 
 
 /* 사이드바 (nav) */
@@ -230,6 +296,11 @@ p, span{
   width: 116px;
   height: 36px;
 }
+.channel-title-below-video{
+  font-size: 2em;
+  padding-bottom: 2em;
+}
+
 .channel-toolbar{
   display: flex;
   height: 48px;
@@ -245,7 +316,7 @@ p, span{
   padding: 15px 32px;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #1b1b1b;
-  font-size: 14px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -275,7 +346,12 @@ p, span{
   border: 0;
 }
 
-#smal-video, #playlist{
+#smal-video {
+  margin-left: 50px;
+  margin-top: 1em;
+}
+
+#playlist{
   margin-left: 50px;
   margin-top: 65px;
 }
@@ -308,6 +384,12 @@ p, span{
   flex-direction: column;
   justify-content: space-around;
 }
+
+#smal-video > div:nth-child(2) > p{
+  padding: 0px 10px 20px 0px;
+}
+
+#smal-video > div:nth-child(2) > p:nth-child(2)
 /***** Section *****/
 
 
@@ -323,11 +405,16 @@ section > div > video{
   margin-top: 60px;
 }
 
-.viewAndDate > p{
-  color: #AAAAAA;
-  font-size: 1.2em;
+.marginBelowVideo{
+  margin-top: 8px;
+}
+
+.viewAndDate{
+  color: #AAAAAA ;
+  font-size: 0.85em;
   font-weight: 400;
   line-height: normal;
+  margin-top: 3%;
 }
 
 /********** mini-sidebar **********/
@@ -372,11 +459,8 @@ section > div > video{
   }
 }
 
-@media screen and (max-width: 900px) {
-  /* 검색 상자 숨기기 */
-  .search-box {
-      display: none;
-  }
+@media screen and (max-width: 1000px) {
+
   /* 토글 버튼 아이콘 크기 조정 */
   .toggle-btn img {
       width: 35px;
@@ -390,10 +474,14 @@ section > div > video{
       margin-right: 8px;
   }
 
+  .toolbar-search {
+    display:none;
+  }
+
   .toolbar-menu {
-    font-size: 24px;
-    padding: 8px;
-    margin-right: 8px;
+    font-size: 15px;
+    padding: 4px;
+    margin-right: 4px;
   }
 
 /* 동영상 반응형 스타일 */
@@ -412,15 +500,25 @@ section > div > video{
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
+  /* 검색 상자 숨기기 */
+  .search-box {
+    display: none;
+}
+
   /* 토글 버튼 아이콘 크기 조정 */
   .toggle-btn img {
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
   }
 
+  .toolbar-search{
+    display: none;
+  }
   .toolbar-menu {
-      padding: 6px;
-      margin-right: 6px;
+      font-size: 12px;
+      padding: 2.5px;
+      justify-content: center;
+      align-items: center;
   }
 }
