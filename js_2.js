@@ -160,7 +160,7 @@ async function displayVideo(id) {
         }else{
             listHTML += `
             <div style="display:flex;">
-                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:60%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
                 <div>
                     <p>${videoInfo.video_title}</p>

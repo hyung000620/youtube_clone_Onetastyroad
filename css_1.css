@@ -17,7 +17,7 @@ css_2 : nav, section1, secion2 */
 p, span{
   color: #ffffff;
   margin-left: 12px;
-  margin-bottom: 3px;
+  margin-bottom: 0.125em;
   font-family: sans-serif;
   font-size: 15px;
   font-style: normal;
@@ -52,13 +52,13 @@ p, span{
 }
 
 .logo{
-  height: 30px;
+  height: 1.875em;
   cursor: pointer;
 }
 
 .search-box{
   width: 100%;
-  height: 25px;
+  height: 1.563em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -402,6 +402,7 @@ section > div > video{
 #videolist{
   margin-top: 60px;
 }
+
 
 .marginBelowVideo{
   margin-top: 8px;
