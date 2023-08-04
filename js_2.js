@@ -1,4 +1,4 @@
-const APIURL = "http://oreumi.appspot.com";
+const APIURL = "https://oreumi.appspot.com";
 
 // 비디오 리스트 가져오기
 async function getVideoList() {
@@ -57,7 +57,7 @@ function dateComparison(date) {
     return `${Math.floor(years)}년 전`
 }
 
-// index_home.html에서 화면 표시
+// index.html에서 화면 표시
 async function displayHome() {
     const videoList = await getVideoList();
     const infoContainer = document.getElementById('videoList');
@@ -299,7 +299,7 @@ async function search() {
 async function enterkey(searchInput) {
     if (window.event.keyCode == 13) {
         if (searchInput) {
-            location.href = `./index_home.html?search=${searchInput.value}`;
+            location.href = `./index.html?search=${searchInput.value}`;
         }
         await search();
     }
