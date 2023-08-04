@@ -76,7 +76,7 @@ async function displayHome() {
 
         infoHTML += `
         <div>
-        <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
+        <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer; border-radius:3%;' onclick='${videoURL}'></img>
             <div style='display:flex;'>
                 <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
                     <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
@@ -119,7 +119,7 @@ async function displayVideo(id) {
             num = formatNumberWithCommas(num);
             videoHTML = `
             <div>
-                <video controls style='width:100%;'>
+                <video controls autoplay style='width:100%;'>
                     <source src='${videoInfo.video_link}'>
                 </video>
                 <p style='font-size:1.125em; padding-top:1.25em; font-weight: 400;'>${videoInfo.video_title}</p>
@@ -162,12 +162,13 @@ async function displayVideo(id) {
             <div style="display:flex;">
                 <img src='${videoInfo.image_link}' style='width:60%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
-                <div>
-                    <p>${videoInfo.video_title}</p>
-                    <p class="viewAndDate">${videoInfo.video_channel}</p>
-                    <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
+                    <div>
+                        <p>${videoInfo.video_title}</p>
+                        <p class="viewAndDate">${videoInfo.video_channel}</p>
+                        <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
+                    </div>
                 </div>
-                </div>
+
             </div>
         `;
         }
@@ -224,7 +225,7 @@ async function displayChannel() {
         }else{
             infoHTML += `
             <div>
-                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;border-radius:3%;' onclick='${videoURL}'></img>
                 <div>
                 <div>
                     <p class="marginBelowVideo">${videoInfo.video_title}</p>
@@ -278,7 +279,7 @@ async function search() {
 
         infoHTML += `
         <div>
-            <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
+            <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;border-radius:3%;' onclick='${videoURL}'></img>
             <div style='display:flex;'>
                 <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
                     <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
