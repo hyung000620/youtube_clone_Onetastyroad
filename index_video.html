@@ -22,7 +22,7 @@
 <body>
     <!-- upper navigation bar -->
     <header class="navbar">    
-        <div class="toggle-btn" onclick="sideBarToggle()">
+        <div class="toggle-btn" onclick="toggleSideBar()">
             <img src="img/css_1_header/hamburger.svg" alt="">
         </div>
         <img src="img/css_1_header/Youtube-Logo.svg" class="logo" alt="" onclick="moveHome()">
@@ -237,20 +237,5 @@ searchBtn.addEventListener('click',function(){
     location.href=`./index.html?search=${searchInput.value}`
 });    
 </script>
-<!-- Notification POP-up 모달창 구현을 위한 임시 스크립트 작성 -->
-<script>
-    let isModalVisible = true;
-    function modalVisible(){
-        let imageElement = document.querySelector(".iconbox.notificationsModal img");
-        let modalElement = document.querySelector(".notifications-modal-background");
-        const img = document.getElementById('notificationsModal');
-        isModalVisible = !isModalVisible;
-        if(isModalVisible){
-            modalElement.style.display = "none";
-        }else{
-            modalElement.style.display = "block";
-        }
-    }
-    </script>
 </body>
 </html>
