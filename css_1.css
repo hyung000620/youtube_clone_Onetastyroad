@@ -457,7 +457,18 @@ section > div > video{
       margin-right: 8px;
   }
 }
+.filter-options {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-30px);
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
 
+.filter-options:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
 @media screen and (max-width: 1000px) {
 
   /* 토글 버튼 아이콘 크기 조정 */
