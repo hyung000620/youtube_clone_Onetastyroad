@@ -76,7 +76,7 @@ async function displayHome() {
 
         infoHTML += `
         <div>
-        <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
+        <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer; border-radius:3%;' onclick='${videoURL}'></img>
             <div style='display:flex;'>
                 <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
                     <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
@@ -103,6 +103,7 @@ async function displayVideo(id) {
     let listContainer = document.getElementById('videolist');
     let listHTML = "";
     let videoHTML = "";
+    
     // 비디오 정보와 채널 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
@@ -119,10 +120,10 @@ async function displayVideo(id) {
             num = formatNumberWithCommas(num);
             videoHTML = `
             <div>
-                <video controls style='width:100%;'>
+                <video controls autoplay style='width:100%;'>
                     <source src='${videoInfo.video_link}'>
                 </video>
-                <p style='font-size:1.125em; padding-top:1.25em; font-weight: 400;'>${videoInfo.video_title}</p>
+                <p style='font-size:1.125em; padding:1.25em 0em; font-weight: 400;'>${videoInfo.video_title}</p>
                 <div style='display:flex; align-items: center; justify-content: space-between; height:2.5em; padding-bottom:1.25em;'>
                     <div>
                         <p style='font-size:0.875em; color:#AAA; font-weight: 700;'>${num} views ${dateComparison(videoInfo.upload_date)}</p>
@@ -135,39 +136,42 @@ async function displayVideo(id) {
                         <img src='img/video/More.png'>
                     </div>
                 </div>
-                <div style='display:flex;justify-content: space-between; padding:15px; border-top: 1px solid #303030;'>
-                    <div>
+                <div style='display:flex;justify-content: space-between; padding:1em 1em 0em 1em; border-top: 1px solid #303030;'>
+                    <div style='display:flex'>
                         <div style='width:50px; height: 50px; border-radius: 70%; overflow:hidden;'>
                             <img src='img/css_1_header/oreumi.jpg' style='width:50px; height:50px; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                         </div>
-                        <div style='margin:1em'>
+                        <div>
                             <p style="font-size:0.875em; font-weight: 400;">oreumi</p>
                             <p id='subscribersCount' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>구독자 ${channelInfo.subscribers}명</p>
-                            <br>
-                            <p style="font-size:0.875em; font-weight: 400;">안녕하세요.
-                            이스트소프트입니다.<br>
-                            이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
-                            K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
-                            올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다.🎉</p>
                         </div>
                     </div>
+                    <br>
                     <div>
                         <img id='images' onclick='subcribe()' src='./img/channel/Subscribes-Btn.png' style='width:116px; height:36px; cursor:pointer;'>
                     </div>
                 </div>
-            </div>    
+                <div style='margin:1em'>
+                    <p style="font-size:0.875em; font-weight: 400;">안녕하세요.
+                    이스트소프트입니다.<br>
+                    이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+                    K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+                    올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다.🎉</p>
+                </div
+            </div>  
             `;
         }else{
             listHTML += `
             <div style="display:flex;">
-                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:60%;cursor:pointer;' onclick='${videoURL}'></img>
                 <div>
-                <div>
-                    <p>${videoInfo.video_title}</p>
-                    <p class="viewAndDate">${videoInfo.video_channel}</p>
-                    <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
+                    <div>
+                        <p>${videoInfo.video_title}</p>
+                        <p class="viewAndDate">${videoInfo.video_channel}</p>
+                        <p class="viewAndDate">${thousandK(videoInfo.views)} · ${dateComparison(videoInfo.upload_date)}</p>
+                    </div>
                 </div>
-                </div>
+
             </div>
         `;
         }
@@ -190,7 +194,21 @@ async function displayChannel() {
     const videoList = await getVideoList();
     const smalVideo = document.getElementById('smal-video')
     const infoContainer = document.querySelector('.xsmall-video');
-    let smalHTML = "";
+    let smalHTML = `
+        <div class="player">
+            <video controls autoplay style='width:100%'>
+                <source src='${videoInfo.video_link}'>
+            </video>
+        </div>
+        <div class="video-desc">
+            <p class="video-desc-video">${videoInfo.video_title}</p>
+            <p class="video-desc-date">${num} views ㆍ ${dateComparison(videoInfo.upload_date)}</p>
+            <p>안녕하세요.
+            이스트소프트입니다.<br>
+            이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+            K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+            올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+        </div>`;
     let infoHTML = "";
     // 비디오 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.slice(0, 11).map((video) => getVideoInfo(video.video_id));
@@ -207,7 +225,7 @@ async function displayChannel() {
             num = formatNumberWithCommas(num);
             smalHTML = `
             <div>
-                <video controls style='width:500px'>
+                <video controls autoplay style='width:100%;'>
                     <source src='${videoInfo.video_link}'>
                 </video>
             </div>
@@ -224,7 +242,7 @@ async function displayChannel() {
         }else{
             infoHTML += `
             <div>
-                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;' onclick='${videoURL}'></img>
+                <img src='${videoInfo.image_link}' style='width:100%;cursor:pointer;border-radius:3%;' onclick='${videoURL}'></img>
                 <div>
                 <div>
                     <p class="marginBelowVideo">${videoInfo.video_title}</p>
@@ -278,7 +296,7 @@ async function search() {
 
         infoHTML += `
         <div>
-            <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;' onclick='${videoURL}'></img>
+            <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer;border-radius:3%;' onclick='${videoURL}'></img>
             <div style='display:flex;'>
                 <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
                     <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
