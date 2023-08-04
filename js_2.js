@@ -295,7 +295,7 @@ async function search() {
 
     infoContainer.innerHTML = infoHTML;
 }
-//enterkey
+// enterkey
 async function enterkey(searchInput) {
     if (window.event.keyCode == 13) {
         if (searchInput) {
