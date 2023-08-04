@@ -1,5 +1,5 @@
 //페이지 이동
-function moveHome(){location.href= './index_home.html';}
+function moveHome(){location.href= './index.html';}
 function moveVideo(){location.href= './index_video.html';}
 function moveChannel(){location.href= './index_channel.html';}
 
@@ -214,36 +214,3 @@ function showPreviousFilters() {
 }
 
 showFilters();
-
-// JavaScript
-// const filters = document.querySelector('.filters');
-// const leftArrow = document.querySelector('.left-more');
-
-// // 초기에 보여질 필터 버튼 개수
-// const initialVisibleButtons = 4;
-
-// leftArrow.addEventListener('click', () => {
-//   // 슬라이드 버튼 클릭 시 이벤트 처리
-//   const allButtons = filters.children;
-//   const firstHiddenButton = filters.querySelector('.hidden');
-
-//   if (!firstHiddenButton) {
-//     // 숨겨진 버튼이 없으면 슬라이드 더 보기
-//     const numHiddenButtons = allButtons.length - initialVisibleButtons;
-//     const buttonsToShow = Math.min(numHiddenButtons, initialVisibleButtons);
-//     const newButtons = [...allButtons].slice(0, buttonsToShow);
-
-//     // 새로운 버튼들을 보이도록 설정
-//     newButtons.forEach((button) => button.classList.remove('hidden'));
-//   } else {
-//     // 이미 숨겨진 버튼이 있으면 슬라이드 숨기기
-//     const buttonsToHide = [...allButtons].slice(0, initialVisibleButtons);
-
-//     // 보여질 버튼만 남기고 나머지 버튼들을 숨김 처리
-//     buttonsToHide.forEach((button) => {
-//       if (!button.classList.contains('active')) {
-//         button.classList.add('hidden');
-//       }
-//     });
-//   }
-// });
