@@ -211,19 +211,19 @@ async function displayChannel() {
             num = formatNumberWithCommas(num);
             smalHTML = `
             <div class="player">
-                <video controls autoplay style='width:100%'>
-                    <source src='${videoInfo.video_link}'>
-                </video>
-            </div>
-            <div>
-                <p class="channel-title-below-video">${videoInfo.video_title}</p>
-                <p>${num} views ㆍ ${dateComparison(videoInfo.upload_date)}</p>
-                <p>안녕하세요.
-                이스트소프트입니다.<br>
-                이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
-                K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
-                올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
-            </div>
+            <video controls autoplay style='width:100%'>
+                <source src='${videoInfo.video_link}'>
+            </video>
+        </div>
+        <div class="video-desc">
+            <p class="video-desc-video">${videoInfo.video_title}</p>
+            <p class="video-desc-date">${num} views ㆍ ${dateComparison(videoInfo.upload_date)}</p>
+            <p>안녕하세요.
+            이스트소프트입니다.<br>
+            이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+            K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+            올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+        </div>
             `;
         }else{
             infoHTML += `
