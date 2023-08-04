@@ -192,12 +192,15 @@ function showFilters() {
     filterButtons.forEach((button, index) => {
         if (index >= currentFilterIndex && index < currentFilterIndex + filtersPerPage) {
             button.classList.remove('hidden');
+            setTimeout(() => {
+                button.style.transform = 'translateX(0)';
+            }, index * 1);
         } else {
             button.classList.add('hidden');
+            button.style.transform = 'translateX(-30px)';
         }
     });
 }
-
 function showNextFilters() {
     const totalFilters = document.querySelectorAll('.filter-options').length;
     if (currentFilterIndex + filtersPerPage < totalFilters) {
