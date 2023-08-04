@@ -119,9 +119,9 @@ p, span{
 }
 
 .icon{
-  width: 24px;
-  height: 24px;
-  margin: 8px;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0.5em;
   cursor: pointer;
 }
 
@@ -225,15 +225,9 @@ p, span{
   overflow:unset;
   position: relative;
   justify-content: flex-start;
-  gap: 40px;
-  padding-left: 24px;
-  margin-top: 90px;
-}
-
-#videoList > div{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
+  gap: 2.5em;
+  padding: 0em 1.5em;
+  margin-top: 5.625em;
 }
 
 /********** Channel **********/
@@ -241,8 +235,8 @@ p, span{
   overflow: unset;
   position: relative;
   justify-content: flex-start;
-  gap: 40px;
-  margin-top: 65px;
+  gap: 2.5em;
+  margin-top: 4.063em;
 }
 
 .channel-cover{
@@ -256,44 +250,44 @@ p, span{
 .channel-title{
   display: flex;
   width: 100%;
-  height: 100px;
+  height: 6.25em;
   background-color:#1b1b1b;
-  padding-top: 16px;
+  padding-top: 1em;
 }
 .channel-profile{
   display: flex;
-  margin-left: 65px;
+  margin-left: 4.063em;
   margin-right: auto;
 }
 .channel-profile > img{
-  width: 80px;
-  height: 80px;
+  width: 5em;
+  height: 5em;
   border-radius: 50%;
 }
 .Chanel-Profile-name{
-  padding: 18px 0px;
+  padding: 1.125em 0em;
   flex-direction: column;
   align-items: flex-start;
-  height: 80px;
+  height: 5em;
 }
 .Chanel-Profile-name>p:nth-child(1){
-  font-size: 24px;
+  font-size: 1.5em;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 .Chanel-Profile-name>p:nth-child(2){
   color: #AAA;
-  font-size: 14px;
+  font-size: 0.875em;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 .channel-title > img{
   margin: auto;
-  margin-right: 65px;
-  width: 116px;
-  height: 36px;
+  margin-right: 4.063em;
+  width: 7.25em;
+  height: 2.25em;
 }
 .channel-title-below-video{
   font-size: 2em;
@@ -302,20 +296,20 @@ p, span{
 
 .channel-toolbar{
   display: flex;
-  height: 48px;
-  padding-left: 65px;
+  height: 3em;
+  padding-left: 4.063em;
   background-color:#1b1b1b;
 }
 .toolbar-menu{
-  display: inline-block; 
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   
-  padding: 15px 32px;
+  padding: 0.938em 2em;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #1b1b1b;
-  font-size: 24px;
+  font-size: 0.875em;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -326,8 +320,8 @@ p, span{
   border-bottom: 1px solid #AAAAAA;
 }
 .toolbar-search{
-  width: 298px;
-  height: 48px;
+  width: 18.625em;
+  height: 3em;
   display: flex;
 }
 .toolbar-search > img{
@@ -340,19 +334,20 @@ p, span{
   display: block;
   justify-content: flex-end;
   margin: auto;
-  margin-right: 65px;
+  margin-right: 4.063em;
   background-color: rgba(0, 0, 0, 0);
   border: 0;
 }
 
 #smal-video {
-  margin-left: 50px;
-  margin-top: 1em;
+  margin: 1em 3.125em 0em 3.125em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3em;
 }
 
 #playlist{
-  margin-left: 50px;
-  margin-top: 65px;
+  margin: 4.063em 3.125em  3.125em;
 }
 .xsmall-video{
   display: flex;
@@ -372,11 +367,6 @@ p, span{
 
 .playlİst-title {
   font-size: 19px;
-}
-#smal-video{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3em;
 }
 #smal-video>div:nth-child(2){
   display: flex;
@@ -436,7 +426,7 @@ section > div > video{
       height: 30px;
   }
   .search-bar {
-      width: 150px;
+      width: 50%;
   }
 
   /* 사이드바와 내비게이션 스타일 조정 */
@@ -451,11 +441,7 @@ section > div > video{
     font-size: 18px;
     margin-bottom: 8px;
   }
-  .toolbar-menu {
-      font-size: 18px;
-      padding: 8px;
-      margin-right: 8px;
-  }
+ 
 }
 .filter-options {
   opacity: 0;
@@ -488,12 +474,6 @@ section > div > video{
     display:none;
   }
 
-  .toolbar-menu {
-    font-size: 15px;
-    padding: 4px;
-    margin-right: 4px;
-  }
-
 /* 동영상 반응형 스타일 */
   .small-video video {
     width: 100%;
@@ -510,9 +490,10 @@ section > div > video{
   }
 }
 
+
 @media screen and (max-width: 800px) {
-  /* 검색 상자 숨기기 */
-  .search-box {
+  /* 음성검색 상자 숨기기 */
+  .micbox {
     display: none;
 }
 
@@ -526,9 +507,25 @@ section > div > video{
     display: none;
   }
   .toolbar-menu {
-      font-size: 12px;
-      padding: 2.5px;
-      justify-content: center;
-      align-items: center;
+      font-size: 0.625em;
+  }
+  .Chanel-Profile-name>p:nth-child(1){
+    font-size: 1.25em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .Chanel-Profile-name>p:nth-child(2){
+    color: #AAA;
+    font-size: 0.75em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .channel-toolbar{
+    padding-left: 0em;
+  }
+  #smal-video{
+    margin: 1em 1em 0em 1em;
   }
 }

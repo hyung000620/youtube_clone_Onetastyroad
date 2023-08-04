@@ -217,3 +217,33 @@ function showPreviousFilters() {
 }
 
 showFilters();
+
+// 모달창 구현
+let isModalVisible = true;
+function modalVisible(){
+    let imageElement = document.querySelector(".iconbox.notificationsModal img");
+    let modalElement = document.querySelector(".notifications-modal-background");
+    const img = document.getElementById('notificationsModal');
+    isModalVisible = !isModalVisible;
+    if(isModalVisible){
+        modalElement.style.display = "none";
+    }else{
+        modalElement.style.display = "block";
+    }
+}
+
+// video.html 토글 사이드바 함수
+let hamburger = true;
+
+function toggleSideBar() {
+    const [sideBar, sectionInner] = [document.querySelector('.side-bar'), document.getElementById('sectionInner')];
+
+    hamburger = !hamburger;
+    if (hamburger) {
+        sideBar.style.display = 'none';
+        sectionInner.style.setProperty('--sectionInner', '250px');
+    } else {
+        sideBar.style.display = 'block';
+        sectionInner.style.setProperty('--sectionInner', '80px');
+    }
+}
