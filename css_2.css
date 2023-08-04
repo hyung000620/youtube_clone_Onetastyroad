@@ -277,7 +277,7 @@ section{
   height: 156px;
   object-fit: cover;
 }
-/*준형님 위치 확인해주세요!*/
+
 .text-box {
   position: fixed;
   left: 0;
@@ -342,5 +342,3 @@ section{
     flex-direction: column;
   }
 }
-
-
