@@ -1,4 +1,4 @@
-const APIURL = "http://oreumi.appspot.com";
+const APIURL = "https://oreumi.appspot.com";
 
 // 비디오 리스트 가져오기
 async function getVideoList() {
