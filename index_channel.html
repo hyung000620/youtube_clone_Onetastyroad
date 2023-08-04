@@ -200,7 +200,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <div class="xsmall-video" >
+                <div class="xsmall-video" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); grid-gap:1em;">
                     <!-- 여기에 비디오 추가 -->
                 </div>
             </div>
@@ -216,21 +216,6 @@ searchBtn.addEventListener('click',function(){
     location.href=`./index.html?search=${searchInput.value}`
 });    
 </script>
-<!-- Notification POP-up 모달창 구현을 위한 임시 스크립트 작성 -->
-<script>
-    let isModalVisible = true;
-    function modalVisible(){
-        let imageElement = document.querySelector(".iconbox.notificationsModal img");
-        let modalElement = document.querySelector(".notifications-modal-background");
-        const img = document.getElementById('notificationsModal');
-        isModalVisible = !isModalVisible;
-        if(isModalVisible){
-            modalElement.style.display = "none";
-        }else{
-            modalElement.style.display = "block";
-        }
-    }
-    </script>
 </body>
 
 </html>
