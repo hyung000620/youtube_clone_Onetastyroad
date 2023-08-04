@@ -9,7 +9,7 @@ css_2 : nav, section1, secion2 */
   top: 60px;
   left: 0;
   width: 250px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 40px);
   background: #212121;
   padding-right: 10px;
   display: var(--side-bar);
@@ -89,10 +89,17 @@ body {
   box-sizing: border-box;
   text-align: center;
   padding: 8px 12px;
+  
+}
+
+.left-more,
+.right-more {
+  cursor:pointer;
 }
 
 .filter-options,
-.left-more {
+.left-more,
+.right-more {
   margin: 0 5px; /* 필요한 간격 설정 */
 }
 
