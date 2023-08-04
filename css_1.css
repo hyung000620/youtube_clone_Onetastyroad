@@ -17,7 +17,7 @@ css_2 : nav, section1, secion2 */
 p, span{
   color: #ffffff;
   margin-left: 12px;
-  margin-bottom: 3px;
+  margin-bottom: 0.125em;
   font-family: sans-serif;
   font-size: 15px;
   font-style: normal;
@@ -32,7 +32,7 @@ p, span{
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px;
+  height: 3.75em;
   background: #212121;
   display: flex;
   align-items: center;
@@ -42,9 +42,9 @@ p, span{
 
 /* 토클 버튼, HTML 내에서 이미지로 대체 예정 */
 .toggle-btn{
-  width: 20px;
-  height: 10px;
-  margin-right: 27px;
+  width: 1.25em;
+  height: 0.625em;
+  margin-right: 1.625em;
   position: relative;
   cursor: pointer;
   display:flex;
@@ -52,13 +52,13 @@ p, span{
 }
 
 .logo{
-  height: 30px;
+  height: 1.875em;
   cursor: pointer;
 }
 
 .search-box{
   width: 100%;
-  height: 25px;
+  height: 1.563em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,10 +289,6 @@ p, span{
   width: 7.25em;
   height: 2.25em;
 }
-.channel-title-below-video{
-  font-size: 2em;
-  padding-bottom: 2em;
-}
 
 .channel-toolbar{
   display: flex;
@@ -342,8 +338,25 @@ p, span{
 #smal-video {
   margin: 1em 3.125em 0em 3.125em;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 3em;
+}
+.player{
+  width: 31.25em;
+}
+
+.video-desc-video{
+  font-size: 1em;
+  padding-bottom: 1.25em;
+}
+.video-desc-date{
+  font-size: 0.813emem;
+  padding-bottom: 1.25em;
+  color: #AAA;
+}
+.video-desc>P:nth-child(3){
+  font-size: 0.875em;
+  font-weight: 400;
 }
 
 #playlist{
@@ -357,31 +370,27 @@ p, span{
 
 .playlİst-header {
   display: flex;
+  align-items: center;
   color:#ffffff;
   margin-bottom: 13px;
+  font-weight: 700;
 }
-.playlİst-header>p {
+
+.playlist-playbtn{
+  font-size: 1em;
+  display: flex;
+  align-items: center;
   color : #AAAAAA;
-  padding-top: 1px;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+.playlist-playbtn > img{
+  margin: 0em 1em;
 }
 
 .playlİst-title {
-  font-size: 19px;
+  font-size: 1.188em;
 }
-#smal-video>div:nth-child(2){
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-#smal-video > div:nth-child(2) > p{
-  padding: 0px 10px 20px 0px;
-}
-
-#smal-video > div:nth-child(2) > p:nth-child(2)
-/***** Section *****/
-
-
 
 /********** Video **********/
 /* Html 확인 후 재작업 필요 */
@@ -393,6 +402,7 @@ section > div > video{
 #videolist{
   margin-top: 60px;
 }
+
 
 .marginBelowVideo{
   margin-top: 8px;
@@ -488,6 +498,12 @@ section > div > video{
     width: 100%; /* 동영상 너비를 100%로 설정 */
     height: auto; /* 동영상 높이를 자동 조절 */
   }
+  #smal-video{
+    flex-wrap: wrap;
+  }
+  .player{
+    width: 100%;
+  }
 }
 
 
@@ -528,4 +544,5 @@ section > div > video{
   #smal-video{
     margin: 1em 1em 0em 1em;
   }
+  
 }
