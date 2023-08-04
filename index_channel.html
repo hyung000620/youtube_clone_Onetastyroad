@@ -199,7 +199,15 @@
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {displayChannel().catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});});    
+document.addEventListener('DOMContentLoaded', () => {
+    let url = window.location.search;
+    const channel_id = new URLSearchParams(url).get('cId');
+    if(channel_id){
+        displayChannel(channel_id).catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});
+    }else{
+        displayChannel("oreumi").catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});
+    }
+});    
 const searchBtn = document.querySelector('.search-btn');
 const searchInput = document.getElementById('searchInput');
 searchBtn.addEventListener('click',function(){

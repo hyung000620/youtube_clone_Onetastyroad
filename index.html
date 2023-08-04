@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let url = window.location.search;
     const searchParamValue = new URLSearchParams(url).get('search');
     let searchInput = document.getElementById('searchInput');
-    console.log(searchParamValue);
     if (searchParamValue){
         searchInput.value = searchParamValue;
         search();
