@@ -12,6 +12,7 @@ css_2 : nav, section1, secion2 */
   height: calc(100vh - 40px);
   background: #212121;
   padding-right: 10px;
+  padding-bottom: 30px;
   display: var(--side-bar);
 }
   
@@ -285,6 +286,12 @@ section{
   object-fit: cover;
 }
 
+#videolist > img{
+  width: 1em;
+  height: 0.7em;
+  object-fit: cover;
+}
+
 .text-box {
   position: fixed;
   left: 0;
@@ -295,7 +302,7 @@ section{
 }
 /*----------------- 반응형 작업 진행 ---------------- */
 
-@media ( max-width: 1023px ) {
+@media ( max-width: 1084px ) {
   .mini-side-bar{
     display: var(--mini-side-bar,none);
   }
@@ -308,6 +315,7 @@ section{
   section {
     flex-direction: column;
   }
+
 }
 
 @media ( max-width: 800px ) {
