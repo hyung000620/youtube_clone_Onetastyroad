@@ -2,6 +2,7 @@
 function moveHome(){location.href= './index.html';}
 function moveVideo(){location.href= './index_video.html';}
 function moveChannel(){location.href= './index_channel.html';}
+function moveMyChannel(){location.href = './index_channel.html?cId=myChannel'}
 
 /************* comments *************/
 
@@ -231,6 +232,16 @@ function modalVisible(){
         modalElement.style.display = "block";
     }
 }
+let isUploadVisible = true;
+function uploadVisible(){
+    let uploadBox = document.querySelector(".upload-box");
+    isUploadVisible = !isUploadVisible;
+    if(isUploadVisible){
+        uploadBox.style.display = "none";
+    }else{
+        uploadBox.style.display = "block";
+    }
+}
 
 // video.html 토글 사이드바 함수
 let hamburger = true;
@@ -290,7 +301,40 @@ function toggleRecord() {
         recognition.start();
     }
 }
+//영상 업로드
+function uploadVideo() {
+    const input = document.getElementById('file');
+    const videoPlayer = document.getElementById('smal-video');
+    let smalHTML = "";
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
 
+      reader.onload = function(event) {
+        // 파일을 session 스토리지에 저장
+        sessionStorage.setItem('uploadedVideo', event.target.result);
+        smalHTML =`
+            <div class="player">
+                <video controls autoplay style='width:100%'>
+                    <source src='${event.target.result}'>
+                </video>
+            </div>
+            <div class="video-desc">
+                <p class="video-desc-video">테스트 영상</p>
+                <p class="video-desc-date">0 views ㆍ 방금 전</p>
+                <p>안녕하세요.
+                이스트소프트입니다.<br>
+                이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+                K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+                올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+            </div>
+            `;
+            videoPlayer.innerHTML = smalHTML;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
 window.addEventListener("load", () => {
     availabilityFunc();
     document.querySelector(".mic").addEventListener("click", toggleRecord);
