@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/jpg" href="./img/channels4_profile.jpg">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta charset="UTF-8">
     <meta name="title" content="영상추천 유튜브">
@@ -24,10 +25,22 @@
         <div class="search-box" >
             <input onkeyup ="enterkey(this)" id="searchInput" type="search" class="search-bar" placeholder="search">
             <button onclick="search()" class="search-btn"> <div class="iconbox" style="margin:-0.25em 0em 0em 0em"><img class="text-icon" style="width:1.125em;" src="img_svg/css_1_header_svg/search.svg" alt="검색"></div></button>
+            
             <div class="iconbox micbox"><img class="mic text-icon icon" src="img/css_1_header/mic.svg" alt="음성으로 검색"></div>
         </div>
         <div class="user-options">
-            <div class="iconbox"><img class="icon text-icon" style="height:0.875em;" src="img_svg/css_1_header_svg/create.svg" alt="만들기"></div>
+            <div class="iconbox" onclick="uploadVisible()"><img class="icon text-icon" style="height:0.875em;" src="img_svg/css_1_header_svg/create.svg" alt="만들기"></div>
+            <div class="upload-box">
+                <label for="file">
+                    <div style="display: flex;justify-content: space-around;cursor: pointer;">
+                        <p>파일 불러오기</p>
+                        <img src="img_svg/css_2_nav_svg/History.svg">
+                    </div>
+                </label>
+                <input type="file" name="file" id="file" accept="video/*">
+                <br>
+                <div style="display: flex;justify-content: space-around;cursor: pointer;" onclick="uploadVideo()"><p>동영상 업로드</p><img src="img_svg/css_2_nav_svg/YourVideos.svg"></div>
+            </div>
             <div class="iconbox"><img class="icon text-icon" style="height:1em;" src="img_svg/css_1_header_svg/apps.svg" alt="앱"></div>
             <!-- notifications icon -->
             <div class="iconbox" id="notificationsModal" onclick="modalVisible()"><img class="icon text-icon noticeIcon" style="height:1.313em; position: relative;" src="img_svg/css_1_header_svg/notifications.svg" alt="알림">
@@ -80,7 +93,7 @@
                 </div>
             
             </div>
-            <div style="margin: 0em 0.875em" class="user-dp">
+            <div style="margin: 0em 0.875em" class="user-dp" onclick="moveMyChannel()">
                 <img src="img/css_1_header/User-Avatar.png" alt="">
             </div>
         </div>
@@ -151,10 +164,10 @@
         
             <div class="channel-title">
                 <div class="channel-profile">
-                    <img id="channelProfileImg" src="img/channel/oreumi.jpg">
+                    <img id="channelProfileImg" src="img/css_1_header/User-Avatar.png">
                     <div class="Chanel-Profile-name">
                         <p id="channelName">Onetastyroad</p>
-                        <p id="subscribersCount">구독자 80명</p>
+                        <p id="subscribersCount">구독자 0명</p>
                 </div>
             </div>
             <!-- 구독 버튼 -->
@@ -199,7 +212,40 @@
 <script src="./js_1.js"></script>
 <script src="./js_2.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {displayChannel().catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});});    
+document.addEventListener('DOMContentLoaded', () => {
+    let url = window.location.search;
+    const channel_id = new URLSearchParams(url).get('cId');
+    if (channel_id=="myChannel"){
+        window.onload = function() {
+        const videoPlayer = document.getElementById('smal-video');
+        const uploadedVideo = sessionStorage.getItem('uploadedVideo');
+        let smalHTML = "";
+        if (uploadedVideo) {
+            smalHTML =`
+            <div class="player">
+                <video controls autoplay style='width:100%'>
+                    <source src='${uploadedVideo}'>
+                </video>
+            </div>
+            <div class="video-desc">
+                <p class="video-desc-video">테스트 영상</p>
+                <p class="video-desc-date">0 views ㆍ 방금 전</p>
+                <p>안녕하세요.
+                이스트소프트입니다.<br>
+                이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+                K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+                올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+            </div>
+            `;
+            videoPlayer.innerHTML = smalHTML;
+        }
+        };
+    }else if(channel_id){
+        displayChannel(channel_id).catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});
+    }else{
+        displayChannel("oreumi").catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});
+    }
+});    
 const searchBtn = document.querySelector('.search-btn');
 const searchInput = document.getElementById('searchInput');
 searchBtn.addEventListener('click',function(){
