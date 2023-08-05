@@ -16,16 +16,16 @@ async function getVideoInfo(videoId) {
 }
 
 // 채널 비디오 가져오기
-async function getChannelVideo() {
-    const apiUrl = `${APIURL}/channel/getChannelVideo?video_channel=oreumi`;
-    const response = await fetch(apiUrl);
+async function getChannelVideo(channelId) {
+    const apiUrl = `${APIURL}/channel/getChannelVideo?video_channel=${channelId}`;
+    const response = await fetch(apiUrl, {method: 'POST',headers: {'accept': 'application/json'}});
     const data = await response.json();
     return data;
 }
 
 // 채널 정보 가져오기
-async function getChannelInfo() {
-    const apiUrl = `${APIURL}/channel/getChannelInfo?video_channel=oreumi`;
+async function getChannelInfo(channelId) {
+    const apiUrl = `${APIURL}/channel/getChannelInfo?video_channel=${channelId}`;
     const response = await fetch(apiUrl, {method: 'POST',headers: {'accept': 'application/json'}});
     const data = await response.json();
     return data;
@@ -65,13 +65,16 @@ async function displayHome() {
     // 비디오 정보와 채널 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
+     // 채널 정보를 병렬로 가져오는 프로미스 배열 생성
+     const channelInfoPromises = videoInfoList.map((videoInfo) => getChannelInfo(videoInfo.video_channel));
+     const channelInfoList = await Promise.all(channelInfoPromises);
 
     for (let i = 0; i < videoList.length; i++) {
         const videoId = videoList[i].video_id;
         const videoInfo = videoInfoList[i];
-
+        const profile = channelInfoList[i];
         // 비디오 정보를 표시할 문자열 생성
-        let channelURL = `location.href="./index_channel.html"`;
+        let channelURL = `location.href="./index_channel.html?cId=${profile.channel_name}"`;
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
 
         infoHTML += `
@@ -79,7 +82,7 @@ async function displayHome() {
         <img src='${videoInfo.image_link}' style='width:100%; cursor:pointer; border-radius:3%;' onclick='${videoURL}'></img>
             <div style='display:flex;'>
                 <div style='margin-top:0.5em; width:30px; height: 30px; border-radius: 70%; overflow:hidden;'>
-                    <img src='img/css_1_header/oreumi.jpg' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                    <img src='${profile.channel_profile}' style='width:100%; height:100%; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                 </div>
                 <div>
                     <p style='margin-top:0.5em;'>${videoInfo.video_title}</p>
@@ -107,13 +110,16 @@ async function displayVideo(id) {
     // 비디오 정보와 채널 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
-    
+    // 채널 정보를 병렬로 가져오는 프로미스 배열 생성
+    const channelInfoPromises = videoInfoList.map((videoInfo) => getChannelInfo(videoInfo.video_channel));
+    const channelInfoList = await Promise.all(channelInfoPromises);
+
     for (let i = 0; i < videoList.length; i++) {
         const videoId = videoList[i].video_id;
         const videoInfo = videoInfoList[i];
-
+        const channelInfo = channelInfoList[i];
         // 비디오 정보를 표시할 문자열 생성
-        let channelURL = `location.href="./index_channel.html"`;
+        let channelURL = `location.href="./index_channel.html?cId=${channelInfo.channel_name}"`;
         let videoURL = `location.href="./index_video.html?id=${videoId}"`;
         let num = thousandK(videoInfo.views); //숫자값 format
         if (id == videoId){
@@ -139,10 +145,10 @@ async function displayVideo(id) {
                 <div style='display:flex;justify-content: space-between; padding:1em 1em 0em 1em; border-top: 1px solid #303030;'>
                     <div style='display:flex'>
                         <div style='width:50px; height: 50px; border-radius: 70%; overflow:hidden;'>
-                            <img src='img/css_1_header/oreumi.jpg' style='width:50px; height:50px; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
+                            <img src='${channelInfo.channel_profile}' style='width:50px; height:50px; object-fit:cover; cursor:pointer;' onclick='${channelURL}'></img>
                         </div>
                         <div>
-                            <p style="font-size:0.875em; font-weight: 400;">oreumi</p>
+                            <p style="font-size:0.875em; font-weight: 400;">${channelInfo.channel_name}</p>
                             <p id='subscribersCount' style='font-size:0.75em; font-weight: 400; color:#AAAAAA'>구독자 ${channelInfo.subscribers}명</p>
                         </div>
                     </div>
@@ -185,21 +191,22 @@ async function displayVideo(id) {
 }
 
 // index_channel.html 에서 화면 표시
-async function displayChannel() {
-    const channelInfo = await getChannelInfo();
+async function displayChannel(id) {
     const channelBannerImg = document.getElementById('channelBannerImg');
     const channelProfileImg = document.getElementById('channelProfileImg');
     const channelName = document.getElementById('channelName');
     const subscribersCount = document.getElementById('subscribersCount');
-    const videoList = await getVideoList();
+    const videoList = await getChannelVideo(id);
+    const channelInfo = await getChannelInfo(id); 
     const smalVideo = document.getElementById('smal-video')
     const infoContainer = document.querySelector('.xsmall-video');
     let smalHTML = "";
     let infoHTML = "";
+    
     // 비디오 정보를 병렬로 가져오기
-    const videoInfoPromises = videoList.slice(0, 11).map((video) => getVideoInfo(video.video_id));
+    const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
-
+    
     for (let i = 0; i < videoInfoList.length; i++) {
         const videoInfo = videoInfoList[i];
         const videoId = videoInfo.video_id;
