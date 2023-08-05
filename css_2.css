@@ -300,6 +300,25 @@ section{
   border: 1px solid #ccc;
   z-index: 3;
 }
+.upload-box{
+  display: none;
+  position: absolute;
+  right: 16.5em;
+  top:1em;
+  width: 15em;
+  background-color: #303030;
+  border-radius: 1em;
+  padding: 0.5em 0.5em;
+}
+.upload-box>div:hover{
+  background: rgba(0, 0, 0, 0.1);
+}
+.upload-box>label>div:hover{
+  background: rgba(0, 0, 0, 0.1);
+}
+#file {
+  display: none;
+}
 /*----------------- 반응형 작업 진행 ---------------- */
 
 @media ( max-width: 1084px ) {
