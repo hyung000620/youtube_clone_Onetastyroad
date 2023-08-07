@@ -305,6 +305,7 @@ function toggleRecord() {
 function uploadVideo() {
     const input = document.getElementById('file');
     const videoPlayer = document.getElementById('smal-video');
+    const playlİstTitle = document.querySelector(".playlİst-header");
     let smalHTML = "";
     if (input.files && input.files[0]) {
       const file = input.files[0];
@@ -330,6 +331,7 @@ function uploadVideo() {
             </div>
             `;
             videoPlayer.innerHTML = smalHTML;
+            playlİstTitle.style.display = 'none';
       };
 
       reader.readAsDataURL(file);
