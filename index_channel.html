@@ -159,15 +159,15 @@
         <!-- channel information -->
         <div id="channel">
             <div class="channel-cover">
-                <img id="channelBannerImg" src="img/channel/Channel-Cover2.png">
+                <img id="channelBannerImg" src="">
             </div>
         
             <div class="channel-title">
                 <div class="channel-profile">
-                    <img id="channelProfileImg" src="img/channels4_profile.jpg">
+                    <img id="channelProfileImg" src="">
                     <div class="Chanel-Profile-name">
-                        <p id="channelName">Onetastyroad</p>
-                        <p id="subscribersCount">구독자 0명</p>
+                        <p id="channelName"></p>
+                        <p id="subscribersCount"></p>
                 </div>
             </div>
             <!-- 구독 버튼 -->
@@ -217,28 +217,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const channel_id = new URLSearchParams(url).get('cId');
     if (channel_id=="myChannel"){
         window.onload = function() {
-        const videoPlayer = document.getElementById('smal-video');
-        const uploadedVideo = sessionStorage.getItem('uploadedVideo');
-        let smalHTML = "";
-        if (uploadedVideo) {
-            smalHTML =`
-            <div class="player">
-                <video controls autoplay style='width:100%'>
-                    <source src='${uploadedVideo}'>
-                </video>
-            </div>
-            <div class="video-desc">
-                <p class="video-desc-video">테스트 영상</p>
-                <p class="video-desc-date">0 views ㆍ 방금 전</p>
-                <p>안녕하세요.
-                이스트소프트입니다.<br>
-                이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
-                K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
-                올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
-            </div>
-            `;
-            videoPlayer.innerHTML = smalHTML;
-        }
+            
+            // myChannel 페이지 로드
+            const channelBanner = document.getElementById("channelBannerImg");
+            const channelProfile = document.getElementById("channelProfileImg");
+            const channelName = document.getElementById("channelName");
+            const subscribersCount = document.getElementById("subscribersCount");
+            const playlİstTitle = document.querySelector(".playlİst-header");
+
+            channelBanner.src = 'img/channel/Channel-Cover2.png';
+            channelProfile.src = 'img/channels4_profile.jpg';
+            channelName.textContent = 'Onetastyroad';
+            subscribersCount.textContent = '구독자 80명';
+            playlİstTitle.style.display = 'none';
+
+            // myChannel 비디오
+            const videoPlayer = document.getElementById('smal-video');
+            const uploadedVideo = sessionStorage.getItem('uploadedVideo');
+            let smalHTML = "";
+            if (uploadedVideo) {
+                smalHTML =`
+                <div class="player">
+                    <video controls autoplay style='width:100%'>
+                        <source src='${uploadedVideo}'>
+                    </video>
+                </div>
+                <div class="video-desc">
+                    <p class="video-desc-video">테스트 영상</p>
+                    <p class="video-desc-date">0 views ㆍ 방금 전</p>
+                    <p>안녕하세요.
+                    이스트소프트입니다.<br>
+                    이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+                    K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+                    올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+                </div>
+                `;
+                videoPlayer.innerHTML = smalHTML;
+            }
         };
     }else if(channel_id){
         displayChannel(channel_id).catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});
