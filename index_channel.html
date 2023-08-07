@@ -225,20 +225,44 @@
                 const channelName = document.getElementById("channelName");
                 const subscribersCount = document.getElementById("subscribersCount");
                 const playlİstTitle = document.querySelector(".playlİst-header");
-
+                const uploadedVideo = sessionStorage.getItem('uploadedVideo');
+                const videoPlayer = document.getElementById('smal-video');
                 channelBanner.src = 'img/channel/Channel-Cover2.png';
                 channelProfile.src = 'img/channels4_profile.jpg';
                 channelName.textContent = 'Onetastyroad';
                 subscribersCount.textContent = '구독자 80명';
-                playlİstTitle.innerHTML = `
-                <div class="playlİst-header" style="margin-left:3em;">
-                    <img style="width:10em; height:10em" src="img_svg/channel_svg/empty-channel.svg" alt="">
-                    <div>
-                        <p style="font-size:1.25em;font-weight: 400;">동영상을 업로드하여 시작하기</p>
-                        <p style="font-size:1em;font-weight: 400;">스토리를 공유하고 시청자와 소통해 보세요. <br>업로드한 동영상이 여기에 표시됩니다.</p>
+                if (uploadedVideo) {
+                        videoPlayer.innerHTML =`
+                        <div class="player">
+                            <video controls autoplay style='width:100%'>
+                                <source src='${uploadedVideo}'>
+                            </video>
+                        </div>
+                        <div class="video-desc">
+                            <p class="video-desc-video">테스트 영상</p>
+                            <p class="video-desc-date">0 views ㆍ 방금 전</p>
+                            <p>안녕하세요.
+                            이스트소프트입니다.<br>
+                            이스트소프트는 정부의 디지털 인재양성 및 고용창출을 위한<br>
+                            K-디지털 트레이닝 사업의 훈련 기관으로 선정되어,<br>
+                            올해 마지막 [ESTsoft] 백엔드 개발자 부트캠프 오르미 3기 교육생 모집이 시작되었습니다. 🎉</p>
+                        </div>
+                        `;
+                        playlİstTitle.style.display = 'none';
+                    }
+                
+                else{
+                    playlİstTitle.innerHTML = `
+                    <div class="playlİst-header" style="margin-left:3em;">
+                        <img style="width:10em; height:10em" src="img_svg/channel_svg/empty-channel.svg" alt="">
+                        <div>
+                            <p style="font-size:1.25em;font-weight: 400;">동영상을 업로드하여 시작하기</p>
+                            <p style="font-size:1em;font-weight: 400;">스토리를 공유하고 시청자와 소통해 보세요. <br>업로드한 동영상이 여기에 표시됩니다.</p>
+                        </div>
                     </div>
-                </div>
-                `;
+                    `;
+                }
+                
             }
         }else if(channel_id){
             displayChannel(channel_id).catch(error => {console.error('유튜브 정보를 가져오는데 실패했습니다. ', error);});
