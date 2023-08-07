@@ -220,95 +220,94 @@ async function displayVideo(id) {
         return distance;
     }
     
-    // async function calculateVideoSimilarities(videoList, targetTagList) {
-    //     let filteredVideoList = [];
+    async function calculateVideoSimilarities(videoList, targetTagList) {
+        let filteredVideoList = [];
     
-    //     for (let video of videoList) {
-    //         let totalDistance = 0;
-    //         let promises = [];
+        for (let video of videoList) {
+            let totalDistance = 0;
+            let promises = [];
     
-    //         for (let videoTag of video.video_tag) {
-    //             for (let targetTag of targetTagList) {
-    //                 if (videoTag == targetTag) {
-    //                     promises.push(0);
-    //                 } else {
-    //                     promises.push(getSimilarity(videoTag, targetTag));
-    //                 }
+            for (let videoTag of video.video_tag) {
+                for (let targetTag of targetTagList) {
+                    if (videoTag == targetTag) {
+                        promises.push(0);
+                    } else {
+                        promises.push(getSimilarity(videoTag, targetTag));
+                    }
+                }
+            }
+    
+            let distances = await Promise.all(promises);
+    
+            for (let distance of distances) {
+                if (distance !== -1) {
+                    totalDistance += distance;
+                }
+            }
+    
+            if (totalDistance !== 0) {
+                if (targetVideoId !== video.video_id) {
+                    filteredVideoList.push({ ...video, score: totalDistance });
+                }
+            }
+            if (filteredVideoList.length >= 5) {
+                break;            
+            }
+        }
+    
+        filteredVideoList.sort((a, b) => a.score - b.score);
+    
+        filteredVideoList = filteredVideoList.map((video) => ({
+            ...video,
+            score: 0,
+        }));
+    
+        return filteredVideoList;
+    }
+
+    // function calculateVideoSimilarities(videoList, targetTagList) {
+    //     const filteredVideoList = [];
+    //     const targetTagSet = new Set(targetTagList);
+    
+    //     const idfMap = new Map();
+    //     const totalVideos = videoList.length;
+    
+    //     for (const video of videoList) {
+    //         const videoTagSet = new Set(video.video_tag);
+    //         for (const tag of videoTagSet) {
+    //             if (idfMap.has(tag)) {
+    //                 idfMap.set(tag, idfMap.get(tag) + 1);
+    //             } else {
+    //                 idfMap.set(tag, 1);
     //             }
-    //         }
-    
-    //         let distances = await Promise.all(promises);
-    
-    //         for (let distance of distances) {
-    //             if (distance !== -1) {
-    //                 totalDistance += distance;
-    //             }
-    //         }
-    
-    //         if (totalDistance !== 0) {
-    //             if (targetVideoId !== video.video_id) {
-    //                 filteredVideoList.push({ ...video, score: totalDistance });
-    //             }
-    //         }
-    //         if (filteredVideoList.length >= 5) {
-    //             break;            
     //         }
     //     }
     
-    //     filteredVideoList.sort((a, b) => a.score - b.score);
+    //     for (const video of videoList) {
+    //         const videoTagSet = new Set(video.video_tag);
+    //         let similarity = 0;
     
-    //     filteredVideoList = filteredVideoList.map((video) => ({
-    //         ...video,
-    //         score: 0,
-    //     }));
+    //         for (const tag of videoTagSet) {
+    //             if (targetTagSet.has(tag)) {
+    //                 const tf = 1 / videoTagSet.size;
+    //                 const idf = Math.log(totalVideos / (idfMap.get(tag) || 1)) + 1;
+    //                 similarity += tf * idf;
+    //             }
+    //         }
     
-    //     return filteredVideoList;
+    //         if (similarity > 0) {
+    //             filteredVideoList.push({ ...video, score: similarity });
+    //         }
+    //     }
+    
+    //     filteredVideoList.sort((a, b) => b.score - a.score);
+    
+    //     const top5Videos = filteredVideoList.slice(0, 5);
+    //     const finalVideoList = top5Videos.map((video) => ({ ...video, score: 0 }));
+    
+    //     return finalVideoList;
     // }
-
-    function calculateVideoSimilarities(videoList, targetTagList) {
-        const filteredVideoList = [];
-        const targetTagSet = new Set(targetTagList);
-    
-        const idfMap = new Map();
-        const totalVideos = videoList.length;
-    
-        for (const video of videoList) {
-            const videoTagSet = new Set(video.video_tag);
-            for (const tag of videoTagSet) {
-                if (idfMap.has(tag)) {
-                    idfMap.set(tag, idfMap.get(tag) + 1);
-                } else {
-                    idfMap.set(tag, 1);
-                }
-            }
-        }
-    
-        for (const video of videoList) {
-            const videoTagSet = new Set(video.video_tag);
-            let similarity = 0;
-    
-            for (const tag of videoTagSet) {
-                if (targetTagSet.has(tag)) {
-                    const tf = 1 / videoTagSet.size;
-                    const idf = Math.log(totalVideos / (idfMap.get(tag) || 1)) + 1;
-                    similarity += tf * idf;
-                }
-            }
-    
-            if (similarity > 0) {
-                filteredVideoList.push({ ...video, score: similarity });
-            }
-        }
-    
-        filteredVideoList.sort((a, b) => b.score - a.score);
-    
-        const top5Videos = filteredVideoList.slice(0, 5);
-        const finalVideoList = top5Videos.map((video) => ({ ...video, score: 0 }));
-    
-        return finalVideoList;
-    }
     const filteredVideoList = await calculateVideoSimilarities(videoInfoList,targetTagList);
-            
     for (let i=0; i<filteredVideoList.length; i++){
         let video = filteredVideoList[i];
         let videoInfo = await getCachedVideoInfo(video.video_id);
