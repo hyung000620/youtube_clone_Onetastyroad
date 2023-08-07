@@ -56,17 +56,65 @@ function dateComparison(date) {
     const years = days / 365
     return `${Math.floor(years)}년 전`
 }
+const videoInfoCache = new Map();
+const channelInfoCache = new Map();
+const videoListCache = new Map();
+const channelVideoCache = new Map();
+
+// 캐싱된 비디오 리스트를 가져오는 함수
+async function getCachedVideoList() {
+  if (videoListCache.has("cachedVideoList")) {
+    return videoListCache.get("cachedVideoList");
+  } else {
+    const response = await fetch(`${APIURL}/video/getVideoList`);
+    const data = await response.json();
+    videoListCache.set("cachedVideoList", data);
+    return data;
+  }
+}
+// 캐싱된 비디오 정보를 가져오는 함수
+async function getCachedVideoInfo(videoId) {
+    if (videoInfoCache.has(videoId)) {
+        return videoInfoCache.get(videoId);
+    } else {
+        const videoInfo = await getVideoInfo(videoId);
+        videoInfoCache.set(videoId, videoInfo);
+        return videoInfo;
+    }
+}
+// 캐싱된 채널 정보를 가져오는 함수
+async function getCachedChannelInfo(channelId) {
+    if (channelInfoCache.has(channelId)) {
+        return channelInfoCache.get(channelId);
+    } else {
+        const channelInfo = await getChannelInfo(channelId);
+        channelInfoCache.set(channelId, channelInfo);
+        return channelInfo;
+    }
+}
+// 캐시된 채널 비디오를 가져오는 함수
+async function getCachedChannelVideo(channelId) {
+  if (channelVideoCache.has(channelId)) {
+    return channelVideoCache.get(channelId);
+  } else {
+    const apiUrl = `${APIURL}/channel/getChannelVideo?video_channel=${channelId}`;
+    const response = await fetch(apiUrl, { method: 'POST', headers: { 'accept': 'application/json' } });
+    const data = await response.json();
+    channelVideoCache.set(channelId, data);
+    return data;
+  }
+}
 
 // index.html에서 화면 표시
 async function displayHome() {
-    const videoList = await getVideoList();
+    const videoList = await getCachedVideoList();
     const infoContainer = document.getElementById('videoList');
     let infoHTML = "";
     // 비디오 정보와 채널 정보를 병렬로 가져오기
-    const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoPromises = videoList.map((video) => getCachedVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
      // 채널 정보를 병렬로 가져오는 프로미스 배열 생성
-     const channelInfoPromises = videoInfoList.map((videoInfo) => getChannelInfo(videoInfo.video_channel));
+     const channelInfoPromises = videoInfoList.map((videoInfo) => getCachedChannelInfo(videoInfo.video_channel));
      const channelInfoList = await Promise.all(channelInfoPromises);
 
     for (let i = 0; i < videoList.length; i++) {
@@ -97,33 +145,11 @@ async function displayHome() {
     // 비디오 정보 추가
     infoContainer.innerHTML = infoHTML;
 }
-const videoInfoCache = new Map();
-const channelInfoCache = new Map();
 
-// 캐싱된 비디오 정보를 가져오는 함수
-async function getCachedVideoInfo(videoId) {
-    if (videoInfoCache.has(videoId)) {
-        return videoInfoCache.get(videoId);
-    } else {
-        const videoInfo = await getVideoInfo(videoId);
-        videoInfoCache.set(videoId, videoInfo);
-        return videoInfo;
-    }
-}
-// 캐싱된 채널 정보를 가져오는 함수
-async function getCachedChannelInfo(channelId) {
-    if (channelInfoCache.has(channelId)) {
-        return channelInfoCache.get(channelId);
-    } else {
-        const channelInfo = await getChannelInfo(channelId);
-        channelInfoCache.set(channelId, channelInfo);
-        return channelInfo;
-    }
-}
 // index_video.html 에서 화면 표시
 async function displayVideo(id) {
     const [videoInfoList, currentVideoInfo] = await Promise.all([
-        getVideoList(),
+        getCachedVideoList(),
         getCachedVideoInfo(id),
     ]);
 
@@ -340,15 +366,15 @@ async function displayChannel(id) {
     const channelProfileImg = document.getElementById('channelProfileImg');
     const channelName = document.getElementById('channelName');
     const subscribersCount = document.getElementById('subscribersCount');
-    const videoList = await getChannelVideo(id);
-    const channelInfo = await getChannelInfo(id); 
+    const videoList = await getCachedChannelVideo(id);
+    const channelInfo = await getCachedChannelInfo(id);
     const smalVideo = document.getElementById('smal-video')
     const infoContainer = document.querySelector('.xsmall-video');
     let smalHTML = "";
     let infoHTML = "";
     
     // 비디오 정보를 병렬로 가져오기
-    const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoPromises = videoList.map((video) => getCachedVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
     
     for (let i = 0; i < videoInfoList.length; i++) {
@@ -404,7 +430,7 @@ async function displayChannel(id) {
 //검색 기능 구현
 async function search() {
     const searchInput = document.getElementById('searchInput').value;
-    const videoList = await getVideoList();
+    const videoList = await getCachedVideoList();
     const infoContainer = document.getElementById('videoList');
     let infoHTML = "";
 
@@ -420,7 +446,7 @@ async function search() {
         return;
     }
 
-    const videoInfoPromises = filteredVideoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoPromises = filteredVideoList.map((video) => getCachedVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
 
     for (let i = 0; i < filteredVideoList.length; i++) {
