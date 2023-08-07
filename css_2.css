@@ -179,7 +179,7 @@ section{
 
 /* write-comment */
 .write-comment{
-  width: 640;
+  width: 100%;
   height: 144px;
   padding-top: 24px;
   margin-bottom: 32px;
@@ -214,7 +214,7 @@ section{
   margin-right: 16px;
 }
 #comment{
-  width: 584px;
+  width: 36.5em;
   height: 25px;
   background-color: rgba(0, 0, 0, 0);
 

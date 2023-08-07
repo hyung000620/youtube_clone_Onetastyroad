@@ -541,8 +541,14 @@ section > div > video{
   .channel-toolbar{
     padding-left: 0em;
   }
+  .toolbar-menu{
+    padding: 0.938em 1em;
+  }
   #smal-video{
     margin: 1em 1em 0em 1em;
+  }
+  #comment{
+    width: 10em;
   }
   
 }
