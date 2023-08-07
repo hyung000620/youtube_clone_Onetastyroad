@@ -189,124 +189,123 @@ async function displayVideo(id) {
         let tag = tagList[i];
         tagHTML += `<button>${tag}</button>`;
     }
-    const similarityCache = new Map();
-    async function getSimilarity(firstWord, secondWord) {
-        const cacheKey = `${firstWord}-${secondWord}`;
-        if (similarityCache.has(cacheKey)) {
-            return similarityCache.get(cacheKey);
-        }
-
-        const openApiURL = "http://aiopen.etri.re.kr:8000/WiseWWN/WordRel";
-        const access_key = "208ce248-aecc-4898-8d47-99896bef4e62";
-
-        let requestJson = {
-            argument: {
-                first_word: firstWord,
-                second_word: secondWord,
-            },
-        };
-
-        let response = await fetch(openApiURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: access_key,
-            },
-            body: JSON.stringify(requestJson),
-        });
-        let data = await response.json();
-        const distance = data.return_object["WWN WordRelInfo"].WordRelInfo.Distance;
-        similarityCache.set(cacheKey, distance); // 결과를 캐시에 저장
-        return distance;
-    }
-    
-    async function calculateVideoSimilarities(videoList, targetTagList) {
-        let filteredVideoList = [];
-    
-        for (let video of videoList) {
-            let totalDistance = 0;
-            let promises = [];
-    
-            for (let videoTag of video.video_tag) {
-                for (let targetTag of targetTagList) {
-                    if (videoTag == targetTag) {
-                        promises.push(0);
-                    } else {
-                        promises.push(getSimilarity(videoTag, targetTag));
-                    }
-                }
-            }
-    
-            let distances = await Promise.all(promises);
-    
-            for (let distance of distances) {
-                if (distance !== -1) {
-                    totalDistance += distance;
-                }
-            }
-    
-            if (totalDistance !== 0) {
-                if (targetVideoId !== video.video_id) {
-                    filteredVideoList.push({ ...video, score: totalDistance });
-                }
-            }
-            if (filteredVideoList.length >= 5) {
-                break;            
-            }
-        }
-    
-        filteredVideoList.sort((a, b) => a.score - b.score);
-    
-        filteredVideoList = filteredVideoList.map((video) => ({
-            ...video,
-            score: 0,
-        }));
-    
-        return filteredVideoList;
-    }
-
-    // function calculateVideoSimilarities(videoList, targetTagList) {
-    //     const filteredVideoList = [];
-    //     const targetTagSet = new Set(targetTagList);
-    
-    //     const idfMap = new Map();
-    //     const totalVideos = videoList.length;
-    
-    //     for (const video of videoList) {
-    //         const videoTagSet = new Set(video.video_tag);
-    //         for (const tag of videoTagSet) {
-    //             if (idfMap.has(tag)) {
-    //                 idfMap.set(tag, idfMap.get(tag) + 1);
-    //             } else {
-    //                 idfMap.set(tag, 1);
-    //             }
-    //         }
+    // const similarityCache = new Map();
+    // async function getSimilarity(firstWord, secondWord) {
+    //     const cacheKey = `${firstWord}-${secondWord}`;
+    //     if (similarityCache.has(cacheKey)) {
+    //         return similarityCache.get(cacheKey);
     //     }
-    
-    //     for (const video of videoList) {
-    //         const videoTagSet = new Set(video.video_tag);
-    //         let similarity = 0;
-    
-    //         for (const tag of videoTagSet) {
-    //             if (targetTagSet.has(tag)) {
-    //                 const tf = 1 / videoTagSet.size;
-    //                 const idf = Math.log(totalVideos / (idfMap.get(tag) || 1)) + 1;
-    //                 similarity += tf * idf;
-    //             }
-    //         }
-    
-    //         if (similarity > 0) {
-    //             filteredVideoList.push({ ...video, score: similarity });
-    //         }
-    //     }
-    
-    //     filteredVideoList.sort((a, b) => b.score - a.score);
-    
-    //     const top5Videos = filteredVideoList.slice(0, 5);
-    //     const finalVideoList = top5Videos.map((video) => ({ ...video, score: 0 }));
-    
-    //     return finalVideoList;
+
+    //     const openApiURL = "http://aiopen.etri.re.kr:8000/WiseWWN/WordRel";
+    //     const access_key = "208ce248-aecc-4898-8d47-99896bef4e62";
+
+    //     let requestJson = {
+    //         argument: {
+    //             first_word: firstWord,
+    //             second_word: secondWord,
+    //         },
+    //     };
+
+    //     let response = await fetch(openApiURL, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: access_key,
+    //         },
+    //         body: JSON.stringify(requestJson),
+    //     });
+    //     let data = await response.json();
+    //     const distance = data.return_object["WWN WordRelInfo"].WordRelInfo.Distance;
+    //     similarityCache.set(cacheKey, distance); // 결과를 캐시에 저장
+    //     return distance;
     // }
+    // async function calculateVideoSimilarities(videoList, targetTagList) {
+    //     let filteredVideoList = [];
+    
+    //     for (let video of videoList) {
+    //         let totalDistance = 0;
+    //         let promises = [];
+    
+    //         for (let videoTag of video.video_tag) {
+    //             for (let targetTag of targetTagList) {
+    //                 if (videoTag == targetTag) {
+    //                     promises.push(0);
+    //                 } else {
+    //                     promises.push(getSimilarity(videoTag, targetTag));
+    //                 }
+    //             }
+    //         }
+    
+    //         let distances = await Promise.all(promises);
+    
+    //         for (let distance of distances) {
+    //             if (distance !== -1) {
+    //                 totalDistance += distance;
+    //             }
+    //         }
+    
+    //         if (totalDistance !== 0) {
+    //             if (targetVideoId !== video.video_id) {
+    //                 filteredVideoList.push({ ...video, score: totalDistance });
+    //             }
+    //         }
+    //         if (filteredVideoList.length >= 5) {
+    //             break;            
+    //         }
+    //     }
+    
+    //     filteredVideoList.sort((a, b) => a.score - b.score);
+    
+    //     filteredVideoList = filteredVideoList.map((video) => ({
+    //         ...video,
+    //         score: 0,
+    //     }));
+    
+    //     return filteredVideoList;
+    // }
+    //TF-IDF 계산 방식 사용 Term Frequency-Inverse Document Frequency
+    function calculateVideoSimilarities(videoList, targetTagList) {
+        const filteredVideoList = [];
+        const targetTagSet = new Set(targetTagList);
+    
+        const idfMap = new Map();
+        const totalVideos = videoList.length;
+    
+        for (const video of videoList) {
+            const videoTagSet = new Set(video.video_tag);
+            for (const tag of videoTagSet) {
+                if (idfMap.has(tag)) {
+                    idfMap.set(tag, idfMap.get(tag) + 1);
+                } else {
+                    idfMap.set(tag, 1);
+                }
+            }
+        }
+    
+        for (const video of videoList) {
+            const videoTagSet = new Set(video.video_tag);
+            let similarity = 0;
+    
+            for (const tag of videoTagSet) {
+                if (targetTagSet.has(tag)) {
+                    const tf = 1 / videoTagSet.size;
+                    const idf = Math.log(totalVideos / (idfMap.get(tag) || 1)) + 1;
+                    similarity += tf * idf;
+                }
+            }
+    
+            if (similarity > 0) {
+                filteredVideoList.push({ ...video, score: similarity });
+            }
+        }
+    
+        filteredVideoList.sort((a, b) => b.score - a.score);
+    
+        const top5Videos = filteredVideoList.slice(0, 5);
+        const finalVideoList = top5Videos.map((video) => ({ ...video, score: 0 }));
+    
+        return finalVideoList;
+    }
     const filteredVideoList = await calculateVideoSimilarities(videoInfoList,targetTagList);
     for (let i=0; i<filteredVideoList.length; i++){
         let video = filteredVideoList[i];
