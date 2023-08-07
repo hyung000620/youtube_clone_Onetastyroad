@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/jpg" href="./img/channels4_profile.jpg">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
     <meta charset="UTF-8">
     <meta name="title" content="영상추천 유튜브">
     <meta name="description" content="영상추천 유튜브">
@@ -87,7 +87,7 @@
             
             </div>
             <div style="margin: 0em 0.875em" class="user-dp" onclick="moveMyChannel()">
-                <img src="img/css_1_header/User-Avatar.png" alt="">
+                <img src="img/channels4_profile.jpg" alt="">
             </div>
         </div>
     </header>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="write-area">
-                        <img src="img/video/User-Pic3.png" alt="">
+                        <img src="img/channels4_profile.jpg" alt="">
                         <input id="comment" type="text" onclick="showCommentBtn()" onkeyup="commentEnterkey()" placeholder="Add a public comment..." oninput="commentAction()">
                         <div id="commentBtn" style="display: none;">
                             <button id="commentCancel" onclick="hideCommentBtn()">취소</button>
@@ -205,8 +205,6 @@
     <!-- content -->
     <aside id="content">
         <div class="content-top-menu">
-            <button>ALL</button>
-            <button>From Marcus Levin</button>
         </div>
         <div id="videolist"></div>
     </aside>
