@@ -31,31 +31,7 @@ async function getChannelInfo(channelId) {
     return data;
 }
 
-// 천 단위마다 (,) 써주는 함수
-function formatNumberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
-// 게시일 표시 (금일 대비 ~일 전)
-function dateComparison(date) {
-    const parsedDate = new Date(date.replace(/\//g, "-"));
-    const milliSeconds = new Date() - parsedDate; 
-    
-    const seconds = milliSeconds / 1000
-    if (seconds < 60) return `방금 전`
-    const minutes = seconds / 60
-    if (minutes < 60) return `${Math.floor(minutes)}분 전`
-    const hours = minutes / 60
-    if (hours < 24) return `${Math.floor(hours)}시간 전`
-    const days = hours / 24
-    if (days < 7) return `${Math.floor(days)}일 전`
-    const weeks = days / 7
-    if (weeks < 5) return `${Math.floor(weeks)}주 전`
-    const months = days / 30
-    if (months < 12) return `${Math.floor(months)}개월 전`
-    const years = days / 365
-    return `${Math.floor(years)}년 전`
-}
 const videoInfoCache = new Map();
 const channelInfoCache = new Map();
 const videoListCache = new Map();
@@ -66,8 +42,7 @@ async function getCachedVideoList() {
   if (videoListCache.has("cachedVideoList")) {
     return videoListCache.get("cachedVideoList");
   } else {
-    const response = await fetch(`${APIURL}/video/getVideoList`);
-    const data = await response.json();
+    const data = await getVideoList();
     videoListCache.set("cachedVideoList", data);
     return data;
   }
@@ -97,14 +72,36 @@ async function getCachedChannelVideo(channelId) {
   if (channelVideoCache.has(channelId)) {
     return channelVideoCache.get(channelId);
   } else {
-    const apiUrl = `${APIURL}/channel/getChannelVideo?video_channel=${channelId}`;
-    const response = await fetch(apiUrl, { method: 'POST', headers: { 'accept': 'application/json' } });
-    const data = await response.json();
+    const data = await getChannelVideo(channelId);
     channelVideoCache.set(channelId, data);
     return data;
   }
 }
+// 천 단위마다 (,) 써주는 함수
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
+// 게시일 표시 (금일 대비 ~일 전)
+function dateComparison(date) {
+    const parsedDate = new Date(date.replace(/\//g, "-"));
+    const milliSeconds = new Date() - parsedDate; 
+    
+    const seconds = milliSeconds / 1000
+    if (seconds < 60) return `방금 전`
+    const minutes = seconds / 60
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`
+    const hours = minutes / 60
+    if (hours < 24) return `${Math.floor(hours)}시간 전`
+    const days = hours / 24
+    if (days < 7) return `${Math.floor(days)}일 전`
+    const weeks = days / 7
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`
+    const months = days / 30
+    if (months < 12) return `${Math.floor(months)}개월 전`
+    const years = days / 365
+    return `${Math.floor(years)}년 전`
+}
 // index.html에서 화면 표시
 async function displayHome() {
     const videoList = await getCachedVideoList();
@@ -215,132 +212,136 @@ async function displayVideo(id) {
         let tag = tagList[i];
         tagHTML += `<button>${tag}</button>`;
     }
-    const similarityCache = new Map();
-    async function getSimilarity(firstWord, secondWord) {
-        const cacheKey = `${firstWord}-${secondWord}`;
-        if (similarityCache.has(cacheKey)) {
-            return similarityCache.get(cacheKey);
-        }
-
-        const openApiURL = "http://aiopen.etri.re.kr:8000/WiseWWN/WordRel";
-        const access_key = "208ce248-aecc-4898-8d47-99896bef4e62";
-
-        let requestJson = {
-            argument: {
-                first_word: firstWord,
-                second_word: secondWord,
-            },
-        };
-
-        let response = await fetch(openApiURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: access_key,
-            },
-            body: JSON.stringify(requestJson),
-        });
-        let data = await response.json();
-        const distance = data.return_object["WWN WordRelInfo"].WordRelInfo.Distance;
-        similarityCache.set(cacheKey, distance); // 결과를 캐시에 저장
-        return distance;
-    }
-    async function calculateVideoSimilarities(videoList, targetTagList) {
-        let filteredVideoList = [];
-    
-        for (let video of videoList) {
-            let totalDistance = 0;
-            let promises = [];
-    
-            for (let videoTag of video.video_tag) {
-                for (let targetTag of targetTagList) {
-                    if (videoTag == targetTag) {
-                        promises.push(0);
-                    } else {
-                        promises.push(getSimilarity(videoTag, targetTag));
-                    }
-                }
-            }
-    
-            let distances = await Promise.all(promises);
-    
-            for (let distance of distances) {
-                if (distance !== -1) {
-                    totalDistance += distance;
-                }
-            }
-    
-            if (totalDistance !== 0) {
-                if (targetVideoId !== video.video_id) {
-                    filteredVideoList.push({ ...video, score: totalDistance });
-                }
-            }
-            if (filteredVideoList.length >= 5) {
-                break;            
-            }
-        }
-    
-        filteredVideoList.sort((a, b) => a.score - b.score);
-    
-        filteredVideoList = filteredVideoList.map((video) => ({
-            ...video,
-            score: 0,
-        }));
-    
-        return filteredVideoList;
-    }
-    //TF-IDF 계산 방식 사용 Term Frequency-Inverse Document Frequency
-    // function calculateVideoSimilarities(videoList, targetTagList) {
-    //     const filteredVideoList = [];
-    //     const targetTagSet = new Set(targetTagList);
-    
-    //     const idfMap = new Map();
-    //     const totalVideos = videoList.length;
-    
-    //     for (const video of videoList) {
-    //         const videoTagSet = new Set(video.video_tag);
-    //         for (const tag of videoTagSet) {
-    //             if (idfMap.has(tag)) {
-    //                 idfMap.set(tag, idfMap.get(tag) + 1);
-    //             } else {
-    //                 idfMap.set(tag, 1);
-    //             }
-    //         }
+    // const similarityCache = new Map();
+    // async function getSimilarity(firstWord, secondWord) {
+    //     const cacheKey = `${firstWord}-${secondWord}`;
+    //     if (similarityCache.has(cacheKey)) {
+    //         return similarityCache.get(cacheKey);
     //     }
-    
-    //     for (const video of videoList) {
-    //         const videoTagSet = new Set(video.video_tag);
-    //         let similarity = 0;
-    
-    //         for (const tag of videoTagSet) {
-    //             if (targetTagSet.has(tag)) {
-    //                 const tf = 1 / videoTagSet.size;
-    //                 const idf = Math.log(totalVideos / (idfMap.get(tag) || 1)) + 1;
-    //                 similarity += tf * idf;
-    //             }
-    //         }
-    
-    //         if (similarity > 0) {
-    //             filteredVideoList.push({ ...video, score: similarity });
-    //         }
-    //     }
-    
-    //     filteredVideoList.sort((a, b) => b.score - a.score);
-    
-    //     const top5Videos = filteredVideoList.slice(0, 5);
-    //     const finalVideoList = top5Videos.map((video) => ({ ...video, score: 0 }));
-    
-    //     return finalVideoList;
+
+    //     const openApiURL = "http://aiopen.etri.re.kr:8000/WiseWWN/WordRel";
+    //     const access_key = "208ce248-aecc-4898-8d47-99896bef4e62";
+
+    //     let requestJson = {
+    //         argument: {
+    //             first_word: firstWord,
+    //             second_word: secondWord,
+    //         },
+    //     };
+
+    //     let response = await fetch(openApiURL, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: access_key,
+    //         },
+    //         body: JSON.stringify(requestJson),
+    //     });
+    //     let data = await response.json();
+    //     const distance = data.return_object["WWN WordRelInfo"].WordRelInfo.Distance;
+    //     similarityCache.set(cacheKey, distance); // 결과를 캐시에 저장
+    //     return distance;
     // }
-    const filteredVideoList = await calculateVideoSimilarities(videoInfoList,targetTagList);
-    for (let i=0; i<filteredVideoList.length; i++){
-        let video = filteredVideoList[i];
-        let videoInfo = await getCachedVideoInfo(video.video_id);
-        console.log(video.video_id)
+    // async function calculateVideoSimilarities(videoList, targetTagList) {
+    //     let filteredVideoList = [];
+    
+    //     for (let video of videoList) {
+    //         let totalDistance = 0;
+    //         let promises = [];
+    
+    //         for (let videoTag of video.video_tag) {
+    //             for (let targetTag of targetTagList) {
+    //                 if (videoTag == targetTag) {
+    //                     promises.push(0);
+    //                 } else {
+    //                     promises.push(getSimilarity(videoTag, targetTag));
+    //                 }
+    //             }
+    //         }
+    
+    //         let distances = await Promise.all(promises);
+    
+    //         for (let distance of distances) {
+    //             if (distance !== -1) {
+    //                 totalDistance += distance;
+    //             }
+    //         }
+    
+    //         if (totalDistance !== 0) {
+    //             if (targetVideoId !== video.video_id) {
+    //                 filteredVideoList.push({ ...video, score: totalDistance });
+    //             }
+    //         }
+    //         if (filteredVideoList.length >= 5) {
+    //             break;            
+    //         }
+    //     }
+    
+    //     filteredVideoList.sort((a, b) => a.score - b.score);
+    
+    //     filteredVideoList = filteredVideoList.map((video) => ({
+    //         ...video,
+    //         score: 0,
+    //     }));
+    
+    //     return filteredVideoList;
+    // }
+    //TF-IDF 계산 방식 사용 Term Frequency-Inverse Document Frequency
+    function calculateVideoSimilarities(videoList, targetTagList) {
+        const filteredVideoList = [];
+        const targetTagSet = new Set(targetTagList);
+    
+        const idfMap = new Map();
+        const totalVideos = videoList.length;
+    
+        for (const video of videoList) {
+            const videoTagSet = new Set(video.video_tag);
+            for (const tag of videoTagSet) {
+                if (idfMap.has(tag)) {
+                    idfMap.set(tag, idfMap.get(tag) + 1);
+                } else {
+                    idfMap.set(tag, 1);
+                }
+            }
+        }
+    
+        for (const video of videoList) {
+            const videoTagSet = new Set(video.video_tag);
+            let similarity = 0;
+    
+            for (const tag of videoTagSet) {
+                if (targetTagSet.has(tag)) {
+                    const tf = 1 / videoTagSet.size;
+                    const idf = Math.log(totalVideos / (idfMap.get(tag) || 1)) + 1;
+                    similarity += tf * idf;
+                }
+            }
+    
+            if (similarity > 0) {
+                filteredVideoList.push({ ...video, score: similarity });
+            }
+            if (filteredVideoList.length >=5){
+                break;
+            }
+        }
+    
+        filteredVideoList.sort((a, b) => b.score - a.score);
+    
+        const top5Videos = filteredVideoList.slice(0, 5);
+        const finalVideoList = top5Videos.map((video) => ({ ...video, score: 0 }));
+    
+        return finalVideoList;
+    }
+    const filteredVideoList = calculateVideoSimilarities(videoInfoList,targetTagList);
+    const filteredPromises = filteredVideoList.map((video) => getCachedVideoInfo(video.video_id));
+    const filteredVideoListPro = await Promise.all(filteredPromises);
+
+    for (let i=0; i<filteredVideoListPro.length; i++){
+        let video = filteredVideoListPro[i];
         let videoURL = `location.href="./index_video.html?id=${video.video_id}"`;
         listHTML += `
         <div style="display:flex;">
-            <img src='${videoInfo.image_link}' style='width:60%;cursor:pointer;' onclick='${videoURL}'></img>
+            <img src='${video.image_link}' style='width:60%;cursor:pointer;' onclick='${videoURL}'></img>
             <div>
                 <div>
                     <p>${video.video_title}</p>
